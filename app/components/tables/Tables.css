@@ -1,0 +1,29 @@
+table {
+  border-collapse: collapse;
+  width: 95%;
+  margin: 0 auto;
+  color: #fff;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-top: 1px solid #fff;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid#fff;
+  text-align: center;
+  padding: 8px;
+}
+
+tr{
+    transition: all 0.4s ease;
+}
+
+tr:hover {
+    background-color: #fff;
+        transition: all 0.4s ease;
+
+    /* background-color: #D6EEEE; */
+    color: #000;
+}
