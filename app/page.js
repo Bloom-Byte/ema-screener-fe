@@ -7,7 +7,7 @@ import Search from "./components/Search/Search";
 export default function Home() {
   // #171101
   return (
-    <main className="bg-[#332605] text-#fff w-full h-full">
+    <main className="bg-[#332605] text-#fff w-full overflow-x-hidden h-full">
       <Navbar />
       <Search />
       <Table />
