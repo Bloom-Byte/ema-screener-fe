@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 const Tabled = () => {
   return (
-    <div className="w-[95%] m-auto overflow-x-scroll overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] ">
+    <div className="w-[95%] my-[30px] mx-auto overflow-x-scroll overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] ">
       {/* <table>
         <tr className="bg-[#F4A608]">
           <th>S/N</th>
