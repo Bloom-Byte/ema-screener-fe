@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import Navbar from "./components/Navbar/Navbar";
-import Table from "./components/tables/Table";
 import Search from "./components/Search/Search";
+import Tabled from "./components/tables/Table";
 
 export default function Home() {
   // #171101
@@ -10,7 +10,7 @@ export default function Home() {
     <main className="bg-[#332605] text-#fff w-full overflow-x-hidden h-full">
       <Navbar />
       <Search />
-      <Table />
+      <Tabled />
     </main>
   );
 }

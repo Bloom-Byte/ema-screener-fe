@@ -5,25 +5,49 @@ table {
   color: #fff;
 }
 
-th, td {
-  padding: 8px;
-  text-align: left;
-  border-top: 1px solid #fff;
-  border-left: 1px solid #fff;
-  border-right: 1px solid #fff;
-  border-bottom: 1px solid#fff;
+/* table td {
+  border: yellow 1px dashed;
+} */
+
+table tr:nth-child(odd) {
+  /* background-color: #000 !important; */
+  background-color: #fff !important;
+  text-align: center !important;
+}
+
+table tr:nth-child(even){
+  /* background-color: transparent !important; */
+  background-color: white !important;
+  color: #000 !important;
   text-align: center;
-  padding: 8px;
+}
+
+
+
+
+/* table tr:nth-child(even) {
+  background-color: lightgray;
+} */
+
+th, td {
+  text-align: center !important;
+  margin: 0 auto;
 }
 
 tr{
     transition: all 0.4s ease;
+    text-align: center !important;
 }
+
 
 tr:hover {
     background-color: #fff;
-        transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
 
-    /* background-color: #D6EEEE; */
-    color: #000;
+table tr th:hover{
+border-top: 1px solid #000;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid#000;
 }

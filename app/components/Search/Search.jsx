@@ -2,22 +2,29 @@ import React from "react";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
+import { Button, Input } from "@chakra-ui/react";
 const Search = () => {
   return (
     <div className="my-[30px]">
-      <div className="flex items-center justify-between w-[95%] flex-wrap gap-3 mx-auto">
-        <form className="flex items-center flex-wrap gap-3">
-          <input
-            className="py-1 px-2 text-[#000] outline-0 rounded-[8px]"
+      <div className="flex items-center justify-between w-[95%] flex-wrap gap-4 mx-auto">
+        <form className="flex items-center gap-3">
+          <Input
+            type="text"
+            borderRadius="6px"
+            color="#fff"
+            // className="py-1 px-2 text-[#000] outline-0 rounded-[8px]"
             placeholder="Search"
           />
-          <button
-            className="bg-[#F4A608] py-1 px-4 rounded-[6px]"
+          <Button
+            colorScheme
+            bgColor="#F4A608"
+            color="#fff"
+            className="rounded-[6px]"
             type="submit"
-            style={{ color: "#fff" }}
+            // style={{ color: "#fff" }}
           >
             Search
-          </button>
+          </Button>
           <Tippy placement="bottom" content="Search for your coins">
             <span className="text-white cursor-pointer">
               {" "}
@@ -44,21 +51,40 @@ const Search = () => {
             </select>
           </Tippy>
           <div className="flex items-center gap-3">
-            <button
-              style={{ color: "#fff" }}
-              className="bg-[#F4A608] text-#fff p-2 rounded-[8px] cursor-pointer"
+            <Button
+              colorScheme
+              bgColor="#F4A608"
+              color="#fff"
+              className="rounded-[6px]"
+              // style={{ color: "#fff" }}
+              // className="bg-[#F4A608] text-#fff p-2 rounded-[8px] cursor-pointer"
             >
               20{" "}
-            </button>
-            <button className="bg-[#F4A608]  p-2 rounded-[8px]  cursor-pointer">
+            </Button>
+            <Button
+              colorScheme
+              bgColor="#F4A608"
+              color="#fff"
+              className="rounded-[6px]"
+            >
               500{" "}
-            </button>
-            <button className="bg-[#F4A608] p-2 rounded-[8px]  cursor-pointer ">
+            </Button>
+            <Button
+              colorScheme
+              bgColor="#F4A608"
+              color="#fff"
+              className="rounded-[6px]"
+            >
               100{" "}
-            </button>
-            <button className="bg-[#F4A608] p-2 rounded-[8px] cursor-pointer">
+            </Button>
+            <Button
+              colorScheme
+              bgColor="#F4A608"
+              color="#fff"
+              className="rounded-[6px]"
+            >
               200{" "}
-            </button>
+            </Button>
             <Tippy
               placement="bottom"
               content="Shows trends over a period of time"
@@ -75,29 +101,49 @@ const Search = () => {
           className="flex items-center gap-3 flex-wrap"
         >
           <Tippy content="Filter by 15 minutes" placement="bottom">
-            <button className="bg-[#F4A608] text-#fff py-2 px-4 rounded-[5px] cursor-pointer">
+            <Button colorScheme bgColor="#F4A608" color="#fff">
               15min{" "}
-            </button>
+            </Button>
           </Tippy>
           <Tippy content="Filter by 1 hour" placement="bottom">
-            <button className="bg-[#F4A608] text-#fff py-2 px-4 rounded-[5px] cursor-pointer">
+            <Button
+              colorScheme
+              bgColor="#F4A608"
+              color="#fff"
+              className="rounded-[6px]"
+            >
               1 hour{" "}
-            </button>
+            </Button>
           </Tippy>
           <Tippy content="Filter by 4 hours" placement="bottom">
-            <button className="bg-[#F4A608] text-#fff py-2 px-4 rounded-[8px] cursor-pointer">
+            <Button
+              colorScheme
+              bgColor="#F4A608"
+              color="#fff"
+              className="rounded-[6px]"
+            >
               4 hours{" "}
-            </button>
+            </Button>
           </Tippy>
           <Tippy content="Filter by 1 day" placement="bottom">
-            <button className="bg-[#F4A608] text-#fff py-2 px-4 rounded-[6px] cursor-pointer">
+            <Button
+              colorScheme
+              bgColor="#F4A608"
+              color="#fff"
+              className="rounded-[6px]"
+            >
               1 day{" "}
-            </button>
+            </Button>
           </Tippy>
           <Tippy content="Filter by 1 week" placement="bottom">
-            <button className="bg-[#F4A608] text-#fff py-2 px-4 rounded-[6px] cursor-pointer">
+            <Button
+              colorScheme
+              bgColor="#F4A608"
+              color="#fff"
+              className="rounded-[6px]"
+            >
               1 week{" "}
-            </button>
+            </Button>
           </Tippy>
         </div>
       </div>
