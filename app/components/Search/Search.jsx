@@ -135,7 +135,7 @@ const Search = () => {
               1 day{" "}
             </Button>
           </Tippy>
-          <Tippy content="Filter by 1 week" placement="bottom">
+          {/* <Tippy content="Filter by 1 week" placement="bottom">
             <Button
               colorScheme
               bgColor="#F4A608"
@@ -144,7 +144,7 @@ const Search = () => {
             >
               1 week{" "}
             </Button>
-          </Tippy>
+          </Tippy> */}
         </div>
       </div>
     </div>
