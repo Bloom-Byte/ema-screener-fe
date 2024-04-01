@@ -5,7 +5,7 @@ import { BsGraphUpArrow, BsGraphDownArrow } from "react-icons/bs";
 
 const Table = () => {
   return (
-    <div className="overflow-x-scroll">
+    <div className="overflow-x-scroll overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] ">
       <table>
         <tr className="bg-[#F4A608]">
           <th>S/N</th>

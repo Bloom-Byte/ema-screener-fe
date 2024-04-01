@@ -3,7 +3,6 @@ table {
   width: 95%;
   margin: 0 auto;
   color: #fff;
-  overflow: scroll;
 }
 
 th, td {
