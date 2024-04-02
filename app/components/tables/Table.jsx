@@ -213,7 +213,7 @@ const Tabled = () => {
                 </p>
               </Td>
               <Td textAlign="center">
-                <p className="flex items-center gap-1">
+                <p className="flex items-center gap-[5px]">
                   <span
                     style={{
                       margin: "0 auto",

@@ -56,8 +56,6 @@ const Search = () => {
               bgColor="#F4A608"
               color="#fff"
               className="rounded-[6px]"
-              // style={{ color: "#fff" }}
-              // className="bg-[#F4A608] text-#fff p-2 rounded-[8px] cursor-pointer"
             >
               20{" "}
             </Button>
