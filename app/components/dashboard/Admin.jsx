@@ -1,9 +1,11 @@
 "use client";
 import { Box, Button, Container, Flex, Input, Text } from "@chakra-ui/react";
 import Tippy from "@tippyjs/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 import "tippy.js/dist/tippy.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Admin = (props) => {
   const [symbol, setSymbol] = React.useState("");
@@ -19,6 +21,10 @@ const Admin = (props) => {
     };
     props.setCoins((prev) => [...prev, allCoins]);
   };
+
+  useEffect(() => {
+    toast.success("Login Successful");
+  }, []);
 
   return (
     <div style={{ margin: "20px auto" }}>
@@ -81,6 +87,7 @@ const Admin = (props) => {
             </Tippy>
           </form>
         </Box>
+        <ToastContainer />
       </Container>
     </div>
   );

@@ -1,5 +1,8 @@
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Td, Tr } from "@chakra-ui/react";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+
 import React from "react";
 
 const SingleCategory = (props) => {
@@ -13,7 +16,11 @@ const SingleCategory = (props) => {
       <Td textAlign="center">{props.coin.category}</Td>
       <Td textAlign="center">{props.coin.subCategory}</Td>
       <Td>
-        <DeleteIcon onClick={deleteCoin} cursor="pointer" />{" "}
+        <Tippy placement="bottom" content="delete">
+          <span>
+            <DeleteIcon onClick={deleteCoin} cursor="pointer" />{" "}
+          </span>
+        </Tippy>
       </Td>
     </Tr>
   );

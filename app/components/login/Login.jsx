@@ -236,9 +236,11 @@ const Login = () => {
                   logging in...
                 </Button>
               ) : (
-                <Button type="submit" w="100%" colorScheme="blue" size="lg">
-                  Login to your account
-                </Button>
+                <Link href="/admin">
+                  <Button w="100%" colorScheme="blue" size="lg">
+                    Login to your account
+                  </Button>
+                </Link>
               )}
               {isAuth ? (
                 <Text color="red" textAlign="center">
