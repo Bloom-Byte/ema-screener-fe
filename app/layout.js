@@ -1,6 +1,7 @@
 import { Rubik } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import Template from "./template";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -24,7 +25,9 @@ export default function RootLayout({ children }) {
         className={fonts.rubik.variable}
         // className={inter.className}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <Template>{children}</Template>
+        </Providers>
       </body>
     </html>
   );

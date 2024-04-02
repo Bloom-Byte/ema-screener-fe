@@ -6,6 +6,7 @@ import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 import "tippy.js/dist/tippy.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Admin = (props) => {
   const [symbol, setSymbol] = React.useState("");
@@ -27,7 +28,12 @@ const Admin = (props) => {
   }, []);
 
   return (
-    <div style={{ margin: "20px auto" }}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      style={{ margin: "20px auto" }}
+    >
       <Container width="100%" maxW="95%" m="0 auto" p="0">
         <Text>Add Currency </Text>
         <Box
@@ -89,7 +95,7 @@ const Admin = (props) => {
         </Box>
         <ToastContainer />
       </Container>
-    </div>
+    </motion.div>
   );
 };
 
