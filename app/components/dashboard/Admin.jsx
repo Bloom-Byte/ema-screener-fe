@@ -72,11 +72,21 @@ const Admin = (props) => {
                 cursor="pointer"
                 placeholder="Select Category"
               >
-                <option value="A">A </option>
-                <option value="B">B </option>
-                <option value="C">C </option>
-                <option value="D">D </option>
-                <option value="E">E </option>
+                <option style={{ cursor: "pointer" }} value="A">
+                  A{" "}
+                </option>
+                <option style={{ cursor: "pointer" }} value="B">
+                  B{" "}
+                </option>
+                <option style={{ cursor: "pointer" }} value="C">
+                  C{" "}
+                </option>
+                <option style={{ cursor: "pointer" }} value="D">
+                  D{" "}
+                </option>
+                <option style={{ cursor: "pointer" }} value="E">
+                  E{" "}
+                </option>
               </Select>
               {/* <Input
                 onChange={(e) => setCategory(e.target.value)}

@@ -16,109 +16,9 @@ import {
 const Tabled = () => {
   return (
     <div className="w-[95%] my-[30px] mx-auto overflow-x-scroll overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] ">
-      {/* <table>
-        <tr className="bg-[#F4A608]">
-          <th>S/N</th>
-          <th>Sub Category</th>
-          <th>Symbol</th>
-          <th>Time (UTC)</th>
-          <th>MH</th>
-          <th>MM</th>
-          <th>ML</th>
-          <th>20&gt;50</th>
-          <th>50&gt;100</th>
-          <th>100&gt;200</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td className="flex items-center justify-center gap-2">
-            Bitcoin{" "}
-            <span>
-              <BsGraphUpArrow color="green" />{" "}
-            </span>
-          </td>
-          <td>3</td>
-          <td>3</td>
-          <td>4</td>
-          <td>4</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td className="flex items-center justify-center gap-2">
-            &#x20AC;{" "}
-            <span>
-              {" "}
-              <BsGraphDownArrow color="red" />
-            </span>
-          </td>
-          <td>$150</td>
-          <td>4</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>&#xa3;</td>
-          <td>&#xa3;</td>
-          <td>$300</td>
-          <td>4</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>&#xa5;</td>
-          <td>$250</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>&#xa2;</td>
-          <td>$250</td>
-          <td>$250</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>&#x20B9;</td>
-          <td>$250</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>5</td>
-        </tr>
-      </table> */}
-
       <TableContainer>
         <Table
           variant="striped"
-          // bgColor="gray.100"
-          // stripedBgColor="gray.400"
           textAlign="center"
           colorScheme="teal"
           color="black"
@@ -130,6 +30,7 @@ const Tabled = () => {
               <Th textAlign="center">Sub Category</Th>
               <Th textAlign="center">Symbol</Th>
               <Th textAlign="center">Time (UTC)</Th>
+              <Th textAlign="center">Exchange</Th>
               <Th textAlign="center">MH</Th>
               <Th textAlign="center">MM</Th>
               <Th textAlign="center">ML</Th>
@@ -227,6 +128,7 @@ const Tabled = () => {
                 </p>
               </Td>
               <Td textAlign="center">50</Td>
+              <Td textAlign="center">50</Td>
             </Tr>
 
             <Tr>
@@ -246,6 +148,7 @@ const Tabled = () => {
               <Td>ETH</Td>
               <Td>2024-03-24 19:03</Td>
               <Td>3</Td>
+              <Td>30.48</Td>
               <Td>30.48</Td>
               <Td>30.48</Td>
               <Td>30.48</Td>
@@ -291,6 +194,7 @@ const Tabled = () => {
               </Td>
               <Td>2</Td>
               <Td>0.91444</Td>
+              <Td>0.91444</Td>
             </Tr>
             <Tr>
               <Td>4</Td>
@@ -298,6 +202,7 @@ const Tabled = () => {
               <Td>3</Td>
               <Td>2024-03-24 19:03</Td>
 
+              <Td>0.91444</Td>
               <Td>0.91444</Td>
               <Td>0.91444</Td>
               <Td>0.91444</Td>
@@ -317,6 +222,7 @@ const Tabled = () => {
               <Td>45</Td>
               <Td>45</Td>
               <Td>0.91444</Td>
+              <Td>0.91444</Td>
             </Tr>
             <Tr>
               <Td>6</Td>
@@ -329,6 +235,7 @@ const Tabled = () => {
               <Td>10</Td>
               <Td>10</Td>
               <Td>10</Td>
+              <Td>0.91444</Td>
               <Td>0.91444</Td>
             </Tr>
           </Tbody>
