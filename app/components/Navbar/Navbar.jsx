@@ -13,7 +13,13 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="w-[100%] bg-white text-#000">
+    <div
+      style={{
+        boxShadow:
+          "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;",
+      }}
+      className="w-[100%] bg-white text-#000"
+    >
       <div className="flex items-center m-auto py-4 w-[95%] max-[500px]:justify-between ">
         <div className="flex items-center gap-3 w-[45%] ">
           <div className="w-[50px] max-[450px]:hidden">

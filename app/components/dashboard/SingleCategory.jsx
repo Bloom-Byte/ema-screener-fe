@@ -15,6 +15,7 @@ const SingleCategory = (props) => {
       <Td textAlign="center">{props.coin.symbol}</Td>
       <Td textAlign="center">{props.coin.category}</Td>
       <Td textAlign="center">{props.coin.subCategory}</Td>
+      <Td textAlign="center">{props.coin.exchange}</Td>
       <Td>
         <Tippy placement="bottom" content="delete">
           <span>

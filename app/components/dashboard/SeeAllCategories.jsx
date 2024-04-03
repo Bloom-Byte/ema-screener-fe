@@ -32,6 +32,7 @@ const SeeAllCategories = (props) => {
               <Th textAlign="center">Symbol</Th>
               <Th textAlign="center">Category</Th>
               <Th textAlign="center">Sub Category</Th>
+              <Th textAlign="center">Exchange</Th>
             </Tr>
           </Thead>
           {props.coins.length > 0 ? (

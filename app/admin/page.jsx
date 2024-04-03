@@ -11,12 +11,14 @@ const page = () => {
       category: "Coin",
       symbol: "BTC",
       subCategory: "Bitcoin",
+      exchange: "1000",
     },
     {
       SN: 2,
       category: "Coin",
       symbol: "Meta",
       subCategory: "MetaMask",
+      exchange: "600",
     },
   ]);
 

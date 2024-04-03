@@ -1,5 +1,13 @@
 "use client";
-import { Box, Button, Container, Flex, Input, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Input,
+  Select,
+  Text,
+} from "@chakra-ui/react";
 import Tippy from "@tippyjs/react";
 import React, { useEffect, useState } from "react";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
@@ -12,6 +20,8 @@ const Admin = (props) => {
   const [symbol, setSymbol] = React.useState("");
   const [category, setCategory] = React.useState("");
   const [subCategory, setSubCategory] = useState("");
+  const [exchangeField, setExchangeField] = useState("");
+
   const addCoin = (e) => {
     e.preventDefault();
     const allCoins = {
@@ -19,6 +29,7 @@ const Admin = (props) => {
       symbol: symbol,
       category: category,
       subCategory: subCategory,
+      exchange: exchangeField,
     };
     props.setCoins((prev) => [...prev, allCoins]);
   };
@@ -26,6 +37,8 @@ const Admin = (props) => {
   useEffect(() => {
     toast.success("Login Successful");
   }, []);
+
+  console.log(exchangeField, "this is the exchange field");
 
   return (
     <motion.div
@@ -54,13 +67,28 @@ const Admin = (props) => {
                 onChange={(e) => setSymbol(e.target.value)}
                 placeholder="Enter Symbol"
               />
-              <Input
+              <Select
+                onClick={(e) => setCategory(e.target.value)}
+                cursor="pointer"
+                placeholder="Select Category"
+              >
+                <option value="A">A </option>
+                <option value="B">B </option>
+                <option value="C">C </option>
+                <option value="D">D </option>
+                <option value="E">E </option>
+              </Select>
+              {/* <Input
                 onChange={(e) => setCategory(e.target.value)}
                 placeholder="Enter Category"
-              />
+              /> */}
               <Input
                 onChange={(e) => setSubCategory(e.target.value)}
                 placeholder="Enter subCategory"
+              />
+              <Input
+                onChange={(e) => setExchangeField(e.target.value)}
+                placeholder="Enter Exchange Field"
               />
               <Button type="submit" colorScheme="teal" w="100%">
                 Submit
