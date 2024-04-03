@@ -149,7 +149,7 @@ const Login = () => {
               alignItems="center"
               height="100%"
               width="95%"
-              p="0"
+              p="10px"
               m="0 auto"
               bgColor="#fff"
               borderRadius="15px"
