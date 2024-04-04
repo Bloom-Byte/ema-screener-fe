@@ -37,10 +37,10 @@ const SeeAllCategories = (props) => {
           </Thead>
           {props.coins.length > 0 ? (
             <Tbody>
-              {props.coins.map((coin) => {
+              {props.coins.map((coin, index) => {
                 return (
                   <SingleCategory
-                    key={coin.SN}
+                    key={index}
                     setCoins={props.setCoins}
                     coins={props.coins}
                     coin={coin}

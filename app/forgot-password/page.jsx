@@ -30,6 +30,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isAuth, setIsAuth] = useState(false);
   const [hidePassword, setHidePassword] = useState(false);
+  const [hideForgotPassword, setHideForgotPassword] = useState(false);
   const [loadingBtn, setLoadingBtn] = useState(false);
 
   const router = useRouter();
@@ -154,6 +155,7 @@ const Login = () => {
               bgColor="#fff"
               borderRadius="15px"
               boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;"
+              // border="2px red solid"
             >
               <Stack
                 display="flex"
@@ -167,25 +169,25 @@ const Login = () => {
                 // boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;"
               >
                 <Heading as="h3" size="lg">
-                  Login to your account
+                  Enter your account
                 </Heading>
                 <form
                   className="flex flex-col gap-6 w-full "
                   // onSubmit={handleLogin}
                 >
-                  <Input
+                  {/* <Input
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
                     placeholder="Enter email address"
                     defaultValue={email}
                     size="lg"
-                  />
+                  /> */}
                   {hidePassword ? (
                     <Box position="relative">
                       <Input
                         onChange={(e) => setPassword(e.target.value)}
                         type="text"
-                        placeholder="Enter password"
+                        placeholder="Enter old password"
                         size="lg"
                         defaultValue={password}
                       />
@@ -200,13 +202,47 @@ const Login = () => {
                     <Box position="relative">
                       <Input
                         type="password"
-                        placeholder="Enter password"
+                        placeholder="Enter old password"
                         size="lg"
                         onChange={(e) => setPassword(e.target.value)}
                         defaultValue={password}
                       />
                       <span
                         onClick={() => setHidePassword(true)}
+                        className="absolute right-2 top-3 z-10 cursor-pointer"
+                      >
+                        {<ViewIcon />}{" "}
+                      </span>
+                    </Box>
+                  )}
+
+                  {hideForgotPassword ? (
+                    <Box position="relative">
+                      <Input
+                        onChange={(e) => setPassword(e.target.value)}
+                        type="text"
+                        placeholder="Enter new password"
+                        size="lg"
+                        defaultValue={password}
+                      />
+                      <span
+                        onClick={() => setHideForgotPassword(false)}
+                        className="absolute right-2 top-3 z-10 cursor-pointer"
+                      >
+                        {<ViewOffIcon />}{" "}
+                      </span>
+                    </Box>
+                  ) : (
+                    <Box position="relative">
+                      <Input
+                        type="password"
+                        placeholder="Enter new password"
+                        size="lg"
+                        onChange={(e) => setPassword(e.target.value)}
+                        defaultValue={password}
+                      />
+                      <span
+                        onClick={() => setHideForgotPassword(true)}
                         className="absolute right-2 top-3 z-10 cursor-pointer"
                       >
                         {<ViewIcon />}{" "}
@@ -243,7 +279,7 @@ const Login = () => {
                   ) : (
                     <Link href="/admin">
                       <Button w="100%" colorScheme="blue" size="lg">
-                        Login to your account
+                        Set Password
                       </Button>
                     </Link>
                   )}
@@ -262,19 +298,19 @@ const Login = () => {
                 <span className="text-[teal] cursor-pointer ">Sign up </span>
               </Link>
             </Text> */}
-                <Flex alignItems="center" gap="10px">
+                {/* <Flex alignItems="center" gap="10px">
                   <span className="h-[1px] w-[200px] bg-black opacity-[0.25]  max-nav:w-[150px] max-sm:w-[100px]  "></span>
                   <Text fontSize="sm">OR </Text>
                   <span className="h-[1px] w-[200px] bg-black opacity-[0.25]  max-nav:w-[150px] max-sm:w-[100px]  "></span>
-                </Flex>
-                <Text fontSize="md">
+                </Flex> */}
+                {/* <Text fontSize="md">
                   Forgot Password?{" "}
-                  <Link as={NextLink} href="/forgot-password">
+                  <Link as={NextLink} href="#">
                     <span className="text-[teal] cursor-pointer ">
                       Click here{" "}
                     </span>
                   </Link>
-                </Text>
+                </Text> */}
                 {/* <Button
               display="flex"
               alignItems="center"
