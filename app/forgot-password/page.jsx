@@ -26,8 +26,8 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const Login = () => {
   //   const { contextValue } = useAppContext();
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [isAuth, setIsAuth] = useState(false);
   const [hidePassword, setHidePassword] = useState(false);
   const [hideForgotPassword, setHideForgotPassword] = useState(false);
@@ -219,11 +219,11 @@ const Login = () => {
                   {hideForgotPassword ? (
                     <Box position="relative">
                       <Input
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setNewPassword(e.target.value)}
                         type="text"
                         placeholder="Enter new password"
                         size="lg"
-                        defaultValue={password}
+                        defaultValue={newPassword}
                       />
                       <span
                         onClick={() => setHideForgotPassword(false)}
@@ -238,8 +238,8 @@ const Login = () => {
                         type="password"
                         placeholder="Enter new password"
                         size="lg"
-                        onChange={(e) => setPassword(e.target.value)}
-                        defaultValue={password}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        defaultValue={newPassword}
                       />
                       <span
                         onClick={() => setHideForgotPassword(true)}
