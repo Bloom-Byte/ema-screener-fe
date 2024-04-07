@@ -41,12 +41,22 @@ const SeeAllCategories = (props) => {
                 return (
                   <SingleCategory
                     key={coin.id}
+                    index={index}
+                    setEmaCurrencies={props.setEmaCurrencies}
+                    emaCurrencies={props.emaCurrencies}
+                  />
+                );
+              })}
+              {/* {props.emaCurrencies.map((coin, index) => {
+                return (
+                  <SingleCategory
+                    key={coin.id}
                     setEmaCurrencies={props.setEmaCurrencies}
                     emaCurrencies={props.emaCurrencies}
                     coin={coin}
                   />
                 );
-              })}
+              })} */}
             </Tbody>
           ) : (
             <Thead>

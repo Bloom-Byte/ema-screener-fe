@@ -49,7 +49,7 @@ const Navbar = () => {
           <Text className=" text-#000">UTC </Text>
         </div>
         <Tippy content="Logout" placement="bottom">
-          <span onClick={logOut} className="cursor-pointer p-2">
+          <span className="cursor-pointer p-2">
             <TbLogout2 fontSize="24px" />
           </span>
         </Tippy>
