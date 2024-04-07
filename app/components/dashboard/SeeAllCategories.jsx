@@ -19,8 +19,6 @@ const SeeAllCategories = (props) => {
       <TableContainer>
         <Table
           variant="striped"
-          // bgColor="gray.100"
-          // stripedBgColor="gray.400"
           textAlign="center"
           colorScheme="teal"
           color="black"
@@ -29,41 +27,45 @@ const SeeAllCategories = (props) => {
           <Thead>
             <Tr>
               <Th textAlign="center">S/N</Th>
-              <Th textAlign="center">Symbol</Th>
+              <Th textAlign="center">Name</Th>
+              <Th textAlign="center">Symbol.</Th>
               <Th textAlign="center">Category</Th>
+              <Th textAlign="center">Current Price</Th>
               <Th textAlign="center">Sub Category</Th>
               <Th textAlign="center">Exchange</Th>
             </Tr>
           </Thead>
-          {props.coins.length > 0 ? (
+          {props.emaCurrencies.length > 0 ? (
             <Tbody>
-              {props.coins.map((coin, index) => {
+              {props.emaCurrencies.map((coin, index) => {
                 return (
                   <SingleCategory
-                    key={index}
-                    setCoins={props.setCoins}
-                    coins={props.coins}
+                    key={coin.id}
+                    setEmaCurrencies={props.setEmaCurrencies}
+                    emaCurrencies={props.emaCurrencies}
                     coin={coin}
                   />
                 );
               })}
             </Tbody>
           ) : (
-            <Tr textAlign="center">
-              <Td colSpan={4}>
-                <Box
-                  textAlign="center"
-                  margin="auto"
-                  width="100%"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  p={4}
-                >
-                  You have not added anything yet
-                </Box>
-              </Td>
-            </Tr>
+            <Thead>
+              <Tr textAlign="center">
+                <Td colSpan={4}>
+                  <Box
+                    textAlign="center"
+                    margin="auto"
+                    width="100%"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    p={4}
+                  >
+                    You have not added anything yet
+                  </Box>
+                </Td>
+              </Tr>
+            </Thead>
           )}
         </Table>
       </TableContainer>

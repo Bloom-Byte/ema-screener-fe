@@ -14,7 +14,7 @@ import {
 import React, { useState } from "react";
 import NextLink from "next/link";
 import { FcGoogle } from "react-icons/fc";
-// import { useAppContext } from "@/app/helper/Helpers";
+import { useAppContext } from "@/app/helper/Helpers";
 // import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 // import { auth, provider } from "../firebase-config/Firebase-config";
 // import { ToastContainer, toast } from "react-toastify";
@@ -25,85 +25,94 @@ import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Login = () => {
-  //   const { contextValue } = useAppContext();
+  const { contextValue } = useAppContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isAuth, setIsAuth] = useState(false);
   const [hidePassword, setHidePassword] = useState(false);
   const [loadingBtn, setLoadingBtn] = useState(false);
+  const [emptyInput, setEmptyInput] = useState(false);
 
   const router = useRouter();
 
-  // const signInWithGoogle = async (e) => {
-  //   e.preventDefault();
-  //   signInWithPopup(auth, provider)
-  //     .then(async (res) => {
-  //       let userInfo = {
-  //         userId: res.user.uid,
-  //       };
-  //       // console.log(userInfo);
-  //       //   localStorage.setItem("user", userInfo?.userId);
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-  //       // const response = await axios.get(`https://`);
-  //       router.push("/");
-  //       toast(`${res.user.displayName}, login successful!`);
+    const API_KEY = "ZPQZsfIX.yOW01At15aQpF2Z1Ll6I4JmMX87OkWqH";
 
-  //       if (userInfo?.userId) {
-  //         localStorage.setItem("user", userInfo?.userId);
+    const userInfo = {
+      username: email,
+      password: password,
+    };
 
-  //         //   userInfo?.userId
-  //         //     ? contextValue?.getCurrentUser(userObject.data?._id)
-  //         //     : "";
-  //         router.push("/");
-  //       }
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+    console.log(userInfo);
 
-  //   const handleLogin = async (e) => {
-  //     e.preventDefault();
+    if (userInfo.username && userInfo.password) {
+      setLoadingBtn(true);
 
-  //     const userInfo = {
-  //       email: email,
-  //       password: password,
-  //     };
-  //     if (userInfo.email && userInfo.password) {
-  //       setLoadingBtn(true);
+      try {
+        console.log(API_KEY);
+        const response = await axios({
+          method: "POST",
+          url: "https://be.emascreener.bloombyte.dev/api/v1/accounts/auth/",
+          data: userInfo,
+          headers: {
+            // Authorization: `AuthToken ${API_KEY}`,
+            "Content-Type": "application/json",
+          },
+        }).catch(
+          (err) => console.log(err, "axios error") && setLoadingBtn(false)
+        );
+        console.log(response.status, "response");
+        if (response.status == 200 || "success") {
+          setLoadingBtn(false);
+          // console.log(response.data, "response");
+          contextValue.setToken(response.data.data.token);
+          contextValue.setUserId(response.data.data.user_id);
+          // contextValue.getCurrentUser(response.data.token);
+          // console.log(response.data.data.token, "response.data.token");
+          localStorage.setItem("token", response.data.data.token);
+          localStorage.setItem("userId", response.data.data.user_id);
+          router.push("/admin");
+          // const token = localStorage.getItem("token");
+          // contextValue.getCurrentUser(response.data.token);
+        } else if (response.status == 400) {
+          setLoadingBtn(false);
 
-  //       try {
-  //         const response = await axios({
-  //           method: "POST",
-  //           url: "https://apps.lien.bloombyte.dev/login/",
-  //           data: userInfo,
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //         }).catch((err) => console.log(err, "network error"));
+          setIsAuth(true);
+          setTimeout(() => {
+            setIsAuth(false);
+          }, 4000);
+        } else {
+          console.log("Validation Error");
+          setLoadingBtn(false);
+          setEmptyInput(true);
 
-  //         if (response.status === 200) {
-  //           setLoadingBtn(false);
-  //           localStorage.setItem("token", response.data.token);
-  //           router.push("/");
-  //           const token = localStorage.getItem("token");
-  //           contextValue.setToken(token);
-  //           contextValue.getCurrentUser(response.data.token);
-  //         } else if (response.status == 400) {
-  //           setIsAuth(true);
-  //           setTimeout(() => {
-  //             setIsAuth(false);
-  //           }, 4000);
-  //         } else {
-  //           console.log("Validation Error");
-  //           setIsAuth(true);
-  //           setTimeout(() => {
-  //             setIsAuth(false);
-  //           }, 4000);
-  //         }
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     }
-  //   };
+          setIsAuth(true);
+          setTimeout(() => {
+            setIsAuth(false);
+          }, 4000);
+        }
+      } catch (error) {
+        setLoadingBtn(false);
+
+        console.log(error);
+      }
+    }
+  };
+
+  const forgotPassword = async () => {
+    const response = await axios({
+      method: "POST",
+      url:
+        "https://be.emascreener.bloombyte.dev/api/v1/accounts/request-password-reset/",
+      data: userInfo,
+      headers: {
+        // Authorization: `AuthToken ${API_KEY}`,
+        "Content-Type": "application/json",
+      },
+    }).catch((err) => console.log(err, "network error"));
+  };
 
   return (
     <AnimatePresence mode="wait">
@@ -153,7 +162,7 @@ const Login = () => {
               m="0 auto"
               bgColor="#fff"
               borderRadius="15px"
-              boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;"
+              boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
             >
               <Stack
                 display="flex"
@@ -171,7 +180,7 @@ const Login = () => {
                 </Heading>
                 <form
                   className="flex flex-col gap-6 w-full "
-                  // onSubmit={handleLogin}
+                  onSubmit={handleLogin}
                 >
                   <Input
                     onChange={(e) => setEmail(e.target.value)}
@@ -241,20 +250,27 @@ const Login = () => {
                       logging in...
                     </Button>
                   ) : (
-                    <Link href="/admin">
-                      <Button w="100%" colorScheme="blue" size="lg">
-                        Login to your account
-                      </Button>
-                    </Link>
+                    <Button type="submit" w="100%" colorScheme="blue" size="lg">
+                      Login to your account
+                    </Button>
                   )}
-                  {isAuth ? (
-                    <Text color="red" textAlign="center">
-                      {" "}
-                      seems something went wrong.{" "}
-                    </Text>
-                  ) : (
-                    ""
-                  )}
+                  <motion.div>
+                    {isAuth ? (
+                      <Text color="red" textAlign="center">
+                        {" "}
+                        seems something went wrong.{" "}
+                      </Text>
+                    ) : (
+                      ""
+                    )}
+                  </motion.div>
+                  <motion.div>
+                    {emptyInput && (
+                      <Text color="red" textAlign="center">
+                        Make sure email and password is present.{" "}
+                      </Text>
+                    )}
+                  </motion.div>
                 </form>
                 {/* <Text fontSize="md">
               Don't have have an account?{" "}

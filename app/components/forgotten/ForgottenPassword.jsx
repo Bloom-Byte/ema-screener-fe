@@ -235,10 +235,10 @@ const ForgottenPassword = () => {
                           fill="currentColor"
                         />
                       </svg>
-                      logging in...
+                      - logging in...
                     </Button>
                   ) : (
-                    <Link href="/admin">
+                    <Link href="/login">
                       <Button w="100%" colorScheme="blue" size="lg">
                         Set Password
                       </Button>
