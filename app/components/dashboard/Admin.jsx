@@ -42,25 +42,37 @@ const Admin = (props) => {
       subcategory: subCategory,
       exchange: exchangeField,
     };
+    // console.log(allCoins);
     try {
-      await axios({
-        method: "POST",
-        url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
-        data: allCoins,
-        headers: {
-          Authorization: `AuthToken ${
-            contextValue.token || localStorage.getItem("token")
-          }`,
-        },
-      })
-        .then((res) => {
-          props.setEmaCurrencies((prev) => [res.data, ...prev]);
-          setSuccessfulBtn(false);
-          toast.success("Coin added successfully");
+      if (
+        allCoins.name &&
+        allCoins.symbol &&
+        allCoins.category &&
+        allCoins.current_price &&
+        allCoins.exchange &&
+        allCoins.subcategory
+      ) {
+        await axios({
+          method: "POST",
+          url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
+          data: allCoins,
+          headers: {
+            Authorization: `AuthToken ${
+              contextValue.token || localStorage.getItem("token")
+            }`,
+          },
         })
-        .catch((err) => console.log(err));
+          .then((res) => {
+            props.setEmaCurrencies((prev) => [res.data, ...prev]);
+            setSuccessfulBtn(false);
+            toast.success("Coin added successfully");
+          })
+          .catch((err) => console.log(err) && setSuccessfulBtn(false));
+      } else {
+        console.log("input values");
+      }
     } catch (error) {
-      console.log(error);
+      console.log(error) && setSuccessfulBtn(false);
     }
   };
 

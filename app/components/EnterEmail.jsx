@@ -23,6 +23,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { toast } from "react-toastify";
 
 const EnterEmail = (props) => {
   const { contextValue } = useAppContext();
@@ -34,16 +35,21 @@ const EnterEmail = (props) => {
   const router = useRouter();
 
   const forgotPassword = async () => {
-    const response = await axios({
-      method: "POST",
-      url:
-        "https://be.emascreener.bloombyte.dev/api/v1/accounts/request-password-reset/",
-      data: userInfo,
-      headers: {
-        // Authorization: `AuthToken ${API_KEY}`,
-        "Content-Type": "application/json",
-      },
-    }).catch((err) => console.log(err, "network error"));
+    toast.success("Check your email for reset link!");
+    setLoadingBtn(true);
+    setTimeout(() => {
+      setLoadingBtn(false);
+    }, 4000);
+    // const response = await axios({
+    //   method: "POST",
+    //   url:
+    //     "https://be.emascreener.bloombyte.dev/api/v1/accounts/request-password-reset/",
+    //   data: email,
+    //   headers: {
+    //     // Authorization: `AuthToken ${API_KEY}`,
+    //     "Content-Type": "application/json",
+    //   },
+    // }).catch((err) => console.log(err, "network error"));
   };
 
   return (
@@ -108,7 +114,7 @@ const EnterEmail = (props) => {
                 </Heading>
                 <form
                   className="flex flex-col gap-6 w-full "
-                  //   onSubmit={handleLogin}
+                  onSubmit={forgotPassword}
                 >
                   <Input
                     onChange={(e) => setEmail(e.target.value)}
