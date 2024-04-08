@@ -22,18 +22,19 @@ const SingleCategory = (props) => {
         },
       }).catch((err) => console.log(err));
       console.log(props.coin.id, "coin");
-      console.log(response, "response");
-      if (response.status === 200) {
-        toast.success("Coin deleted successfully");
+      if (response.status === 204) {
+        toast.success("Currency deleted successfully");
         props.setEmaCurrencies(
           props.emaCurrencies.filter(
             (currency) => currency.id !== props.coin.id
           )
         );
+      } else {
+        toast.error("Error deleting currency");
       }
     } catch (error) {
       console.log(error);
-      toast.error("Error deleting coin");
+      toast.error("Error deleting currency");
     }
     // props.setEmaCurrencies(
     //   props.emaCurrencies.filter((currency) => currency.id !== props.coin.id)

@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import { Heading, Text } from "@chakra-ui/react";
+import { Flex, Heading, Link, Text } from "@chakra-ui/react";
 import { TbLogout2 } from "react-icons/tb";
+import { IoHomeOutline } from "react-icons/io5";
 import Tippy from "@tippyjs/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -95,11 +96,20 @@ const AdminNavbar = () => {
             UTC{" "}
           </Text>
         </div>
-        <Tippy content="Logout" placement="bottom">
-          <span onClick={logOut} className="text-#fff cursor-pointer p-2">
-            <TbLogout2 fontSize="24px" color="white" />
-          </span>
-        </Tippy>
+        <Flex alignItems="center" gap="15px">
+          <Tippy content="Homepage" placement="bottom">
+            <Link href="/">
+              <span className="text-#fff cursor-pointer p-2">
+                <IoHomeOutline fontSize="24px" color="white" />
+              </span>
+            </Link>
+          </Tippy>
+          <Tippy content="Logout" placement="bottom">
+            <span onClick={logOut} className="text-#fff cursor-pointer p-2">
+              <TbLogout2 fontSize="24px" color="white" />
+            </span>
+          </Tippy>
+        </Flex>
       </div>
     </div>
   );
