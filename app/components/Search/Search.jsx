@@ -17,6 +17,7 @@ const Search = () => {
   const [trend, setTrend] = useState("");
   const [watch, setWatch] = useState("");
 
+  //* Function to filter Results
   const filterResults = async () => {
     const token = contextValue.token || localStorage.getItem("token");
 

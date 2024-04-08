@@ -29,9 +29,8 @@ const Admin = (props) => {
   const [exchangeField, setExchangeField] = useState("");
   const [successfulBtn, setSuccessfulBtn] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  // const { contextValue } = useAppContext();
-  // const [emaRecords, setEmaRecords] = useState([]);
 
+  //Function to handle adding coin
   const addCoin = async (e) => {
     e.preventDefault();
     setSuccessfulBtn(true);
@@ -44,8 +43,7 @@ const Admin = (props) => {
       exchange: exchangeField,
     };
     try {
-      // console.log(allCoins);
-      const response = await axios({
+      await axios({
         method: "POST",
         url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
         data: allCoins,
@@ -56,25 +54,17 @@ const Admin = (props) => {
         },
       })
         .then((res) => {
-          // console.log(res.data, "res");
-          props.setEmaCurrencies((prev) => [...prev, res.data]);
+          props.setEmaCurrencies((prev) => [res.data, ...prev]);
           setSuccessfulBtn(false);
-          // console.log("Coin added successfully");
           toast.success("Coin added successfully");
         })
         .catch((err) => console.log(err));
-      // console.log(response, "response");
-      // if (response.status == 200) {
-      //   props.setEmaCurrencies((prev) => [...prev, allCoins]);
-      //   setSuccessfulBtn(false);
-      //   console.log("Coin added successfully");
-      //   toast.success("Coin added successfully");
-      // }
     } catch (error) {
       console.log(error);
     }
   };
 
+  //Function to search for coin
   const searchCoin = async (e) => {
     e.preventDefault();
 
@@ -91,18 +81,8 @@ const Admin = (props) => {
         .then((res) => {
           console.log(res.data.results, "res");
           props.setEmaCurrencies(res.data.results);
-          // setSuccessfulBtn(false);
-          // console.log("Coin added successfully");
-          // toast.success("Coin added successfully");
         })
         .catch((err) => console.log(err));
-      // console.log(response, "response");
-      // if (response.status == 200) {
-      //   props.setEmaCurrencies((prev) => [...prev, allCoins]);
-      //   setSuccessfulBtn(false);
-      //   console.log("Coin added successfully");
-      //   toast.success("Coin added successfully");
-      // }
     } catch (error) {
       console.log(error);
     }
@@ -164,10 +144,7 @@ const Admin = (props) => {
                   E{" "}
                 </option>
               </Select>
-              {/* <Input
-                onChange={(e) => setCategory(e.target.value)}
-                placeholder="Enter Category"
-              /> */}
+
               <Input
                 onChange={(e) => setSubCategory(e.target.value)}
                 placeholder="Enter subCategory"
@@ -177,13 +154,7 @@ const Admin = (props) => {
                 placeholder="Enter Exchange Field"
               />
               {successfulBtn ? (
-                <Button
-                  // size="lg"
-                  disabled
-                  type="button"
-                  colorScheme="blue"
-                  // className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
-                >
+                <Button disabled type="button" colorScheme="teal" w="100%">
                   <svg
                     aria-hidden="true"
                     role="status"
@@ -201,7 +172,7 @@ const Admin = (props) => {
                       fill="currentColor"
                     />
                   </svg>
-                  Addding Ema...
+                  Addding Currency...
                 </Button>
               ) : (
                 <Button type="submit" colorScheme="teal" w="100%">

@@ -35,12 +35,10 @@ export default function Home() {
         url: apiUrl,
         headers: {
           Authorization: `AuthToken ${localStorage.getItem("token")}`,
-          // Authorization: `AuthToken ${API_KEY}`,
         },
       });
-      // const response = await axios.get(apiUrl);
       const emaRecords = response.data.results;
-      console.log("Retrieved EMA records:", emaRecords);
+      // console.log("Retrieved EMA records:", emaRecords);
       setAllEmaRecords(response.data.results);
       setLoading(false);
       // Process and display the retrieved EMA records in your UI

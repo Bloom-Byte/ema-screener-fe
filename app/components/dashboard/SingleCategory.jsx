@@ -4,6 +4,7 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import React from "react";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useAppContext } from "@/app/helper/Helpers";
 
@@ -21,7 +22,6 @@ const SingleCategory = (props) => {
           }`,
         },
       }).catch((err) => console.log(err));
-      console.log(props.coin.id, "coin");
       if (response.status === 204) {
         toast.success("Currency deleted successfully");
         props.setEmaCurrencies(
@@ -36,9 +36,6 @@ const SingleCategory = (props) => {
       console.log(error);
       toast.error("Error deleting currency");
     }
-    // props.setEmaCurrencies(
-    //   props.emaCurrencies.filter((currency) => currency.id !== props.coin.id)
-    // );
   };
 
   return (

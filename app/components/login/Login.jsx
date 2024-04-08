@@ -35,6 +35,7 @@ const Login = () => {
 
   const router = useRouter();
 
+  //Function to handle Login
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -43,37 +44,27 @@ const Login = () => {
       password: password,
     };
 
-    // console.log(userInfo);
-
     if (userInfo.username && userInfo.password) {
       setLoadingBtn(true);
 
       try {
-        // console.log(API_KEY);
         const response = await axios({
           method: "POST",
           url: "https://be.emascreener.bloombyte.dev/api/v1/accounts/auth/",
           data: userInfo,
           headers: {
-            // Authorization: `AuthToken ${API_KEY}`,
             "Content-Type": "application/json",
           },
         }).catch(
           (err) => console.log(err, "axios error") && setLoadingBtn(false)
         );
-        // console.log(response.status, "response");
         if (response.status == 200 || "success") {
           setLoadingBtn(false);
-          // console.log(response.data, "response");
           contextValue.setToken(response.data.data.token);
           contextValue.setUserId(response.data.data.user_id);
-          // contextValue.getCurrentUser(response.data.token);
-          // console.log(response.data.data.token, "response.data.token");
           localStorage.setItem("token", response.data.data.token);
           localStorage.setItem("userId", response.data.data.user_id);
           router.push("/admin");
-          // const token = localStorage.getItem("token");
-          // contextValue.getCurrentUser(response.data.token);
         } else if (response.status == 400) {
           setLoadingBtn(false);
 
@@ -88,12 +79,14 @@ const Login = () => {
 
           setIsAuth(true);
           setTimeout(() => {
+            setEmptyInput(false);
+          }, 4000);
+          setTimeout(() => {
             setIsAuth(false);
           }, 4000);
         }
       } catch (error) {
         setLoadingBtn(false);
-
         console.log(error);
       }
     }
