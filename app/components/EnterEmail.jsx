@@ -24,73 +24,14 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
-const Login = (props) => {
+const EnterEmail = (props) => {
   const { contextValue } = useAppContext();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [isAuth, setIsAuth] = useState(false);
-  const [hidePassword, setHidePassword] = useState(false);
   const [loadingBtn, setLoadingBtn] = useState(false);
   const [emptyInput, setEmptyInput] = useState(false);
 
   const router = useRouter();
-
-  //Function to handle Login
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-    const userInfo = {
-      username: email,
-      password: password,
-    };
-
-    if (userInfo.username && userInfo.password) {
-      setLoadingBtn(true);
-
-      try {
-        const response = await axios({
-          method: "POST",
-          url: "https://be.emascreener.bloombyte.dev/api/v1/accounts/auth/",
-          data: userInfo,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }).catch(
-          (err) => console.log(err, "axios error") && setLoadingBtn(false)
-        );
-        if (response.status == 200 || "success") {
-          setLoadingBtn(false);
-          contextValue.setToken(response.data.data.token);
-          contextValue.setUserId(response.data.data.user_id);
-          localStorage.setItem("token", response.data.data.token);
-          localStorage.setItem("userId", response.data.data.user_id);
-          router.push("/admin");
-        } else if (response.status == 400) {
-          setLoadingBtn(false);
-
-          setIsAuth(true);
-          setTimeout(() => {
-            setIsAuth(false);
-          }, 4000);
-        } else {
-          console.log("Validation Error");
-          setLoadingBtn(false);
-          setEmptyInput(true);
-
-          setIsAuth(true);
-          setTimeout(() => {
-            setEmptyInput(false);
-          }, 4000);
-          setTimeout(() => {
-            setIsAuth(false);
-          }, 4000);
-        }
-      } catch (error) {
-        setLoadingBtn(false);
-        console.log(error);
-      }
-    }
-  };
 
   const forgotPassword = async () => {
     const response = await axios({
@@ -107,7 +48,7 @@ const Login = (props) => {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div initial={{ x: -300 }} animate={{ x: 0 }} exit={{ x: 300 }}>
+      <motion.div initial={{ x: 300 }} animate={{ x: 0 }} exit={{ exit: -300 }}>
         <Container
           width="100vw"
           height="100vh"
@@ -163,52 +104,20 @@ const Login = (props) => {
                 // boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;"
               >
                 <Heading as="h3" size="lg">
-                  Login to your account
+                  Password Recovery
                 </Heading>
                 <form
                   className="flex flex-col gap-6 w-full "
-                  onSubmit={handleLogin}
+                  //   onSubmit={handleLogin}
                 >
                   <Input
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
-                    placeholder="Enter email address"
+                    placeholder="Enter your email address"
                     defaultValue={email}
                     size="lg"
                   />
-                  {hidePassword ? (
-                    <Box position="relative">
-                      <Input
-                        onChange={(e) => setPassword(e.target.value)}
-                        type="text"
-                        placeholder="Enter password"
-                        size="lg"
-                        defaultValue={password}
-                      />
-                      <span
-                        onClick={() => setHidePassword(false)}
-                        className="absolute right-2 top-3 z-10 cursor-pointer"
-                      >
-                        {<ViewOffIcon />}{" "}
-                      </span>
-                    </Box>
-                  ) : (
-                    <Box position="relative">
-                      <Input
-                        type="password"
-                        placeholder="Enter password"
-                        size="lg"
-                        onChange={(e) => setPassword(e.target.value)}
-                        defaultValue={password}
-                      />
-                      <span
-                        onClick={() => setHidePassword(true)}
-                        className="absolute right-2 top-3 z-10 cursor-pointer"
-                      >
-                        {<ViewIcon />}{" "}
-                      </span>
-                    </Box>
-                  )}
+
                   {loadingBtn ? (
                     <Button
                       size="lg"
@@ -238,7 +147,7 @@ const Login = (props) => {
                     </Button>
                   ) : (
                     <Button type="submit" w="100%" colorScheme="blue" size="lg">
-                      Login to your account
+                      Recover password
                     </Button>
                   )}
                   <motion.div>
@@ -271,15 +180,13 @@ const Login = (props) => {
                   <span className="h-[1px] w-[200px] bg-black opacity-[0.25]  max-nav:w-[150px] max-sm:w-[100px]  "></span>
                 </Flex>
                 <Text fontSize="md">
-                  Forgot Password?{" "}
-                  {/* <Link as={NextLink} href="/forgot-password"> */}
+                  Login again?{" "}
                   <span
-                    onClick={() => props.setForgotPass(true)}
+                    onClick={() => props.setForgotPass(false)}
                     className="text-[teal] cursor-pointer "
                   >
                     Click here{" "}
                   </span>
-                  {/* </Link> */}
                 </Text>
                 {/* <Button
               display="flex"
@@ -302,4 +209,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default EnterEmail;

@@ -92,7 +92,7 @@ const AdminNavbar = () => {
             {" "}
             {currentTime.format("HH:mm:ss")}{" "}
           </Text>
-          <Text textColor="white" className=" text-#fff">
+          <Text textColor="white" className=" text-#fff max-[600px]:hidden">
             UTC{" "}
           </Text>
         </div>
