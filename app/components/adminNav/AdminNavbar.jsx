@@ -89,7 +89,7 @@ const AdminNavbar = () => {
           </Text>
           <Text textColor="white" className=" text-#fff">
             {" "}
-            {/* {currentTime.format("HH:mm:ss")}{" "} */}
+            {currentTime.format("HH:mm:ss")}{" "}
           </Text>
           <Text textColor="white" className=" text-#fff">
             UTC{" "}

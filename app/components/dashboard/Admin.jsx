@@ -28,32 +28,14 @@ const Admin = (props) => {
   const [subCategory, setSubCategory] = useState("");
   const [exchangeField, setExchangeField] = useState("");
   const [successfulBtn, setSuccessfulBtn] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   // const { contextValue } = useAppContext();
   // const [emaRecords, setEmaRecords] = useState([]);
-
-  // useEffect(() => {
-  //   const token = contextValue.token || localStorage.getItem("token");
-  //   const response = axios({
-  //     method: "GET",
-  //     url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
-  //     // data: "",
-  //     headers: {
-  //       Authorization: `AuthToken ${token} `,
-  //     },
-  //   }).catch((error) => console.log(error));
-  //   console.log(response, "response");
-  //   if (response.status === 200) {
-  //     setEmaRecords(response);
-  //     console.log(emaRecords, "emaRecords");
-  //   }
-  // }, []);
 
   const addCoin = async (e) => {
     e.preventDefault();
     setSuccessfulBtn(true);
     const allCoins = {
-      // SN: props.coins.length + 1,
-      // id: 2,
       name: name,
       symbol: symbol,
       current_price: currentPrice,
@@ -62,7 +44,7 @@ const Admin = (props) => {
       exchange: exchangeField,
     };
     try {
-      console.log(allCoins);
+      // console.log(allCoins);
       const response = await axios({
         method: "POST",
         url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
@@ -74,14 +56,14 @@ const Admin = (props) => {
         },
       })
         .then((res) => {
-          console.log(res.data, "res");
+          // console.log(res.data, "res");
           props.setEmaCurrencies((prev) => [...prev, res.data]);
           setSuccessfulBtn(false);
-          console.log("Coin added successfully");
+          // console.log("Coin added successfully");
           toast.success("Coin added successfully");
         })
         .catch((err) => console.log(err));
-      console.log(response, "response");
+      // console.log(response, "response");
       // if (response.status == 200) {
       //   props.setEmaCurrencies((prev) => [...prev, allCoins]);
       //   setSuccessfulBtn(false);
@@ -93,11 +75,38 @@ const Admin = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   toast.success("Login Successful");
-  // }, []);
+  const searchCoin = async (e) => {
+    e.preventDefault();
 
-  // console.log(exchangeField, "this is the exchange field");
+    try {
+      await axios({
+        method: "GET",
+        url: `https://be.emascreener.bloombyte.dev/api/v1/currencies/?search=${searchValue}`,
+        headers: {
+          Authorization: `AuthToken ${
+            contextValue.token || localStorage.getItem("token")
+          }`,
+        },
+      })
+        .then((res) => {
+          console.log(res.data.results, "res");
+          props.setEmaCurrencies(res.data.results);
+          // setSuccessfulBtn(false);
+          // console.log("Coin added successfully");
+          // toast.success("Coin added successfully");
+        })
+        .catch((err) => console.log(err));
+      // console.log(response, "response");
+      // if (response.status == 200) {
+      //   props.setEmaCurrencies((prev) => [...prev, allCoins]);
+      //   setSuccessfulBtn(false);
+      //   console.log("Coin added successfully");
+      //   toast.success("Coin added successfully");
+      // }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <motion.div
@@ -202,13 +211,14 @@ const Admin = (props) => {
             </Flex>
           </form>
 
-          <form className="flex items-center gap-3">
+          <form onClick={searchCoin} className="flex items-center gap-3">
             <Input
               type="text"
               borderRadius="6px"
               color="#000"
               // className="py-1 px-2 text-[#000] outline-0 rounded-[8px]"
               placeholder="Search"
+              onChange={(e) => setSearchValue(e.target.value)}
             />
             <Button
               // color=""

@@ -41,9 +41,10 @@ const SeeAllCategories = (props) => {
                 return (
                   <SingleCategory
                     key={coin.id}
-                    index={index}
+                    index={index + 1}
                     setEmaCurrencies={props.setEmaCurrencies}
                     emaCurrencies={props.emaCurrencies}
+                    coin={coin}
                   />
                 );
               })}

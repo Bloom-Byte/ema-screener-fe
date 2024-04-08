@@ -72,7 +72,7 @@ const page = () => {
       },
     })
       .then((res) => {
-        console.log(res.data.results, "res.data");
+        // console.log(res.data.results, "res.data");
         setEmaCurrencies(res.data.results);
       })
       .catch((error) => console.log(error, "An Axios Error has occurred"));
