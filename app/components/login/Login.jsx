@@ -38,20 +38,18 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const API_KEY = "ZPQZsfIX.yOW01At15aQpF2Z1Ll6I4JmMX87OkWqH";
-
     const userInfo = {
       username: email,
       password: password,
     };
 
-    console.log(userInfo);
+    // console.log(userInfo);
 
     if (userInfo.username && userInfo.password) {
       setLoadingBtn(true);
 
       try {
-        console.log(API_KEY);
+        // console.log(API_KEY);
         const response = await axios({
           method: "POST",
           url: "https://be.emascreener.bloombyte.dev/api/v1/accounts/auth/",
@@ -63,7 +61,7 @@ const Login = () => {
         }).catch(
           (err) => console.log(err, "axios error") && setLoadingBtn(false)
         );
-        console.log(response.status, "response");
+        // console.log(response.status, "response");
         if (response.status == 200 || "success") {
           setLoadingBtn(false);
           // console.log(response.data, "response");

@@ -1,9 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 import { Button, Input } from "@chakra-ui/react";
+import axios from "axios";
+import { useAppContext } from "@/app/helper/Helpers";
 const Search = () => {
+  const { contextValue } = useAppContext();
+
+  const [timeFrame, setTimeFrame] = useState("");
+  const [currency, setCurrency] = useState("");
+  const [watchList, setWatchList] = useState("");
+  const [emaTwenty, setEmaTwenty] = useState("");
+  const [emaFifty, setEmaFifty] = useState("");
+  const [emaHundred, setEmaHundred] = useState("");
+  const [trend, setTrend] = useState("");
+  const [watch, setWatch] = useState("");
+
+  const filterResults = async () => {
+    const token = contextValue.token || localStorage.getItem("token");
+
+    const response = await axios({
+      method: "GET",
+      url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?ema${emaTwenty}=${10}&currency=${currency}&watch=${watchList}&timeframe=00:20:00${timeFrame}`,
+      headers: {
+        Authorization: `AuthToken ${token}`,
+      },
+    }).catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    filterResults();
+  }, [
+    timeFrame,
+    currency,
+    watchList,
+    emaTwenty,
+    emaFifty,
+    emaHundred,
+    trend,
+    watch,
+  ]);
+
   return (
     <div className="my-[30px]">
       <div className="flex items-center justify-between w-[95%] flex-wrap gap-4 mx-auto">
@@ -44,10 +82,14 @@ const Search = () => {
           className="flex items-center flex-wrap gap-6"
         >
           <Tippy placement="bottom" content="Shows level of priority">
-            <select style={{ color: "#000" }} className="w-[80px] outline-none">
-              <option value="">A</option>
-              <option value="">B</option>
-              <option value="">C</option>
+            <select
+              onClick={(e) => setWatchList(e.target.value)}
+              style={{ color: "#000" }}
+              className="w-[80px] outline-none"
+            >
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
             </select>
           </Tippy>
           <div className="flex items-center gap-3">
@@ -56,6 +98,7 @@ const Search = () => {
               bgColor="#F4A608"
               color="#fff"
               className="rounded-[6px]"
+              onClick={() => setEmaTwenty(20)}
             >
               20{" "}
             </Button>
@@ -99,12 +142,18 @@ const Search = () => {
           className="flex items-center gap-3 flex-wrap"
         >
           <Tippy content="Filter by 15 minutes" placement="bottom">
-            <Button colorScheme bgColor="#F4A608" color="#fff">
+            <Button
+              onClick={() => setTimeFrame("00:00:15")}
+              colorScheme
+              bgColor="#F4A608"
+              color="#fff"
+            >
               15min{" "}
             </Button>
           </Tippy>
           <Tippy content="Filter by 1 hour" placement="bottom">
             <Button
+              onClick={() => setTimeFrame("1:00:00")}
               colorScheme
               bgColor="#F4A608"
               color="#fff"
@@ -115,6 +164,7 @@ const Search = () => {
           </Tippy>
           <Tippy content="Filter by 4 hours" placement="bottom">
             <Button
+              onClick={() => setTimeFrame("4:00:00")}
               colorScheme
               bgColor="#F4A608"
               color="#fff"
@@ -125,6 +175,7 @@ const Search = () => {
           </Tippy>
           <Tippy content="Filter by 1 day" placement="bottom">
             <Button
+              onClick={() => setTimeFrame("24:00:00")}
               colorScheme
               bgColor="#F4A608"
               color="#fff"

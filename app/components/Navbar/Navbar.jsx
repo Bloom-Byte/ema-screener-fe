@@ -25,34 +25,38 @@ const Navbar = () => {
     <div
       style={{
         boxShadow:
-          "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;",
-        boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;",
+          "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        // boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
       }}
       className="w-[100%] bg-white text-#000"
     >
-      <div className="flex items-center justify-between m-auto py-4 w-[95%]  max-[500px]:justify-between ">
-        <div className="flex items-center gap-3  ">
-          <div className="w-[50px] max-[450px]:hidden">
-            <img className="w-full rounded-full" src="./logos.png" alt="img" />
+      <div className=" w-[95%] m-auto">
+        <div className="flex items-center justify-between py-4 w-[55%]  max-[1200px]:w-[70%] max-[700px]:w-[100%] max-[500px]:justify-between ">
+          <div className="flex items-center gap-3 ">
+            <div className="w-[50px] max-[450px]:hidden">
+              <img
+                className="w-full rounded-full"
+                src="./logos.png"
+                alt="img"
+              />
+            </div>
+            <Heading
+              as="h4"
+              size="md"
+              className="text-#000 max-[500px]:text-[16px]"
+            >
+              ECMA Screener{" "}
+            </Heading>
           </div>
-          <Heading
-            as="h4"
-            size="md"
-            className="text-#000 max-[500px]:text-[16px]"
-          >
-            ECMA Screener{" "}
-          </Heading>
+          <div className="flex items-center gap-3 justify-center text-[20px] ">
+            <Text className=" text-#000 max-[500px]:hidden">Current Time </Text>
+            <Text className=" text-#000">
+              {" "}
+              {currentTime.format("HH:mm:ss")}{" "}
+            </Text>
+            <Text className=" text-#000">UTC </Text>
+          </div>
         </div>
-        <div className="flex items-center gap-3 justify-center text-[20px] ">
-          <Text className=" text-#000 max-[500px]:hidden">Current Time </Text>
-          <Text className=" text-#000"> {currentTime.format("HH:mm:ss")} </Text>
-          <Text className=" text-#000">UTC </Text>
-        </div>
-        <Tippy content="Logout" placement="bottom">
-          <span className="cursor-pointer p-2">
-            <TbLogout2 fontSize="24px" />
-          </span>
-        </Tippy>
       </div>
     </div>
   );

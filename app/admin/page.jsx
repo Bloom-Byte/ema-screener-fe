@@ -14,7 +14,7 @@ const page = () => {
 
   const router = useRouter();
   const [emaCurrencies, setEmaCurrencies] = useState([]);
-
+  const [loaded, setLoaded] = useState(false);
   const [coins, setCoins] = useState([
     // {
     //   SN: 1,
@@ -62,6 +62,7 @@ const page = () => {
   };
 
   useEffect(() => {
+    setLoaded(true);
     const token = contextValue.token || localStorage.getItem("token");
     const response = axios({
       method: "GET",
@@ -74,6 +75,7 @@ const page = () => {
       .then((res) => {
         // console.log(res.data.results, "res.data");
         setEmaCurrencies(res.data.results);
+        setLoaded(false);
       })
       .catch((error) => console.log(error, "An Axios Error has occurred"));
     // console.log(response.status, "response");
@@ -97,6 +99,8 @@ const page = () => {
       <SeeAllCategories
         emaCurrencies={emaCurrencies}
         setEmaCurrencies={setEmaCurrencies}
+        loaded={loaded}
+        setLoaded={setLoaded}
       />
     </div>
   );
