@@ -35,9 +35,7 @@ const Admin = (props) => {
     e.preventDefault();
     setSuccessfulBtn(true);
     const allCoins = {
-      name: name,
       symbol: symbol,
-      current_price: currentPrice,
       category: category,
       subcategory: subCategory,
       exchange: exchangeField,
@@ -45,10 +43,8 @@ const Admin = (props) => {
     // console.log(allCoins);
     try {
       if (
-        allCoins.name &&
         allCoins.symbol &&
         allCoins.category &&
-        allCoins.current_price &&
         allCoins.exchange &&
         allCoins.subcategory
       ) {
@@ -66,19 +62,24 @@ const Admin = (props) => {
             props.setEmaCurrencies((prev) => [res.data, ...prev]);
             setSuccessfulBtn(false);
             toast.success("Coin added successfully");
-            setCategory("");
-            setCurrentPrice("");
-            setExchangeField("");
-            setName("");
+            setCategory(" ");
+            setCurrentPrice(" ");
+            setExchangeField(" ");
+            setName(" ");
             setSubCategory("");
             setSymbol("");
           })
-          .catch((err) => console.log(err) && setSuccessfulBtn(false));
+          .catch((err) => {
+            console.log(err);
+            setSuccessfulBtn(false);
+          });
       } else {
-        console.log("input values");
+        console.log("empty values detected");
+        setSuccessfulBtn(false);
       }
     } catch (error) {
-      console.log(error) && setSuccessfulBtn(false);
+      console.log(error);
+      setSuccessfulBtn(false);
     }
   };
 
@@ -129,18 +130,18 @@ const Admin = (props) => {
               m="20px auto"
               gap="20px"
             >
-              <Input
+              {/* <Input
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter Name"
-              />
+              /> */}
               <Input
                 onChange={(e) => setSymbol(e.target.value)}
                 placeholder="Enter Symbol"
               />
-              <Input
+              {/* <Input
                 onChange={(e) => setCurrentPrice(e.target.value)}
                 placeholder="Enter Current Price"
-              />
+              /> */}
               <Select
                 onClick={(e) => setCategory(e.target.value)}
                 cursor="pointer"

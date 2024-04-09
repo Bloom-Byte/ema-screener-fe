@@ -41,10 +41,10 @@ const SingleCategory = (props) => {
   return (
     <Tr>
       <Td textAlign="center">{props.index}</Td>
-      <Td textAlign="center">{props.coin.name}</Td>
+      {/* <Td textAlign="center">{props.coin.name}</Td> */}
       <Td textAlign="center">{props.coin.symbol}</Td>
       <Td textAlign="center">{props.coin.category}</Td>
-      <Td textAlign="center">{props.coin.current_price}</Td>
+      {/* <Td textAlign="center">{props.coin.current_price}</Td> */}
       <Td textAlign="center">{props.coin.subcategory}</Td>
       <Td textAlign="center">{props.coin.exchange}</Td>
       <Td>

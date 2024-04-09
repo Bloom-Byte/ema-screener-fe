@@ -49,10 +49,10 @@ const SeeAllCategories = (props) => {
             <Thead>
               <Tr>
                 <Th textAlign="center">S/N</Th>
-                <Th textAlign="center">Name</Th>
+                {/* <Th textAlign="center">Name</Th> */}
                 <Th textAlign="center">Symbol.</Th>
                 <Th textAlign="center">Category</Th>
-                <Th textAlign="center">Current Price</Th>
+                {/* <Th textAlign="center">Current Price</Th> */}
                 <Th textAlign="center">Sub Category</Th>
                 <Th textAlign="center">Exchange</Th>
               </Tr>

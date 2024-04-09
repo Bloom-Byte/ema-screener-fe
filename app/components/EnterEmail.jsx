@@ -35,22 +35,33 @@ const EnterEmail = (props) => {
 
   const router = useRouter();
 
-  const forgotPassword = async () => {
-    toast.success("Check your email for reset link!");
+  const forgotPassword = async (e) => {
+    e.preventDefault();
+    // toast.success("Check your email for reset link!");
     setLoadingBtn(true);
     setTimeout(() => {
       setLoadingBtn(false);
     }, 4000);
-    // const response = await axios({
-    //   method: "POST",
-    //   url:
-    //     "https://be.emascreener.bloombyte.dev/api/v1/accounts/request-password-reset/",
-    //   data: email,
-    //   headers: {
-    //     // Authorization: `AuthToken ${API_KEY}`,
-    //     "Content-Type": "application/json",
-    //   },
-    // }).catch((err) => console.log(err, "network error"));
+    try {
+      const token = contextValue.token || localStorage.getItem("token");
+      console.log(email, "email");
+      const response = await axios({
+        method: "POST",
+        url:
+          "https://be.emascreener.bloombyte.dev/api/v1/accounts/request-password-reset/",
+        data: email,
+        headers: {
+          Authorization: `AuthToken ${token}`,
+          "Content-Type": "application/json",
+        },
+      }).catch((err) => console.log(err, "network error"));
+      console.log(response, "res");
+      if (response.status === 200) {
+        toast.success("Check your email for reset link!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -150,7 +161,7 @@ const EnterEmail = (props) => {
                           fill="currentColor"
                         />
                       </svg>
-                      logging in...
+                      Starting recovery...
                     </Button>
                   ) : (
                     <Button type="submit" w="100%" colorScheme="blue" size="lg">
