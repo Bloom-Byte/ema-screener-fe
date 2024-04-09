@@ -8,6 +8,9 @@ import Tippy from "@tippyjs/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useAppContext } from "@/app/helper/Helpers";
+import { toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const AdminNavbar = () => {
   const { contextValue } = useAppContext();
@@ -43,11 +46,16 @@ const AdminNavbar = () => {
           },
         })
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             localStorage.removeItem("token");
             localStorage.removeItem("userId");
             router.push("/login");
             toast.success("Logged out successfully");
+          })
+          .then((res) => {
+            if (res.status == 400 || "error") {
+              toast.error("Logout unsuccessful");
+            }
           })
           .catch(
             (err) =>

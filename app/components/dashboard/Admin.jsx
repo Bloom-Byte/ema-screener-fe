@@ -66,6 +66,12 @@ const Admin = (props) => {
             props.setEmaCurrencies((prev) => [res.data, ...prev]);
             setSuccessfulBtn(false);
             toast.success("Coin added successfully");
+            setCategory("");
+            setCurrentPrice("");
+            setExchangeField("");
+            setName("");
+            setSubCategory("");
+            setSymbol("");
           })
           .catch((err) => console.log(err) && setSuccessfulBtn(false));
       } else {

@@ -47,6 +47,8 @@ const Login = (props) => {
     if (userInfo.username && userInfo.password) {
       setLoadingBtn(true);
 
+      const API_KEY = "ZPQZsfIX.yOW01At15aQpF2Z1Ll6I4JmMX87OkWqH";
+
       try {
         const response = await axios({
           method: "POST",
@@ -54,10 +56,12 @@ const Login = (props) => {
           data: userInfo,
           headers: {
             "Content-Type": "application/json",
+            // Authorization: `Bearer ${API_KEY}`,
           },
         }).catch(
           (err) => console.log(err, "axios error") && setLoadingBtn(false)
         );
+        console.log(response, "response");
         if (response.status == 200 || "success") {
           setLoadingBtn(false);
           contextValue.setToken(response.data.data.token);
