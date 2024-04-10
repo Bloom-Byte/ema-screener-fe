@@ -12,56 +12,64 @@ const Search = (props) => {
   const [currency, setCurrency] = useState("");
   const [watchList, setWatchList] = useState("");
   const [ema, setEma] = useState("");
-  const [emaTwenty, setEmaTwenty] = useState("");
-  const [emaFifty, setEmaFifty] = useState("");
-  const [emaHundred, setEmaHundred] = useState("");
+  const [emaValue, setEmaValue] = useState("");
+
   const [trend, setTrend] = useState("");
   const [watch, setWatch] = useState("");
 
   //* Function to filter Results
   const filterResults = async () => {
+    // e.preventDefault();
+    props.setLoading(true);
     const token = contextValue.token || localStorage.getItem("token");
-    console.log(trend, "trend");
-    console.log(watchList, "watch");
+    console.log(ema, "timeFrame");
+    console.log(emaValue, "watch");
     try {
       await axios({
         method: "GET",
-        url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?ema${ema}=${10}&currency=${currency}&watch=${watchList}&timeframe=00:20:00${timeFrame}`,
+        url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?${ema}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}`,
         headers: {
           Authorization: `AuthToken ${token}`,
           "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
         },
       })
         .then((res) => {
+          console.log(res);
           props.setAllEmaRecords(res.data.results);
+          props.setLoading(false);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          props.setLoading(false);
+        });
     } catch (error) {
       console.log(error);
+      props.setLoading(false);
     }
   };
 
   useEffect(() => {
     filterResults();
-  }, [timeFrame, currency, watchList, ema, trend, watch]);
+  }, [timeFrame, watchList, ema, emaValue, trend, watch]);
 
   return (
     <div className="my-[30px]">
       <div className="flex items-center justify-between w-[95%] flex-wrap gap-4 mx-auto">
-        <form className="flex items-center gap-3">
+        <form onSubmit={filterResults} className="flex items-center gap-3">
           <Input
             type="text"
             borderRadius="6px"
             color="#fff"
             // className="py-1 px-2 text-[#000] outline-0 rounded-[8px]"
             placeholder="Search"
+            onChange={(e) => setCurrency(e.target.value)}
           />
           <Button
             colorScheme
             bgColor="#F4A608"
             color="#fff"
             className="rounded-[6px]"
-            type="submit"
+            onClick={filterResults}
             // style={{ color: "#fff" }}
           >
             Search
@@ -101,7 +109,10 @@ const Search = (props) => {
               bgColor="#F4A608"
               color="#fff"
               className="rounded-[6px]"
-              onClick={() => setEma(20)}
+              onClick={() => {
+                setEma("ema20");
+                setEmaValue(20);
+              }}
             >
               20{" "}
             </Button>
@@ -110,7 +121,22 @@ const Search = (props) => {
               bgColor="#F4A608"
               color="#fff"
               className="rounded-[6px]"
-              onClick={() => setEma(100)}
+              onClick={() => {
+                setEma("ema50");
+                setEmaValue(50);
+              }}
+            >
+              50{" "}
+            </Button>
+            <Button
+              colorScheme
+              bgColor="#F4A608"
+              color="#fff"
+              className="rounded-[6px]"
+              onClick={() => {
+                setEma("ema100");
+                setEmaValue(100);
+              }}
             >
               100{" "}
             </Button>
@@ -119,18 +145,12 @@ const Search = (props) => {
               bgColor="#F4A608"
               color="#fff"
               className="rounded-[6px]"
-              onClick={() => setEma(200)}
+              onClick={() => {
+                setEma("ema200");
+                setEmaValue(200);
+              }}
             >
               200{" "}
-            </Button>
-            <Button
-              colorScheme
-              bgColor="#F4A608"
-              color="#fff"
-              className="rounded-[6px]"
-              onClick={() => setEma(500)}
-            >
-              500{" "}
             </Button>
             <Tippy
               placement="bottom"
@@ -142,6 +162,47 @@ const Search = (props) => {
               </span>
             </Tippy>
           </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <Tippy content="Filter upwards" placement="bottom">
+            <Button
+              colorScheme
+              bgColor="#F4A608"
+              color="#fff"
+              className="rounded-[6px]"
+              onClick={() => setTrend(1)}
+            >
+              1{" "}
+            </Button>
+          </Tippy>
+          <Tippy content="Filter downward" placement="bottom">
+            <Button
+              colorScheme
+              bgColor="#F4A608"
+              color="#fff"
+              className="rounded-[6px]"
+              onClick={() => setTrend(-1)}
+            >
+              -1{" "}
+            </Button>
+          </Tippy>
+          <Tippy content="Filter sideways" placement="bottom">
+            <Button
+              colorScheme
+              bgColor="#F4A608"
+              color="#fff"
+              className="rounded-[6px]"
+              onClick={() => setTrend(0)}
+            >
+              0{" "}
+            </Button>
+          </Tippy>
+          <Tippy placement="bottom" content="Filter by trends">
+            <span className="text-white cursor-pointer">
+              {" "}
+              <HiOutlineQuestionMarkCircle />
+            </span>
+          </Tippy>
         </div>
         <div
           style={{ color: "#fff" }}

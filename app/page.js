@@ -11,7 +11,7 @@ import { useAppContext } from "./helper/Helpers";
 
 export default function Home() {
   const [pageNumber, setPageNumber] = useState(1); // Initial page number
-  const pageSize = 20;
+  const [pageSize, setPageSize] = useState(20);
   const [allEmaRecords, setAllEmaRecords] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -25,9 +25,15 @@ export default function Home() {
     setPageNumber(pageNumber + 1);
   };
 
+  const handlePageClick = (page) => {
+    setPageNumber(page);
+  };
+
   const fetchEmaRecords = async () => {
     setLoading(true);
+    console.log(pageNumber, "pageNumber");
     const offset = (pageNumber - 1) * pageSize;
+    console.log(offset, "offset");
     const apiUrl = `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?limit=${pageSize}&offset=${offset}`;
     try {
       const response = await axios({
@@ -47,6 +53,16 @@ export default function Home() {
       // Handle the error in your UI
     }
   };
+  // const totalPages = Math.ceil(allEmaRecords.length / pageSize);
+  const startIndex = (pageNumber - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const currentItems = allEmaRecords.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(allEmaRecords.length / pageSize);
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
 
   // Call the fetchEmaRecords function whenever the pageNumber changes
   useEffect(() => {
@@ -59,15 +75,35 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="bg-[#332605] text-#fff w-full overflow-x-hidden h-[100%] min-h-[100%]"
+        className="bg-[#332605] BORDER-2 Border-red-500 text-#fff w-full overflow-x-hidden h-[100%] min-h-[100%]"
       >
         <Navbar />
-        <Search setAllEmaRecords={setAllEmaRecords} />
+        <Search
+          loading={loading}
+          setLoading={setLoading}
+          setAllEmaRecords={setAllEmaRecords}
+        />
         <Tabled
+          currentItems={currentItems}
+          pageSize={pageSize}
           allEmaRecords={allEmaRecords}
           setAllEmaRecords={setAllEmaRecords}
           loading={loading}
         />
+        <div className="pagination-container">
+          <ul className="pagination">
+            {pageNumbers.map((number) => (
+              <li
+                key={number}
+                className={number === pageNumber ? "bg-red" : "bg-blue"}
+                onClick={() => handlePageClick(number)}
+              >
+                {number}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <h1> Heelo world</h1>
         <ToastContainer />
       </motion.div>
     </AnimatePresence>

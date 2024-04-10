@@ -41,7 +41,7 @@ const Tabled = (props) => {
       ) : (
         <TableContainer>
           <Table
-            variant="striped"
+            variant={props.allEmaRecords.length > 0 ? "striped" : "simple"}
             textAlign="center"
             colorScheme="teal"
             color="black"
@@ -65,15 +65,21 @@ const Tabled = (props) => {
               </Tr>
             </Thead>
             <Tbody>
-              {props.allEmaRecords.map((emaRecords, index) => {
-                return (
-                  <SingleRecord
-                    key={index + 1}
-                    index={index + 1}
-                    emaRecords={emaRecords}
-                  />
-                );
-              })}
+              {props.allEmaRecords.length > 0 ? (
+                props.allEmaRecords.map((emaRecords, index) => {
+                  return (
+                    <SingleRecord
+                      key={index + 1}
+                      index={index + 1}
+                      emaRecords={emaRecords}
+                    />
+                  );
+                })
+              ) : (
+                <Tr>
+                  <Td colSpan={13}>Nothing to be seen</Td>
+                </Tr>
+              )}
             </Tbody>
           </Table>
         </TableContainer>
