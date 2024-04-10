@@ -10,16 +10,22 @@ table {
   border: yellow 1px dashed;
 } */
 
+table thead tr th{
+  background-color: #fff !important;
+}
+
 table tr:nth-child(odd) {
   /* background-color: #000 !important; */
-  background-color: #fff !important;
+  background-color: #F4A608 !important;
+  /* color: #fff; */
   text-align: center !important;
 }
 
+
 table tr:nth-child(even){
   /* background-color: transparent !important; */
-  background-color: white !important;
-  color: #000 !important;
+  background-color: transparent !important;
+  color: #fff !important;
   text-align: center;
 }
 

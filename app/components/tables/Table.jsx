@@ -43,13 +43,15 @@ const Tabled = (props) => {
           <Table
             variant={props.allEmaRecords.length > 0 ? "striped" : "simple"}
             textAlign="center"
-            colorScheme="teal"
+            colorScheme="gold"
             color="black"
           >
             {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
             <Thead>
-              <Tr>
-                <Th textAlign="center">S/N</Th>
+              <Tr backgroundColor="white">
+                <Th backgroundColor="white" textAlign="center">
+                  S/N
+                </Th>
                 <Th textAlign="center">Name</Th>
                 <Th textAlign="center">Sub Category</Th>
                 <Th textAlign="center">Current Price</Th>
