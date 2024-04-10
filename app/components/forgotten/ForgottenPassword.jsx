@@ -67,9 +67,9 @@ const ForgottenPassword = () => {
             "https://be.emascreener.bloombyte.dev/api/v1/accounts/reset-password/",
           data: userInfo,
           headers: {
-            Authorization: `AuthToken ${token}`,
+            // Authorization: `AuthToken ${token}`,
             "Content-Type": "application/json",
-            "X_API-KEY": process.env.NEXT_PUBLIC_API_KEY,
+            "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
           },
         }).catch((err) => console.log(err, "network error"));
 
