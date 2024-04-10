@@ -172,11 +172,11 @@ const EnterEmail = () => {
                       Starting recovery...
                     </Button>
                   ) : (
-                    <Button type="submit" w="100%" colorScheme="blue" size="lg">
+                    <Button type="submit" w="100%" colorScheme="gold" size="lg">
                       Recover password
                     </Button>
                   )}
-                  <motion.div>
+                  <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
                     {isAuth ? (
                       <Text color="red" textAlign="center">
                         {" "}
@@ -186,7 +186,7 @@ const EnterEmail = () => {
                       ""
                     )}
                   </motion.div>
-                  <motion.div>
+                  <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} >
                     {emptyInput && (
                       <Text color="red" textAlign="center">
                         Make sure email and password is present.{" "}
