@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import ForgottenPassword from "../components/forgotten/ForgottenPassword";
 
 function SearchBarFallback() {
