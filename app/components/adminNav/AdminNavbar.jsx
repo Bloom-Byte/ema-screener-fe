@@ -79,16 +79,16 @@ const AdminNavbar = () => {
     >
       <div className="flex items-center justify-between m-auto py-4 w-[95%]  max-[500px]:justify-between ">
         <div className="flex items-center gap-3  ">
-          <div className="w-[50px] max-[450px]:hidden">
+          {/* <div className="w-[50px] max-[450px]:hidden">
             <img className="w-full rounded-full" src="./logos.png" alt="img" />
-          </div>
+          </div> */}
           <Heading
             as="h4"
             size="md"
             textColor="white"
             className="text-#fff max-[500px]:text-[16px]"
           >
-            ECMA Screener{" "}
+            EMA Screener Admin{" "}
           </Heading>
         </div>
         <div className="flex items-center gap-3 justify-center text-[20px] ">
