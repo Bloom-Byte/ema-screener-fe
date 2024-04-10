@@ -23,7 +23,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const EnterEmail = (props) => {
@@ -230,6 +230,7 @@ const EnterEmail = (props) => {
             </Box>
           </Container>
         </Container>
+        <ToastContainer />
       </motion.div>
     </AnimatePresence>
   );

@@ -278,6 +278,7 @@ const ForgottenPassword = () => {
             </Box>
           </Container>
         </Container>
+        <ToastContainer />
       </motion.div>
     </AnimatePresence>
   );
