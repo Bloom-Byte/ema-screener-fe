@@ -42,7 +42,7 @@ const SeeAllCategories = (props) => {
           <Table
             variant="striped"
             textAlign="center"
-            colorScheme="teal"
+            colorScheme="gold"
             color="black"
           >
             {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
@@ -57,7 +57,7 @@ const SeeAllCategories = (props) => {
                 <Th textAlign="center">Exchange</Th>
               </Tr>
             </Thead>
-            {props.emaCurrencies.length > 0 ? (
+            {props.emaCurrencies.length > 0 ? props.emaCurrencies.length > 0 ? (
               <Tbody>
                 {props.emaCurrencies.map((coin, index) => {
                   return (
@@ -69,7 +69,9 @@ const SeeAllCategories = (props) => {
                       coin={coin}
                     />
                   );
-                })}
+                }) : <Tr colspan={5} >
+                  <Td>Nothing to see here yet</Td>
+                </Tr> }
               </Tbody>
             ) : (
               <Thead>
