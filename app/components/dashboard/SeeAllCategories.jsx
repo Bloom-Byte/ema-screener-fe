@@ -40,7 +40,7 @@ const SeeAllCategories = (props) => {
       ) : (
         <TableContainer>
           <Table
-            variant="striped"
+            variant={ props.emaCurrencies.length > 0 ? "striped" : "simple"}
             textAlign="center"
             colorScheme="gold"
             color="black"
