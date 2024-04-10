@@ -42,6 +42,7 @@ const ForgottenPassword = () => {
   useEffect(() => {
     checkTokenValidity();
   }, []);
+
   const checkTokenValidity = async () => {
     try {
       const response = await axios({

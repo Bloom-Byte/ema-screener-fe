@@ -5,12 +5,13 @@ import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 import { Button, Input } from "@chakra-ui/react";
 import axios from "axios";
 import { useAppContext } from "@/app/helper/Helpers";
-const Search = () => {
+const Search = (props) => {
   const { contextValue } = useAppContext();
 
   const [timeFrame, setTimeFrame] = useState("");
   const [currency, setCurrency] = useState("");
   const [watchList, setWatchList] = useState("");
+  const [ema, setEma] = useState("");
   const [emaTwenty, setEmaTwenty] = useState("");
   const [emaFifty, setEmaFifty] = useState("");
   const [emaHundred, setEmaHundred] = useState("");
@@ -20,28 +21,29 @@ const Search = () => {
   //* Function to filter Results
   const filterResults = async () => {
     const token = contextValue.token || localStorage.getItem("token");
-
-    const response = await axios({
-      method: "GET",
-      url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?ema${emaTwenty}=${10}&currency=${currency}&watch=${watchList}&timeframe=00:20:00${timeFrame}`,
-      headers: {
-        Authorization: `AuthToken ${token}`,
-      },
-    }).catch((err) => console.log(err));
+    console.log(trend, "trend");
+    console.log(watchList, "watch");
+    try {
+      await axios({
+        method: "GET",
+        url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?ema${ema}=${10}&currency=${currency}&watch=${watchList}&timeframe=00:20:00${timeFrame}`,
+        headers: {
+          Authorization: `AuthToken ${token}`,
+          "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
+        },
+      })
+        .then((res) => {
+          props.setAllEmaRecords(res.data.results);
+        })
+        .catch((err) => console.log(err));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     filterResults();
-  }, [
-    timeFrame,
-    currency,
-    watchList,
-    emaTwenty,
-    emaFifty,
-    emaHundred,
-    trend,
-    watch,
-  ]);
+  }, [timeFrame, currency, watchList, ema, trend, watch]);
 
   return (
     <div className="my-[30px]">
@@ -99,7 +101,7 @@ const Search = () => {
               bgColor="#F4A608"
               color="#fff"
               className="rounded-[6px]"
-              onClick={() => setEmaTwenty(20)}
+              onClick={() => setEma(20)}
             >
               20{" "}
             </Button>
@@ -108,14 +110,7 @@ const Search = () => {
               bgColor="#F4A608"
               color="#fff"
               className="rounded-[6px]"
-            >
-              500{" "}
-            </Button>
-            <Button
-              colorScheme
-              bgColor="#F4A608"
-              color="#fff"
-              className="rounded-[6px]"
+              onClick={() => setEma(100)}
             >
               100{" "}
             </Button>
@@ -124,8 +119,18 @@ const Search = () => {
               bgColor="#F4A608"
               color="#fff"
               className="rounded-[6px]"
+              onClick={() => setEma(200)}
             >
               200{" "}
+            </Button>
+            <Button
+              colorScheme
+              bgColor="#F4A608"
+              color="#fff"
+              className="rounded-[6px]"
+              onClick={() => setEma(500)}
+            >
+              500{" "}
             </Button>
             <Tippy
               placement="bottom"

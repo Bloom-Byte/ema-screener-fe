@@ -62,7 +62,7 @@ export default function Home() {
         className="bg-[#332605] text-#fff w-full overflow-x-hidden h-[100%] min-h-[100%]"
       >
         <Navbar />
-        <Search />
+        <Search setAllEmaRecords={setAllEmaRecords} />
         <Tabled
           allEmaRecords={allEmaRecords}
           setAllEmaRecords={setAllEmaRecords}
