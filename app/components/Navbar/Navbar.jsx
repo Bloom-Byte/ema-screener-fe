@@ -54,7 +54,7 @@ const Navbar = () => {
               size="md"
               className="text-#000 max-[500px]:text-[16px]"
             >
-              ECMA Screener{" "}
+              EMA Screener{" "}
             </Heading>
           </div>
           <div className="flex items-center gap-3 justify-center text-[20px] ">
