@@ -39,28 +39,36 @@ const EnterEmail = (props) => {
     e.preventDefault();
     // toast.success("Check your email for reset link!");
     setLoadingBtn(true);
-    setTimeout(() => {
-      setLoadingBtn(false);
-    }, 4000);
+
+    const userObject = {
+      email: email,
+      token_name: "resettoken",
+    };
     try {
       const token = contextValue.token || localStorage.getItem("token");
       console.log(email, "email");
-      const response = await axios({
+      await axios({
         method: "POST",
         url:
           "https://be.emascreener.bloombyte.dev/api/v1/accounts/request-password-reset/",
-        data: email,
+        data: userObject,
         headers: {
-          Authorization: `AuthToken ${token}`,
+          "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
+          // Authorization: `AuthToken ${token}`,
           "Content-Type": "application/json",
         },
-      }).catch((err) => console.log(err, "network error"));
-      console.log(response, "res");
-      if (response.status === 200) {
-        toast.success("Check your email for reset link!");
-      }
+      })
+        .then(async (res) => {
+          if (res.status == "success" || 200) {
+            toast.success("Check your email for reset link!");
+            setLoadingBtn(false);
+          }
+        })
+        .catch((err) => {
+          console.log(err, "network error"), setLoadingBtn(false);
+        });
     } catch (error) {
-      console.log(error);
+      console.log(error), setLoadingBtn(false);
     }
   };
 

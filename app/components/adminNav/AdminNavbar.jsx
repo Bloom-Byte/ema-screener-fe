@@ -30,42 +30,41 @@ const AdminNavbar = () => {
   const logOut = async () => {
     const TOKEN = contextValue.token || localStorage.getItem("token");
     const USER_ID = contextValue.userId || localStorage.getItem("userId");
+    try {
+      // console.log(TOKEN, "context");
+      // console.log(TOKEN, USER_ID, "details");
 
-    if (TOKEN && USER_ID) {
-      try {
+      if (TOKEN && USER_ID) {
         await axios({
           method: "POST",
           url: "https://be.emascreener.bloombyte.dev/api/v1/accounts/logout/",
-          // headers: `AuthToken ${TOKEN}`,
           headers: {
             Authorization: `AuthToken ${TOKEN}`,
-            "Content-Type": "application/json",
+            "X-API-KEY": "ZPQZsfIX.yOW01At15aQpF2Z1Ll6I4JmMX87OkWqH",
           },
           data: {
             user_id: USER_ID,
           },
         })
-          .then((res) => {
-            // console.log(res.data);
+          .then(async (res) => {
+            console.log(res.data);
             localStorage.removeItem("token");
             localStorage.removeItem("userId");
+            contextValue.setToken(" ");
+            contextValue.setUserId(" ");
             router.push("/login");
             toast.success("Logged out successfully");
           })
-          .then((res) => {
-            if (res.status == 400 || "error") {
-              toast.error("Logout unsuccessful");
-            }
-          })
-          .catch(
-            (err) =>
-              console.log(err, "Axios Error has Occured") &&
-              toast.error("Logout unsuccessful")
-          );
-      } catch (error) {
-        console.log(error, "An Error has occured");
-        toast.error("Logout has failed");
+          .catch(async (err) => {
+            console.log(err, "Axios Error has Occurred");
+            toast.error("Logout unsuccessful");
+          });
+      } else {
+        console.log("No token found");
       }
+    } catch (error) {
+      console.log(error, "An Error has occurred");
+      toast.error("Logout has failed");
     }
   };
 
@@ -93,7 +92,7 @@ const AdminNavbar = () => {
           </Heading>
         </div>
         <div className="flex items-center gap-3 justify-center text-[20px] ">
-          <Text textColor="white" className=" text-#fff max-[500px]:hidden">
+          <Text textColor="white" className=" text-#fff max-[550px]:hidden">
             Current Time{" "}
           </Text>
           <Text textColor="white" className=" text-#fff">

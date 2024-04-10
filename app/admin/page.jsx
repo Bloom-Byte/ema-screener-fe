@@ -64,12 +64,13 @@ const page = () => {
   useEffect(() => {
     setLoaded(true);
     const token = contextValue.token || localStorage.getItem("token");
-    const response = axios({
+    axios({
       method: "GET",
       url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
       // data: "",
       headers: {
         Authorization: `AuthToken ${token} `,
+        "Content-Type": "application/json",
       },
     })
       .then((res) => {
@@ -77,7 +78,9 @@ const page = () => {
         setEmaCurrencies(res.data.results);
         setLoaded(false);
       })
-      .catch((error) => console.log(error, "An Axios Error has occurred"));
+      .catch((error) =>
+        console.log(error, "An Error retrieving records has occurred")
+      );
     // console.log(response.status, "response");
     // if (response.status === 200) {
     //   setEmaRecords(response);

@@ -14,71 +14,91 @@ import {
 import React, { useState } from "react";
 import NextLink from "next/link";
 import { FcGoogle } from "react-icons/fc";
-// import { useAppContext } from "@/app/helper/Helpers";
 // import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 // import { auth, provider } from "../firebase-config/Firebase-config";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { useAppContext } from "@/app/helper/Helpers";
 
 const ForgottenPassword = () => {
-  //   const { contextValue } = useAppContext();
-  const [password, setPassword] = useState("");
+  const { contextValue } = useAppContext();
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [isAuth, setIsAuth] = useState(false);
   const [hidePassword, setHidePassword] = useState(false);
   const [hideForgotPassword, setHideForgotPassword] = useState(false);
   const [loadingBtn, setLoadingBtn] = useState(false);
 
-  const router = useRouter();
+  // const router = useRouter();
 
-  //   const handleLogin = async (e) => {
-  //     e.preventDefault();
+  // const router = useRouter();
 
-  //     const userInfo = {
-  //       email: email,
-  //       password: password,
-  //     };
-  //     if (userInfo.email && userInfo.password) {
-  //       setLoadingBtn(true);
+  const search = useSearchParams();
 
-  //       try {
-  //         const response = await axios({
-  //           method: "POST",
-  //           url: "https://apps.lien.bloombyte.dev/login/",
-  //           data: userInfo,
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //         }).catch((err) => console.log(err, "network error"));
+  const extractedToken = search.get("resettoken");
 
-  //         if (response.status === 200) {
-  //           setLoadingBtn(false);
-  //           localStorage.setItem("token", response.data.token);
-  //           router.push("/");
-  //           const token = localStorage.getItem("token");
-  //           contextValue.setToken(token);
-  //           contextValue.getCurrentUser(response.data.token);
-  //         } else if (response.status == 400) {
-  //           setIsAuth(true);
-  //           setTimeout(() => {
-  //             setIsAuth(false);
-  //           }, 4000);
-  //         } else {
-  //           console.log("Validation Error");
-  //           setIsAuth(true);
-  //           setTimeout(() => {
-  //             setIsAuth(false);
-  //           }, 4000);
-  //         }
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     }
-  //   };
+  console.log(extractedToken, "extractedToken");
+
+  const recoverPassword = async (e) => {
+    e.preventDefault();
+    const token = contextValue.token || localStorage.getItem("token");
+
+    const userInfo = {
+      token: extractedToken,
+      new_password: newPassword,
+    };
+
+    console.log(userInfo, "userInfo");
+
+    if (userInfo.new_password !== confirmPassword) {
+      toast.error("Password does not match");
+    } else if (extractedToken && userInfo.new_password) {
+      setLoadingBtn(true);
+
+      try {
+        const response = await axios({
+          method: "POST",
+          url:
+            "https://be.emascreener.bloombyte.dev/api/v1/accounts/reset-password/",
+          data: userInfo,
+          headers: {
+            Authorization: `AuthToken ${token}`,
+            "Content-Type": "application/json",
+          },
+        }).catch((err) => console.log(err, "network error"));
+
+        if (response.status === 200 || "success") {
+          setLoadingBtn(false);
+          toast.success("Password reset successful");
+          // localStorage.setItem("token", response.data.token);
+          // router.push("/login");
+          // const token = localStorage.getItem("token");
+          // contextValue.setToken(token);
+          // contextValue.getCurrentUser(response.data.token);
+        } else if (response.status == 400) {
+          setIsAuth(true);
+          setTimeout(() => {
+            setIsAuth(false);
+          }, 4000);
+        } else {
+          console.log("Validation Error");
+          setIsAuth(true);
+          setTimeout(() => {
+            setIsAuth(false);
+          }, 4000);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      toast.error("Please fill all fields");
+    }
+  };
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -142,15 +162,18 @@ const ForgottenPassword = () => {
                 <Heading as="h3" size="lg">
                   Enter your account
                 </Heading>
-                <form className="flex flex-col gap-6 w-full ">
+                <form
+                  onSubmit={recoverPassword}
+                  className="flex flex-col gap-6 w-full "
+                >
                   {hidePassword ? (
                     <Box position="relative">
                       <Input
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setNewPassword(e.target.value)}
                         type="text"
                         placeholder="Enter new password"
                         size="lg"
-                        defaultValue={password}
+                        defaultValue={confirmPassword}
                       />
                       <span
                         onClick={() => setHidePassword(false)}
@@ -165,8 +188,8 @@ const ForgottenPassword = () => {
                         type="password"
                         placeholder="Enter new password"
                         size="lg"
-                        onChange={(e) => setPassword(e.target.value)}
-                        defaultValue={password}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        defaultValue={confirmPassword}
                       />
                       <span
                         onClick={() => setHidePassword(true)}
@@ -180,7 +203,7 @@ const ForgottenPassword = () => {
                   {hideForgotPassword ? (
                     <Box position="relative">
                       <Input
-                        onChange={(e) => setNewPassword(e.target.value)}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                         type="text"
                         placeholder="Confirm password"
                         size="lg"
@@ -199,7 +222,7 @@ const ForgottenPassword = () => {
                         type="password"
                         placeholder="Confirm password"
                         size="lg"
-                        onChange={(e) => setNewPassword(e.target.value)}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                         defaultValue={newPassword}
                       />
                       <span
@@ -235,14 +258,12 @@ const ForgottenPassword = () => {
                           fill="currentColor"
                         />
                       </svg>
-                      - logging in...
+                      Changing Password...
                     </Button>
                   ) : (
-                    <Link href="/login">
-                      <Button w="100%" colorScheme="blue" size="lg">
-                        Set Password
-                      </Button>
-                    </Link>
+                    <Button type="submit" w="100%" colorScheme="blue" size="lg">
+                      Set New Password
+                    </Button>
                   )}
                   {isAuth ? (
                     <Text color="red" textAlign="center">

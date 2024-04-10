@@ -137,6 +137,8 @@ const Admin = (props) => {
               <Input
                 onChange={(e) => setSymbol(e.target.value)}
                 placeholder="Enter Symbol"
+                defaultValue={symbol}
+                type="text"
               />
               {/* <Input
                 onChange={(e) => setCurrentPrice(e.target.value)}
@@ -165,12 +167,15 @@ const Admin = (props) => {
               </Select>
 
               <Input
+                type="text"
                 onChange={(e) => setSubCategory(e.target.value)}
                 placeholder="Enter subCategory"
               />
               <Input
+                type="text"
                 onChange={(e) => setExchangeField(e.target.value)}
                 placeholder="Enter Exchange Field"
+                defaultValue={exchangeField}
               />
               {successfulBtn ? (
                 <Button disabled type="button" colorScheme="teal" w="100%">
