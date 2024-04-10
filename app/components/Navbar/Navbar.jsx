@@ -21,6 +21,15 @@ const Navbar = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Create a moment object representing the current time in UTC
+  var now = moment.utc();
+
+  // Format the current UTC time in hours, minutes, and seconds
+  var formattedTime = now.format("HH:mm:ss");
+
+  // Log the formatted time to the console
+  console.log(formattedTime);
+
   return (
     <div
       style={{
@@ -50,10 +59,8 @@ const Navbar = () => {
           </div>
           <div className="flex items-center gap-3 justify-center text-[20px] ">
             <Text className=" text-#000 max-[500px]:hidden">Current Time </Text>
-            <Text className=" text-#000">
-              {" "}
-              {currentTime.format("HH:mm:ss")}{" "}
-            </Text>
+            <Text className=" text-#000"> {formattedTime} </Text>
+            {/* <Text className=" text-#000"> {utcTime.format("HH:mm:ss")} </Text> */}
             <Text className=" text-#000">UTC </Text>
           </div>
         </div>

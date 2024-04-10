@@ -92,25 +92,25 @@ const AdminNavbar = () => {
           </Heading>
         </div>
         <div className="flex items-center gap-3 justify-center text-[20px] ">
-          <Text textColor="white" className=" text-#fff max-[550px]:hidden">
+          {/* <Text textColor="white" className=" text-#fff max-[550px]:hidden">
             Current Time{" "}
-          </Text>
+          </Text> */}
           {/* <Text textColor="white" className=" text-#fff">
             {" "}
             {currentTime.format("HH:mm:ss")}{" "}
           </Text> */}
-          <Text textColor="white" className=" text-#fff max-[600px]:hidden">
+          {/* <Text textColor="white" className=" text-#fff max-[600px]:hidden">
             UTC{" "}
-          </Text>
+          </Text> */}
         </div>
         <Flex alignItems="center" gap="15px">
-          <Tippy content="Homepage" placement="bottom">
+          {/* <Tippy content="Homepage" placement="bottom">
             <Link href="/">
               <span className="text-#fff cursor-pointer p-2">
                 <IoHomeOutline fontSize="24px" color="white" />
               </span>
             </Link>
-          </Tippy>
+          </Tippy> */}
           <Tippy content="Logout" placement="bottom">
             <span onClick={logOut} className="text-#fff cursor-pointer p-2">
               <TbLogout2 fontSize="24px" color="white" />
