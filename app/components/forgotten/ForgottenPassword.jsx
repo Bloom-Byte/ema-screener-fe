@@ -41,11 +41,12 @@ const ForgottenPassword = () => {
 
   const extractedToken = searchParams.get("resettoken");
 
-  console.log(extractedToken, "extractedToken");
+  // console.log(extractedToken, "extractedToken");
   const recoverPassword = async (e) => {
     e.preventDefault();
 
     const token = contextValue.token || localStorage.getItem("token");
+    const API_KEY = "ZPQZsfIX.yOW01At15aQpF2Z1Ll6I4JmMX87OkWqH";
 
     const userInfo = {
       token: extractedToken,
@@ -68,6 +69,7 @@ const ForgottenPassword = () => {
           headers: {
             Authorization: `AuthToken ${token}`,
             "Content-Type": "application/json",
+            "X_API-KEY": process.env.NEXT_PUBLIC_API_KEY,
           },
         }).catch((err) => console.log(err, "network error"));
 
