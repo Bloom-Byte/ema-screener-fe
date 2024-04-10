@@ -75,7 +75,7 @@ const ForgottenPassword = () => {
           setLoadingBtn(false);
           toast.success("Password reset successful");
           // localStorage.setItem("token", response.data.token);
-          // router.push("/login");
+          router.push("/login");
           // const token = localStorage.getItem("token");
           // contextValue.setToken(token);
           // contextValue.getCurrentUser(response.data.token);
