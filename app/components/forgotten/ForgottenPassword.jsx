@@ -173,7 +173,7 @@ const ForgottenPassword = () => {
                         type="text"
                         placeholder="Enter new password"
                         size="lg"
-                        defaultValue={confirmPassword}
+                        defaultValue={newPassword}
                       />
                       <span
                         onClick={() => setHidePassword(false)}
@@ -189,7 +189,7 @@ const ForgottenPassword = () => {
                         placeholder="Enter new password"
                         size="lg"
                         onChange={(e) => setNewPassword(e.target.value)}
-                        defaultValue={confirmPassword}
+                        defaultValue={newPassword}
                       />
                       <span
                         onClick={() => setHidePassword(true)}
@@ -207,7 +207,7 @@ const ForgottenPassword = () => {
                         type="text"
                         placeholder="Confirm password"
                         size="lg"
-                        defaultValue={newPassword}
+                        defaultValue={confirmPassword}
                       />
                       <span
                         onClick={() => setHideForgotPassword(false)}
@@ -223,7 +223,7 @@ const ForgottenPassword = () => {
                         placeholder="Confirm password"
                         size="lg"
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        defaultValue={newPassword}
+                        defaultValue={confirmPassword}
                       />
                       <span
                         onClick={() => setHideForgotPassword(true)}
