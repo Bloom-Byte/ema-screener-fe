@@ -1,11 +1,16 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import ForgottenPassword from "../components/forgotten/ForgottenPassword";
 
+function SearchBarFallback() {
+  return <>placeholder</>;
+}
 const page = () => {
   return (
     <div>
-      <ForgottenPassword />
+      <Suspense fallback={<SearchBarFallback />}>
+        <ForgottenPassword />
+      </Suspense>
     </div>
   );
 };
