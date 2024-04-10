@@ -39,12 +39,13 @@ const ForgottenPassword = () => {
 
   const search = useSearchParams();
 
-  const extractedToken = search.get("resettoken");
-
-  console.log(extractedToken, "extractedToken");
-
   const recoverPassword = async (e) => {
     e.preventDefault();
+
+    const extractedToken = search.get("resettoken");
+
+    console.log(extractedToken, "extractedToken");
+
     const token = contextValue.token || localStorage.getItem("token");
 
     const userInfo = {
