@@ -26,7 +26,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const EnterEmail = (props) => {
+const EnterEmail = () => {
   const { contextValue } = useAppContext();
   const [email, setEmail] = useState("");
   const [isAuth, setIsAuth] = useState(false);
@@ -208,7 +208,7 @@ const EnterEmail = (props) => {
                 <Text fontSize="md">
                   Login again?{" "}
                   <span
-                    onClick={() => props.setForgotPass(false)}
+                    onClick={() => contextValue.setForgotPass(false)}
                     className="text-[teal] cursor-pointer "
                   >
                     Click here{" "}

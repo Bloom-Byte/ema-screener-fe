@@ -11,7 +11,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import NextLink from "next/link";
 import { FcGoogle } from "react-icons/fc";
 // import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
@@ -20,7 +20,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
-import { useParams, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAppContext } from "@/app/helper/Helpers";
 
@@ -33,20 +33,42 @@ const ForgottenPassword = () => {
   const [hideForgotPassword, setHideForgotPassword] = useState(false);
   const [loadingBtn, setLoadingBtn] = useState(false);
 
-  // const router = useRouter();
-
-  // const router = useRouter();
+  const router = useRouter();
 
   const searchParams = useSearchParams();
 
   const extractedToken = searchParams.get("resettoken");
 
+  useEffect(() => {
+    checkTokenValidity();
+  }, []);
+  const checkTokenValidity = async () => {
+    try {
+      const response = await axios({
+        method: "POST",
+        url:
+          "https://be.emascreener.bloombyte.dev/api/v1/accounts/validate-reset-token/",
+        headers: {
+          "Content-Type": "application/json",
+          "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
+        },
+        data: extractedToken,
+      });
+      if (response.status === 200 || "success") {
+        toast.success("Token validity confirmed!");
+      } else {
+        toast.error("Token is invalid, Reset!");
+        router.push("/login");
+        contextValue.seForgotPass(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // console.log(extractedToken, "extractedToken");
   const recoverPassword = async (e) => {
     e.preventDefault();
-
-    const token = contextValue.token || localStorage.getItem("token");
-    const API_KEY = "ZPQZsfIX.yOW01At15aQpF2Z1Ll6I4JmMX87OkWqH";
 
     const userInfo = {
       token: extractedToken,
@@ -67,14 +89,14 @@ const ForgottenPassword = () => {
             "https://be.emascreener.bloombyte.dev/api/v1/accounts/reset-password/",
           data: userInfo,
           headers: {
-            // Authorization: `AuthToken ${token}`,
             "Content-Type": "application/json",
             "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
           },
         }).catch((err) => console.log(err, "network error"));
-
+        console.log(response, "response");
         if (response.status === 200 || "success") {
           setLoadingBtn(false);
+
           toast.success("Password reset successful");
           // localStorage.setItem("token", response.data.token);
           router.push("/login");

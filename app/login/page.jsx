@@ -1,18 +1,15 @@
 "use client";
-import React, { useState } from "react";
 import Login from "../components/login/Login";
 import EnterEmail from "../components/EnterEmail";
 import { ToastContainer } from "react-toastify";
+import { useAppContext } from "../helper/Helpers";
 
 const page = () => {
-  const [forgotPass, setForgotPass] = useState(false);
+  const { contextValue } = useAppContext();
+
   return (
     <div>
-      {forgotPass ? (
-        <EnterEmail setForgotPass={setForgotPass} />
-      ) : (
-        <Login setForgotPass={setForgotPass} />
-      )}
+      {contextValue.forgotPass ? <EnterEmail /> : <Login />}
       <ToastContainer />
     </div>
   );

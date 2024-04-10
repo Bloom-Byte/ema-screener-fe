@@ -276,7 +276,7 @@ const Login = (props) => {
                   Forgot Password?{" "}
                   {/* <Link as={NextLink} href="/forgot-password"> */}
                   <span
-                    onClick={() => props.setForgotPass(true)}
+                    onClick={() => contextValue.setForgotPass(true)}
                     className="text-[teal] cursor-pointer "
                   >
                     Click here{" "}

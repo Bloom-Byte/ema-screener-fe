@@ -10,6 +10,7 @@ const AppContextProvider = ({ children }) => {
   const [botCreatedSuccess, setBotCreatedSuccess] = useState(false);
   const [token, setToken] = useState("");
   const [userId, setUserId] = useState("");
+  const [forgotPass, setForgotPass] = useState(false);
 
   //First get the token from localStorage and pass it as a parameter to the getCurrentUser function
 
@@ -26,6 +27,8 @@ const AppContextProvider = ({ children }) => {
     setToken,
     setUserId,
     userId,
+    forgotPass,
+    setForgotPass,
   };
 
   return (
