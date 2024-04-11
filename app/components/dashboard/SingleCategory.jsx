@@ -22,7 +22,7 @@ const SingleCategory = (props) => {
           }`,
         },
       }).catch((err) => console.log(err));
-      if (response.status === 204) {
+      if (response.status === 200) {
         toast.success("Currency deleted successfully");
         props.setEmaCurrencies(
           props.emaCurrencies.filter(
