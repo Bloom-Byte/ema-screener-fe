@@ -130,7 +130,7 @@ const Login = (props) => {
             m="0"
             bgColor="#ffffff40"
           >
-            <Box>
+    {/* <Box>
               <Image
                 boxSize="50px"
                 objectFit="cover"
@@ -139,7 +139,7 @@ const Login = (props) => {
                 margin="30px auto"
                 borderRadius="50%"
               />
-            </Box>
+            </Box>*/} 
             <Box
               display="flex"
               // flexDirection="column"
