@@ -47,6 +47,8 @@ const page = () => {
 
   useEffect(() => {
     setLoaded(true);
+    // const WS = new WebSocket(`wss://be.emascreener.bloombyte.dev/api/v1/currencies/`, ['custom-header1', 'custom-header2']);
+
     const token = contextValue.token || localStorage.getItem("token");
     axios({
       method: "GET",
@@ -69,13 +71,6 @@ const page = () => {
           router.push("/login");
         }
       });
-    // console.log(response.status, "response");
-    // if (response.status === 200) {
-    //   setEmaRecords(response);
-    //   console.log(emaRecords, "emaRecords");
-    // } else {
-    //   toast.error(`failed to get coins`);
-    // }
   }, []);
 
   return (

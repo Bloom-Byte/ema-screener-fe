@@ -5,7 +5,7 @@ import Search from "./components/Search/Search";
 import Tabled from "./components/tables/Table";
 import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAppContext } from "./helper/Helpers";
 
@@ -50,7 +50,8 @@ export default function Home() {
       // Process and display the retrieved EMA records in your UI
     } catch (error) {
       console.error("Error fetching EMA records:", error);
-      // Handle the error in your UI
+      toast.error("Error fetching EMA records");
+      setLoading(false);
     }
   };
   // const totalPages = Math.ceil(allEmaRecords.length / pageSize);

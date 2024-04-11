@@ -4,9 +4,12 @@ import moment from "moment";
 import { Heading, Text } from "@chakra-ui/react";
 import { TbLogout2 } from "react-icons/tb";
 import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+
 import axios from "axios";
 import { useAppContext } from "@/app/helper/Helpers";
 import { useRouter } from "next/navigation";
+import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 
 const Navbar = () => {
   const { contextValue } = useAppContext();
@@ -27,9 +30,6 @@ const Navbar = () => {
   // Format the current UTC time in hours, minutes, and seconds
   var formattedTime = now.format("HH:mm:ss");
 
-  // Log the formatted time to the console
-  console.log(formattedTime);
-
   return (
     <div
       style={{
@@ -39,8 +39,8 @@ const Navbar = () => {
       }}
       className="w-[100%] bg-white text-#000"
     >
-      <div className=" w-[95%] m-auto">
-        <div className="flex items-center justify-between py-4 w-[55%]  max-[1200px]:w-[70%] max-[700px]:w-[100%] max-[500px]:justify-between ">
+      <div className=" w-[95%]  m-auto">
+        <div className="flex items-center justify-between py-4 w-[100%] max-[1200px]:w-[70%] max-[700px]:w-[100%] max-[500px]:justify-between ">
           <div className="flex items-center gap-3 ">
             <div className="w-[50px] max-[450px]:hidden">
               <img
@@ -62,6 +62,17 @@ const Navbar = () => {
             <Text className=" text-#000"> {formattedTime} </Text>
             {/* <Text className=" text-#000"> {utcTime.format("HH:mm:ss")} </Text> */}
             <Text className=" text-#000">UTC </Text>
+          </div>
+          <div className="flex items-center gap-3 justify-center text-[20px] ">
+            <Tippy
+              placement="bottom"
+              content="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed cumque possimus iste nulla, incidunt, iure voluptatibus rem molestias veritatis sunt accusamus quam tenetur? Fugiat, voluptatem. Ullam odit facere magnam cupiditate voluptate sequi deleniti facilis eligendi officia molestiae suscipit dolor non commodi dignissimos incidunt, recusandae, assumenda nihil magni quos. Nam, soluta."
+            >
+              <span className="text-black cursor-pointer">
+                {" "}
+                <HiOutlineQuestionMarkCircle />
+              </span>
+            </Tippy>
           </div>
         </div>
       </div>

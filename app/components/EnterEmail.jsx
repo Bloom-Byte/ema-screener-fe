@@ -37,7 +37,6 @@ const EnterEmail = () => {
 
   const forgotPassword = async (e) => {
     e.preventDefault();
-    // toast.success("Check your email for reset link!");
     setLoadingBtn(true);
 
     const userObject = {
@@ -45,8 +44,6 @@ const EnterEmail = () => {
       token_name: "resettoken",
     };
     try {
-      const token = contextValue.token || localStorage.getItem("token");
-      console.log(email, "email");
       if (userObject.email && userObject.token_name) {
         await axios({
           method: "POST",
@@ -55,7 +52,6 @@ const EnterEmail = () => {
           data: userObject,
           headers: {
             "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
-            // Authorization: `AuthToken ${token}`,
             "Content-Type": "application/json",
           },
         })
@@ -75,6 +71,7 @@ const EnterEmail = () => {
           });
       } else {
         toast.error("Please add email or check token");
+        setLoadingBtn(false);
       }
     } catch (error) {
       console.log(error),
