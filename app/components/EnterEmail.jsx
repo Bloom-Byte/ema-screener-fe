@@ -47,33 +47,42 @@ const EnterEmail = () => {
     try {
       const token = contextValue.token || localStorage.getItem("token");
       console.log(email, "email");
-      if(userObject.email && userObject.token_name) {
-await axios({
-        method: "POST",
-        url:
-          "https://be.emascreener.bloombyte.dev/api/v1/accounts/request-password-reset/",
-        data: userObject,
-        headers: {
-          "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
-          // Authorization: `AuthToken ${token}`,
-          "Content-Type": "application/json",
-        },
-      })
-        .then(async (res) => {
-          console.log(res), 
-            toast.success("Check your email for reset link!"),
-            setLoadingBtn(false), 
-            setIsAuth(false) 
-         
+      if (userObject.email && userObject.token_name) {
+        await axios({
+          method: "POST",
+          url:
+            "https://be.emascreener.bloombyte.dev/api/v1/accounts/request-password-reset/",
+          data: userObject,
+          headers: {
+            "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
+            // Authorization: `AuthToken ${token}`,
+            "Content-Type": "application/json",
+          },
         })
-        .catch((err) => {
-          console.log(err, "network error"), setLoadingBtn(false), setIsAuth(true), setTimeOut(() => {setIsAuth(false) }, 4000) 
-        });
+          .then(async (res) => {
+            console.log(res),
+              toast.success("Check your email for reset link!"),
+              setLoadingBtn(false),
+              setIsAuth(false);
+          })
+          .catch((err) => {
+            console.log(err, "network error"),
+              setLoadingBtn(false),
+              setIsAuth(true),
+              setTimeOut(() => {
+                setIsAuth(false);
+              }, 4000);
+          });
       } else {
-        toast.error("Please add email or check token) 
-                    } 
+        toast.error("Please add email or check token");
+      }
     } catch (error) {
-      console.log(error), setLoadingBtn(false), setIsAuth(true), setTimeOut(() => {setIsAuth(false) }, 4000)  
+      console.log(error),
+        setLoadingBtn(false),
+        setIsAuth(true),
+        setTimeOut(() => {
+          setIsAuth(false);
+        }, 4000);
     }
   };
 
@@ -100,7 +109,6 @@ await axios({
             m="0"
             bgColor="#ffffff40"
           >
-            
             <Box
               display="flex"
               // flexDirection="column"
@@ -172,7 +180,11 @@ await axios({
                       Recover password
                     </Button>
                   )}
-                  <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
                     {isAuth ? (
                       <Text color="red" textAlign="center">
                         {" "}
@@ -182,7 +194,11 @@ await axios({
                       ""
                     )}
                   </motion.div>
-                  <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} >
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
                     {emptyInput && (
                       <Text color="red" textAlign="center">
                         Make sure email and password is present.{" "}
