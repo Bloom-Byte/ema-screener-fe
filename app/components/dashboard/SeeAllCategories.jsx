@@ -40,7 +40,7 @@ const SeeAllCategories = (props) => {
       ) : (
         <TableContainer>
           <Table
-            variant={ props.emaCurrencies.length > 0 ? "striped" : "simple"}
+            variant={props.emaCurrencies.length > 0 ? "striped" : "simple"}
             textAlign="center"
             colorScheme="gold"
             color="black"
@@ -57,7 +57,7 @@ const SeeAllCategories = (props) => {
                 <Th textAlign="center">Exchange</Th>
               </Tr>
             </Thead>
-            {props.emaCurrencies.length > 0 ? props.emaCurrencies.length > 0 ? (
+            {props.emaCurrencies.length > 0 ? (
               <Tbody>
                 {props.emaCurrencies.map((coin, index) => {
                   return (
@@ -69,9 +69,7 @@ const SeeAllCategories = (props) => {
                       coin={coin}
                     />
                   );
-                }) : <Tr colspan={5} >
-                  <Td>Nothing to see here yet</Td>
-                </Tr> }
+                })}
               </Tbody>
             ) : (
               <Thead>
