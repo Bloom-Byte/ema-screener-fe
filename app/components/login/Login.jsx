@@ -17,8 +17,8 @@ import { FcGoogle } from "react-icons/fc";
 import { useAppContext } from "@/app/helper/Helpers";
 // import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 // import { auth, provider } from "../firebase-config/Firebase-config";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -32,6 +32,7 @@ const Login = (props) => {
   const [hidePassword, setHidePassword] = useState(false);
   const [loadingBtn, setLoadingBtn] = useState(false);
   const [emptyInput, setEmptyInput] = useState(false);
+  const [credentialsError, setCredentialsError] = useState(false);
 
   const router = useRouter();
 
@@ -56,10 +57,15 @@ const Login = (props) => {
             "Content-Type": "application/json",
             // Authorization: `Bearer ${API_KEY}`,
           },
-        }).catch(
-          (err) => console.log(err, "axios error") && setLoadingBtn(false)
-        );
-        // console.log(response, "response");
+        }).catch((err) => {
+          toast.error("seems an error has occurred");
+          setCredentialsError(true);
+          console.log(err, "axios error"), setLoadingBtn(false);
+          setTimeout(() => {
+            setCredentialsError(false);
+          }, 4000);
+        });
+        console.log(response, "response");
         if (response.status == 200 || "success") {
           setLoadingBtn(false);
           contextValue.setToken(response.data.data.token);
@@ -78,7 +84,7 @@ const Login = (props) => {
           console.log("Validation Error");
           setLoadingBtn(false);
           setEmptyInput(true);
-
+          toast.error("incorrect credentials");
           setIsAuth(true);
           setTimeout(() => {
             setEmptyInput(false);
@@ -130,7 +136,7 @@ const Login = (props) => {
             m="0"
             bgColor="#ffffff40"
           >
-    {/* <Box>
+            {/* <Box>
               <Image
                 boxSize="50px"
                 objectFit="cover"
@@ -139,7 +145,7 @@ const Login = (props) => {
                 margin="30px auto"
                 borderRadius="50%"
               />
-            </Box>*/} 
+            </Box>*/}
             <Box
               display="flex"
               // flexDirection="column"
@@ -243,7 +249,11 @@ const Login = (props) => {
                       Login to your account
                     </Button>
                   )}
-                  <motion.div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
                     {isAuth ? (
                       <Text color="red" textAlign="center">
                         {" "}
@@ -253,7 +263,25 @@ const Login = (props) => {
                       ""
                     )}
                   </motion.div>
-                  <motion.div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    {credentialsError ? (
+                      <Text color="red" textAlign="center">
+                        {" "}
+                        Check your credentials again.{" "}
+                      </Text>
+                    ) : (
+                      ""
+                    )}
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
                     {emptyInput && (
                       <Text color="red" textAlign="center">
                         Make sure email and password is present.{" "}

@@ -137,7 +137,7 @@ const Admin = (props) => {
               <Input
                 onChange={(e) => setSymbol(e.target.value)}
                 placeholder="Enter Symbol"
-                defaultValue={symbol}
+                value={symbol}
                 type="text"
               />
               {/* <Input
@@ -145,9 +145,10 @@ const Admin = (props) => {
                 placeholder="Enter Current Price"
               /> */}
               <Select
-                onClick={(e) => setCategory(e.target.value)}
+                onChange={(e) => setCategory(e.target.value)}
                 cursor="pointer"
                 placeholder="Select Category"
+                value={category}
               >
                 <option style={{ cursor: "pointer" }} value="A">
                   A{" "}
@@ -167,15 +168,16 @@ const Admin = (props) => {
               </Select>
 
               <Input
-                type="text"
                 onChange={(e) => setSubCategory(e.target.value)}
                 placeholder="Enter subCategory"
+                value={subCategory}
+                type="text"
               />
               <Input
-                type="text"
                 onChange={(e) => setExchangeField(e.target.value)}
                 placeholder="Enter Exchange Field"
-                defaultValue={exchangeField}
+                value={exchangeField}
+                type="text"
               />
               {successfulBtn ? (
                 <Button disabled type="button" colorScheme="yellow" w="100%">
