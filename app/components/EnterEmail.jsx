@@ -60,15 +60,16 @@ const EnterEmail = () => {
       })
         .then(async (res) => {
           if (res.status == "success" || 200) {
-            toast.success("Check your email for reset link!");
-            setLoadingBtn(false);
+            toast.success("Check your email for reset link!"),
+            setLoadingBtn(false), 
+            setIsAuth(false) 
           }
         })
         .catch((err) => {
-          console.log(err, "network error"), setLoadingBtn(false);
+          console.log(err, "network error"), setLoadingBtn(false), setIsAuth(true), setTimeOut(() => {setIsAuth(false}, 4000) 
         });
     } catch (error) {
-      console.log(error), setLoadingBtn(false);
+      console.log(error), setLoadingBtn(false), setIsAuth(true), setTimeOut(() => {setIsAuth(false}, 4000)  
     }
   };
 
