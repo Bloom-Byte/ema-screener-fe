@@ -47,7 +47,8 @@ const EnterEmail = () => {
     try {
       const token = contextValue.token || localStorage.getItem("token");
       console.log(email, "email");
-      await axios({
+      if(userObject.email && userObject.token_name) {
+await axios({
         method: "POST",
         url:
           "https://be.emascreener.bloombyte.dev/api/v1/accounts/request-password-reset/",
@@ -68,6 +69,9 @@ const EnterEmail = () => {
         .catch((err) => {
           console.log(err, "network error"), setLoadingBtn(false), setIsAuth(true), setTimeOut(() => {setIsAuth(false) }, 4000) 
         });
+      } else {
+        toast.error("Please add email or check token) 
+                    } 
     } catch (error) {
       console.log(error), setLoadingBtn(false), setIsAuth(true), setTimeOut(() => {setIsAuth(false) }, 4000)  
     }
@@ -96,16 +100,7 @@ const EnterEmail = () => {
             m="0"
             bgColor="#ffffff40"
           >
-            <Box>
-              <Image
-                boxSize="50px"
-                objectFit="cover"
-                src="./logos.png"
-                alt="Chat gpt"
-                margin="30px auto"
-                borderRadius="50%"
-              />
-            </Box>
+            
             <Box
               display="flex"
               // flexDirection="column"
