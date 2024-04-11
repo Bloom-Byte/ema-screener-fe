@@ -42,7 +42,7 @@ const SeeAllCategories = (props) => {
           <Table
             variant={props.emaCurrencies.length > 0 ? "striped" : "simple"}
             textAlign="center"
-            colorScheme="yellow"
+            colorScheme="teal"
             color="black"
           >
             {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}

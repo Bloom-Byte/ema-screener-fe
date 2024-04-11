@@ -98,10 +98,13 @@ const Admin = (props) => {
         },
       })
         .then((res) => {
-          // console.log(res.data.results, "res");
           props.setEmaCurrencies(res.data.results);
+          setSearchValue("");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          toast.error("Seems an error has occurred");
+        });
     } catch (error) {
       console.log(error);
     }
@@ -210,12 +213,13 @@ const Admin = (props) => {
 
           <form onClick={searchCoin} className="flex items-center gap-3">
             <Input
-              type="text"
-              borderRadius="6px"
-              color="#000"
-              // className="py-1 px-2 text-[#000] outline-0 rounded-[8px]"
-              placeholder="Search"
               onChange={(e) => setSearchValue(e.target.value)}
+              placeholder="Search"
+              borderRadius="6px"
+              value={searchValue}
+              color="#000"
+              type="text"
+              // className="py-1 px-2 text-[#000] outline-0 rounded-[8px]"
             />
             <Button
               // color=""
