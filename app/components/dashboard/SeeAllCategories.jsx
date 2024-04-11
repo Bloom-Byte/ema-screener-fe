@@ -13,7 +13,7 @@ import {
 import React from "react";
 import { BsGraphDownArrow, BsGraphUpArrow } from "react-icons/bs";
 import SingleCategory from "./SingleCategory";
-
+// import "./seeAll.css";
 const SeeAllCategories = (props) => {
   return (
     <div className="w-[95%] my-[30px] mx-auto overflow-x-scroll overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] ">
@@ -72,14 +72,14 @@ const SeeAllCategories = (props) => {
                 })}
               </Tbody>
             ) : (
-              <Thead>
+              <Tbody>
                 <Tr
                   // border="2px red solid"
                   minW="100%"
                   m="0 auto"
                   textAlign="center"
                 >
-                  <Td m="0 auto" w="100%">
+                  <Td colSpan={5} m="0 auto" w="100%">
                     <Box
                       textAlign="center"
                       margin="0 auto"
@@ -94,7 +94,7 @@ const SeeAllCategories = (props) => {
                     </Box>
                   </Td>
                 </Tr>
-              </Thead>
+              </Tbody>
             )}
           </Table>
         </TableContainer>

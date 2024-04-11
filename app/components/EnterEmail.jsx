@@ -176,7 +176,7 @@ const EnterEmail = () => {
                       Starting recovery...
                     </Button>
                   ) : (
-                    <Button type="submit" w="100%" colorScheme="gold" size="lg">
+                    <Button type="submit" w="100%" colorScheme="blue" size="lg">
                       Recover password
                     </Button>
                   )}

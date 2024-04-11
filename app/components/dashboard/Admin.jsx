@@ -98,7 +98,7 @@ const Admin = (props) => {
         },
       })
         .then((res) => {
-          console.log(res.data.results, "res");
+          // console.log(res.data.results, "res");
           props.setEmaCurrencies(res.data.results);
         })
         .catch((err) => console.log(err));
@@ -178,7 +178,7 @@ const Admin = (props) => {
                 defaultValue={exchangeField}
               />
               {successfulBtn ? (
-                <Button disabled type="button" colorScheme="teal" w="100%">
+                <Button disabled type="button" colorScheme="yellow" w="100%">
                   <svg
                     aria-hidden="true"
                     role="status"
@@ -199,7 +199,7 @@ const Admin = (props) => {
                   Addding Currency...
                 </Button>
               ) : (
-                <Button type="submit" colorScheme="teal" w="100%">
+                <Button type="submit" colorScheme="yellow" w="100%">
                   Submit
                 </Button>
               )}

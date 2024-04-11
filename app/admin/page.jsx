@@ -15,22 +15,6 @@ const page = () => {
   const router = useRouter();
   const [emaCurrencies, setEmaCurrencies] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  const [coins, setCoins] = useState([
-    // {
-    //   SN: 1,
-    //   category: "Coin",
-    //   symbol: "BTC",
-    //   subCategory: "Bitcoin",
-    //   exchange: "1000",
-    // },
-    // {
-    //   SN: 2,
-    //   category: "Coin",
-    //   symbol: "Meta",
-    //   subCategory: "MetaMask",
-    //   exchange: "600",
-    // },
-  ]);
 
   useEffect(() => {
     // toast.success("Login successful");
@@ -78,9 +62,13 @@ const page = () => {
         setEmaCurrencies(res.data.results);
         setLoaded(false);
       })
-      .catch((error) =>
-        console.log(error, "An Error retrieving records has occurred")
-      );
+      .catch((error) => {
+        console.log(error.response.status, "this is status");
+        if (error.response.status == 401) {
+          console.log(error, "An Error retrieving records has occurred");
+          router.push("/login");
+        }
+      });
     // console.log(response.status, "response");
     // if (response.status === 200) {
     //   setEmaRecords(response);
@@ -96,8 +84,6 @@ const page = () => {
       <Admin
         emaCurrencies={emaCurrencies}
         setEmaCurrencies={setEmaCurrencies}
-        coins={coins}
-        setCoins={setCoins}
       />
       <SeeAllCategories
         emaCurrencies={emaCurrencies}
