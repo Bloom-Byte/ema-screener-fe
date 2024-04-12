@@ -55,7 +55,8 @@ const Login = (props) => {
           data: userInfo,
           headers: {
             "Content-Type": "application/json",
-            // Authorization: `Bearer ${API_KEY}`,
+            //  Authorization: `AuthToken ${API_KEY}`
+            "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
           },
         }).catch((err) => {
           toast.error("seems an error has occurred");
@@ -65,7 +66,7 @@ const Login = (props) => {
             setCredentialsError(false);
           }, 4000);
         });
-        console.log(response, "response");
+        console.log(response.data.status, "response");
         if (response.status == 200 || "success") {
           setLoadingBtn(false);
           contextValue.setToken(response.data.data.token);
@@ -73,9 +74,9 @@ const Login = (props) => {
           localStorage.setItem("token", response.data.data.token);
           localStorage.setItem("userId", response.data.data.user_id);
           router.push("/admin");
-        } else if (response.status == 400) {
+        } else if (response == 400) {
           setLoadingBtn(false);
-
+          toast.error("seems an error has occurred");
           setIsAuth(true);
           setTimeout(() => {
             setIsAuth(false);

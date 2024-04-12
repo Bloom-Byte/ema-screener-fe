@@ -15,6 +15,7 @@ const page = () => {
   const router = useRouter();
   const [emaCurrencies, setEmaCurrencies] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     // toast.success("Login successful");
@@ -47,9 +48,9 @@ const page = () => {
 
   useEffect(() => {
     setLoaded(true);
-    // const WS = new WebSocket(`wss://be.emascreener.bloombyte.dev/api/v1/currencies/`, ['custom-header1', 'custom-header2']);
 
     const token = contextValue.token || localStorage.getItem("token");
+
     axios({
       method: "GET",
       url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
@@ -79,6 +80,8 @@ const page = () => {
       <Admin
         emaCurrencies={emaCurrencies}
         setEmaCurrencies={setEmaCurrencies}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
       />
       <SeeAllCategories
         emaCurrencies={emaCurrencies}

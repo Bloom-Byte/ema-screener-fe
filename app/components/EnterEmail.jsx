@@ -63,6 +63,7 @@ const EnterEmail = () => {
           })
           .catch((err) => {
             console.log(err, "network error"),
+              toast.error(`Please Check email ${email} for reset link!`),
               setLoadingBtn(false),
               setIsAuth(true),
               setTimeOut(() => {

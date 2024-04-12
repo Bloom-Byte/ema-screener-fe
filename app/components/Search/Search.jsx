@@ -13,9 +13,11 @@ const Search = (props) => {
   const [watchList, setWatchList] = useState("");
   const [ema, setEma] = useState("");
   const [emaValue, setEmaValue] = useState("");
-
+  const [emaTwenty, setEmaTwenty] = useState("");
+  const [emaFifty, setEmaFifty] = useState("");
+  const [emaHundred, setEmaHundred] = useState("");
+  const [emaTwoHundred, setEmaTwoHundred] = useState("");
   const [trend, setTrend] = useState("");
-  const [watch, setWatch] = useState("");
 
   //* Function to filter Results
   const filterResults = async () => {
@@ -27,7 +29,8 @@ const Search = (props) => {
     try {
       await axios({
         method: "GET",
-        url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?${ema}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}`,
+        // url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}`,
+        url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}`,
         headers: {
           Authorization: `AuthToken ${token}`,
           "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
@@ -35,7 +38,7 @@ const Search = (props) => {
       })
         .then((res) => {
           console.log(res);
-          props.setAllEmaRecords(res.data.results);
+          props.setFilteredResults(res.data.results);
           props.setLoading(false);
         })
         .catch((err) => {
@@ -50,7 +53,7 @@ const Search = (props) => {
 
   useEffect(() => {
     filterResults();
-  }, [timeFrame, watchList, ema, emaValue, trend, watch]);
+  }, [timeFrame, watchList, ema, emaValue, trend]);
 
   return (
     <div className="my-[30px]">
@@ -94,7 +97,17 @@ const Search = (props) => {
         >
           <Tippy placement="bottom" content="Shows level of priority">
             <select
-              onClick={(e) => setWatchList(e.target.value)}
+              onClick={(e) => {
+                setWatchList(e.target.value);
+                setEmaFifty("");
+                setEmaValue("");
+                setEmaTwenty("");
+                setEmaHundred("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTimeFrame("");
+                setTrend("");
+              }}
               style={{ color: "#000" }}
               className="w-[80px] outline-none"
             >
@@ -107,11 +120,19 @@ const Search = (props) => {
             <Button
               colorScheme
               bgColor="#F4A608"
+              opacity={emaValue == 20 ? 0.5 : 1}
               color="#fff"
               className="rounded-[6px]"
               onClick={() => {
-                setEma("ema20");
+                setEmaTwenty("ema20");
                 setEmaValue(20);
+                setEmaFifty("");
+                setEmaHundred("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTimeFrame("");
+                setTrend("");
+                setWatchList("");
               }}
             >
               20{" "}
@@ -119,11 +140,19 @@ const Search = (props) => {
             <Button
               colorScheme
               bgColor="#F4A608"
+              opacity={emaValue == 50 ? 0.5 : 1}
               color="#fff"
               className="rounded-[6px]"
               onClick={() => {
-                setEma("ema50");
+                setEmaFifty("ema50");
                 setEmaValue(50);
+                setEmaTwenty("");
+                setEmaHundred("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTimeFrame("");
+                setTrend("");
+                setWatchList("");
               }}
             >
               50{" "}
@@ -131,11 +160,19 @@ const Search = (props) => {
             <Button
               colorScheme
               bgColor="#F4A608"
+              opacity={emaValue == 100 ? 0.5 : 1}
               color="#fff"
               className="rounded-[6px]"
               onClick={() => {
-                setEma("ema100");
+                setEmaHundred("ema100");
                 setEmaValue(100);
+                setEmaTwenty("");
+                setEmaFifty("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTimeFrame("");
+                setTrend("");
+                setWatchList("");
               }}
             >
               100{" "}
@@ -143,11 +180,19 @@ const Search = (props) => {
             <Button
               colorScheme
               bgColor="#F4A608"
+              opacity={emaValue == 200 ? 0.5 : 1}
               color="#fff"
               className="rounded-[6px]"
               onClick={() => {
-                setEma("ema200");
+                setEmaTwoHundred("ema200");
                 setEmaValue(200);
+                setEmaTwenty("");
+                setEmaFifty("");
+                setEmaHundred("");
+                setCurrency("");
+                setTimeFrame("");
+                setTrend("");
+                setWatchList("");
               }}
             >
               200{" "}
@@ -168,9 +213,20 @@ const Search = (props) => {
             <Button
               colorScheme
               bgColor="#F4A608"
+              opacity={trend == 1 ? 0.5 : 1}
               color="#fff"
               className="rounded-[6px]"
-              onClick={() => setTrend(1)}
+              onClick={() => {
+                setTrend(1);
+                setEmaHundred("");
+                setEmaValue("");
+                setEmaTwenty("");
+                setEmaFifty("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTimeFrame("");
+                setWatchList("");
+              }}
             >
               1{" "}
             </Button>
@@ -179,9 +235,20 @@ const Search = (props) => {
             <Button
               colorScheme
               bgColor="#F4A608"
+              opacity={trend == -1 ? 0.5 : 1}
               color="#fff"
               className="rounded-[6px]"
-              onClick={() => setTrend(-1)}
+              onClick={() => {
+                setTrend(-1);
+                setEmaHundred("");
+                setEmaValue("");
+                setEmaTwenty("");
+                setEmaFifty("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTimeFrame("");
+                setWatchList("");
+              }}
             >
               -1{" "}
             </Button>
@@ -190,9 +257,20 @@ const Search = (props) => {
             <Button
               colorScheme
               bgColor="#F4A608"
+              opacity={trend == 0 ? 0.5 : 1}
               color="#fff"
               className="rounded-[6px]"
-              onClick={() => setTrend(0)}
+              onClick={() => {
+                setTrend(0);
+                setEmaValue("");
+                setEmaTwenty("");
+                setEmaFifty("");
+                setEmaHundred("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTimeFrame("");
+                setWatchList("");
+              }}
             >
               0{" "}
             </Button>
@@ -210,7 +288,17 @@ const Search = (props) => {
         >
           <Tippy content="Filter by 15 minutes" placement="bottom">
             <Button
-              onClick={() => setTimeFrame("00:00:15")}
+              onClick={() => {
+                setTimeFrame("00:00:15");
+                setEmaHundred("");
+                setEmaValue("");
+                setEmaTwenty("");
+                setEmaFifty("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTrend("");
+                setWatchList("");
+              }}
               colorScheme
               bgColor="#F4A608"
               color="#fff"
@@ -220,9 +308,20 @@ const Search = (props) => {
           </Tippy>
           <Tippy content="Filter by 1 hour" placement="bottom">
             <Button
-              onClick={() => setTimeFrame("1:00:00")}
+              onClick={() => {
+                setTimeFrame("1:00:00");
+                setEmaHundred("");
+                setEmaValue("");
+                setEmaTwenty("");
+                setEmaFifty("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTrend("");
+                setWatchList("");
+              }}
               colorScheme
               bgColor="#F4A608"
+              opacity={timeFrame == "1:00:00" ? 0.5 : 1}
               color="#fff"
               className="rounded-[6px]"
             >
@@ -231,9 +330,20 @@ const Search = (props) => {
           </Tippy>
           <Tippy content="Filter by 4 hours" placement="bottom">
             <Button
-              onClick={() => setTimeFrame("4:00:00")}
+              onClick={() => {
+                setTimeFrame("4:00:00");
+                setEmaHundred("");
+                setEmaValue("");
+                setEmaTwenty("");
+                setEmaFifty("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTrend("");
+                setWatchList("");
+              }}
               colorScheme
               bgColor="#F4A608"
+              opacity={timeFrame == "4:00:00" ? 0.5 : 1}
               color="#fff"
               className="rounded-[6px]"
             >
@@ -242,7 +352,18 @@ const Search = (props) => {
           </Tippy>
           <Tippy content="Filter by 1 day" placement="bottom">
             <Button
-              onClick={() => setTimeFrame("24:00:00")}
+              onClick={() => {
+                setTimeFrame("24:00:00");
+                setEmaHundred("");
+                setEmaValue("");
+                setEmaTwenty("");
+                setEmaFifty("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTrend("");
+                setWatchList("");
+              }}
+              opacity={timeFrame ? 0.5 : 1}
               colorScheme
               bgColor="#F4A608"
               color="#fff"

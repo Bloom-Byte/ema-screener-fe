@@ -67,7 +67,17 @@ const Tabled = (props) => {
               </Tr>
             </Thead>
             <Tbody>
-              {props.allEmaRecords.length > 0 ? (
+              {props.filteredResults.length > 0 ? (
+                props.filteredResults.map((emaRecords, index) => {
+                  return (
+                    <SingleRecord
+                      key={index + 1}
+                      index={index + 1}
+                      emaRecords={emaRecords}
+                    />
+                  );
+                })
+              ) : props.allEmaRecords.length > 0 ? (
                 props.allEmaRecords.map((emaRecords, index) => {
                   return (
                     <SingleRecord
@@ -82,6 +92,21 @@ const Tabled = (props) => {
                   <Td colSpan={13}>Nothing to be seen</Td>
                 </Tr>
               )}
+              {/* {props.allEmaRecords.length > 0 ? (
+                props.allEmaRecords.map((emaRecords, index) => {
+                  return (
+                    <SingleRecord
+                      key={index + 1}
+                      index={index + 1}
+                      emaRecords={emaRecords}
+                    />
+                  );
+                })
+              ) : (
+                <Tr>
+                  <Td colSpan={13}>Nothing to be seen</Td>
+                </Tr>
+              )} */}
             </Tbody>
           </Table>
         </TableContainer>

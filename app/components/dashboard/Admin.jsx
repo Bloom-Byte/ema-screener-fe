@@ -99,6 +99,7 @@ const Admin = (props) => {
       })
         .then((res) => {
           props.setEmaCurrencies(res.data.results);
+          // setSearchValue("");
           setSearchValue("");
         })
         .catch((err) => {
@@ -214,9 +215,11 @@ const Admin = (props) => {
           <form onClick={searchCoin} className="flex items-center gap-3">
             <Input
               onChange={(e) => setSearchValue(e.target.value)}
+              // onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Search"
               borderRadius="6px"
               value={searchValue}
+              // value={searchValue}
               color="#000"
               type="text"
               // className="py-1 px-2 text-[#000] outline-0 rounded-[8px]"
