@@ -52,7 +52,7 @@ const AdminNavbar = () => {
             localStorage.removeItem("userId");
             contextValue.setToken(" ");
             contextValue.setUserId(" ");
-            router.push("/login");
+            router.push("/pages/login");
             toast.success("Logged out successfully");
           })
           .catch(async (err) => {

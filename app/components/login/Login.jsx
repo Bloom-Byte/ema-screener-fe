@@ -73,7 +73,7 @@ const Login = (props) => {
           contextValue.setUserId(response.data.data.user_id);
           localStorage.setItem("token", response.data.data.token);
           localStorage.setItem("userId", response.data.data.user_id);
-          router.push("/admin");
+          router.push("/pages/admin");
         } else if (response == 400) {
           setLoadingBtn(false);
           toast.error("seems an error has occurred");
@@ -303,7 +303,6 @@ const Login = (props) => {
                 </Flex>
                 <Text fontSize="md">
                   Forgot Password?{" "}
-                  {/* <Link as={NextLink} href="/forgot-password"> */}
                   <span
                     onClick={() => contextValue.setForgotPass(true)}
                     className="text-[teal] cursor-pointer "

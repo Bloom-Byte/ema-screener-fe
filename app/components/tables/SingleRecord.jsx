@@ -4,7 +4,6 @@ import React from "react";
 import { BsGraphDownArrow, BsGraphUpArrow } from "react-icons/bs";
 
 const SingleRecord = (props) => {
-  console.log(props.emaRecords.trend);
   return (
     <Tr>
       <Td textAlign="center">{props.index}</Td>

@@ -60,7 +60,7 @@ const ForgottenPassword = () => {
         toast.success("Token validity confirmed!");
       } else {
         toast.error("Token is invalid, Reset!");
-        router.push("/login");
+        router.push("/pages/login");
         contextValue.seForgotPass(true);
       }
     } catch (error) {
@@ -76,8 +76,6 @@ const ForgottenPassword = () => {
       token: extractedToken,
       new_password: newPassword,
     };
-
-    console.log(userInfo, "userInfo");
 
     if (userInfo.new_password !== confirmPassword) {
       toast.error("Password does not match");
@@ -100,11 +98,7 @@ const ForgottenPassword = () => {
           setLoadingBtn(false);
 
           toast.success("Password reset successful");
-          // localStorage.setItem("token", response.data.token);
-          router.push("/login");
-          // const token = localStorage.getItem("token");
-          // contextValue.setToken(token);
-          // contextValue.getCurrentUser(response.data.token);
+          router.push("/pages/login");
         } else if (response.status == 400) {
           setIsAuth(true);
           setTimeout(() => {

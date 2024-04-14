@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Admin from "../components/dashboard/Admin";
-import SeeAllCategories from "../components/dashboard/SeeAllCategories";
-import AdminNavbar from "../components/adminNav/AdminNavbar";
+import Admin from "../../components/dashboard/Admin";
+import SeeAllCategories from "../../components/dashboard/SeeAllCategories";
+import AdminNavbar from "../../components/adminNav/AdminNavbar";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAppContext } from "../helper/Helpers";
+import { useAppContext } from "../../helper/Helpers";
 
 const page = () => {
   const { contextValue } = useAppContext();
@@ -39,10 +39,10 @@ const page = () => {
       } catch (err) {
         console.log(err);
         toast.error(`user login failed!`);
-        router.push("/login");
+        router.push("/pages/login");
       }
     } else {
-      router.push("/login");
+      router.push("/pages/login");
     }
   };
 
@@ -69,7 +69,7 @@ const page = () => {
         console.log(error.response.status, "this is status");
         if (error.response.status == 401) {
           console.log(error, "An Error retrieving records has occurred");
-          router.push("/login");
+          router.push("/pages/login");
         }
       });
   }, []);

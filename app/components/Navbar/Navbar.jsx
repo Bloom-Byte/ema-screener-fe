@@ -40,7 +40,7 @@ const Navbar = () => {
       className="w-[100%] bg-white text-#000"
     >
       <div className=" w-[95%]  m-auto">
-        <div className="flex items-center justify-between py-4 w-[100%] max-[1200px]:w-[70%] max-[700px]:w-[100%] max-[500px]:justify-between ">
+        <div className="flex items-center justify-between py-4 w-[100%] max-[1200px]:w-[95%] max-[700px]:w-[100%] max-[500px]:justify-between ">
           <div className="flex items-center gap-3 ">
             <div className="w-[50px] max-[450px]:hidden">
               <img
@@ -58,10 +58,13 @@ const Navbar = () => {
             </Heading>
           </div>
           <div className="flex items-center gap-3 justify-center text-[20px] ">
-            <Text className=" text-#000 max-[500px]:hidden">Current Time </Text>
-            <Text className=" text-#000"> {formattedTime} </Text>
+            <Text className=" text-#000 max-[600px]:hidden">Current Time </Text>
+            <Text className=" text-#000  max-[800px]:text-[16px] max-[500px]:text-[14px]">
+              {" "}
+              {formattedTime}{" "}
+            </Text>
             {/* <Text className=" text-#000"> {utcTime.format("HH:mm:ss")} </Text> */}
-            <Text className=" text-#000">UTC </Text>
+            <Text className=" text-#000  max-[600px]:hidden">UTC </Text>
           </div>
           <div className="flex items-center gap-3 justify-center text-[20px] ">
             <Tippy

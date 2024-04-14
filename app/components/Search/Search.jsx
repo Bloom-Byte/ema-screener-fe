@@ -17,20 +17,19 @@ const Search = (props) => {
   const [emaFifty, setEmaFifty] = useState("");
   const [emaHundred, setEmaHundred] = useState("");
   const [emaTwoHundred, setEmaTwoHundred] = useState("");
+  const [closeHundred, setCloseHundred] = useState("");
   const [trend, setTrend] = useState("");
 
   //* Function to filter Results
   const filterResults = async () => {
-    // e.preventDefault();
     props.setLoading(true);
     const token = contextValue.token || localStorage.getItem("token");
-    console.log(ema, "timeFrame");
-    console.log(emaValue, "watch");
+    // console.log(trend, "timeFrame");
     try {
       await axios({
         method: "GET",
         // url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}`,
-        url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}`,
+        url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&${closeHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}`,
         headers: {
           Authorization: `AuthToken ${token}`,
           "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
@@ -53,9 +52,8 @@ const Search = (props) => {
 
   useEffect(() => {
     filterResults();
-  }, [timeFrame, watchList, ema, emaValue, trend]);
+  }, [timeFrame, watchList, emaValue, trend]);
 
-  console.log(trend);
   return (
     <div className="my-[30px]">
       <div className="flex items-center justify-between w-[95%] flex-wrap gap-4 mx-auto">
@@ -108,6 +106,7 @@ const Search = (props) => {
                 setCurrency("");
                 setTimeFrame("");
                 setTrend("");
+                setCloseHundred("");
               }}
               style={{ color: "#000" }}
               className="w-[80px] outline-none"
@@ -120,7 +119,7 @@ const Search = (props) => {
               <option value="F">Strong Down</option>
             </select>
           </Tippy>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center flex-wrap gap-3">
             <Button
               colorScheme
               bgColor="#F4A608"
@@ -133,6 +132,8 @@ const Search = (props) => {
                 setEmaFifty("");
                 setEmaHundred("");
                 setEmaTwoHundred("");
+                setCloseHundred("");
+
                 setCurrency("");
                 setTimeFrame("");
                 setTrend("");
@@ -153,6 +154,8 @@ const Search = (props) => {
                 setEmaTwenty("");
                 setEmaHundred("");
                 setEmaTwoHundred("");
+                setCloseHundred("");
+
                 setCurrency("");
                 setTimeFrame("");
                 setTrend("");
@@ -173,6 +176,8 @@ const Search = (props) => {
                 setEmaTwenty("");
                 setEmaFifty("");
                 setEmaTwoHundred("");
+                setCloseHundred("");
+
                 setCurrency("");
                 setTimeFrame("");
                 setTrend("");
@@ -208,6 +213,7 @@ const Search = (props) => {
               color="#fff"
               className="rounded-[6px]"
               onClick={() => {
+                setCloseHundred("close100");
                 setEmaTwoHundred("ema200");
                 setEmaValue(200);
                 setEmaTwenty("");
@@ -281,7 +287,7 @@ const Search = (props) => {
             <Button
               colorScheme
               bgColor="#F4A608"
-              opacity={trend == 0 ? 0.5 : 1}
+              opacity={trend == "0" ? 0.5 : 1}
               color="#fff"
               className="rounded-[6px]"
               onClick={() => {

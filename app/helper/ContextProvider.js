@@ -12,15 +12,6 @@ const AppContextProvider = ({ children }) => {
   const [userId, setUserId] = useState("");
   const [forgotPass, setForgotPass] = useState(false);
 
-  //First get the token from localStorage and pass it as a parameter to the getCurrentUser function
-
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     const token = window.localStorage.getItem("token");
-  //     setToken(token);
-  //   }
-  // }, [token]);
-
   const contextValue = {
     // getCurrentUser,
     token,

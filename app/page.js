@@ -8,40 +8,23 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button, ListItem, Text, UnorderedList } from "@chakra-ui/react";
-// import { useAppContext } from "./helper/Helpers";
+import Paginate from "./components/paginate/Paginate";
 
 export default function Home() {
-  // const { contextValue } = useAppContext();
-
-  const [pageNumber, setPageNumber] = useState(1); // Initial page number
-  const [pageSize, setPageSize] = useState(20);
+  const [currentPage, setCurrentPage] = useState(1); // Initial page number
+  const [postsPerPage, setPostsPerPage] = useState(20);
   const [allEmaRecords, setAllEmaRecords] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filteredResults, setFilteredResults] = useState([]);
 
-  const handlePreviousPage = () => {
-    if (pageNumber > 1) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
-
-  const handleNextPage = () => {
-    setPageNumber(pageNumber + 1);
-  };
-
   const handlePageClick = (page) => {
-    setPageNumber(page);
+    setCurrentPage(page);
   };
 
   const fetchEmaRecords = async () => {
     setLoading(true);
-    // console.log(pageNumber, "pageNumber");
-    // const offset = (pageNumber - 1) * pageSize;
-    // console.log(offset, "offset");
-    // const token = localStorage.getItem("token");
 
-    // const apiUrl = `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?limit=${pageSize}&offset=${offset}`;
-    const wsUrl = `wss://be.emascreener.bloombyte.dev:8000/ws/ema-records/update/?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
+    const wsUrl = `ws://be.emascreener.bloombyte.dev:8000/ws/ema-records/?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
     try {
       const WS = new WebSocket(wsUrl);
       WS.onopen = () => {
@@ -81,43 +64,11 @@ export default function Home() {
   };
   useEffect(() => {
     fetchEmaRecords();
-  }, [pageNumber, pageSize]); // Refetch when pageNumber or pageSize changes
+  }, []);
 
-  const totalPages = Math.ceil(filteredResults.length / pageSize);
-  const pageNumbers = Array.from(
-    { length: totalPages },
-    (_, index) => index + 1
-  );
-
-  //! This is another pagination logic
-  // const totalPages = Math.ceil(allEmaRecords.length / pageSize);
-  // const startIndex = (pageNumber - 1) * pageSize;
-  // const endIndex = Math.min(startIndex + pageSize, allEmaRecords.length);
-  // const currentItems = allEmaRecords.slice(startIndex, endIndex);
-
-  // const pageNumbers = Array.from(
-  //   { length: totalPages },
-  //   (_, index) => index + 1
-  // );
-
-  //*Another pagination logic
-  // const totalPages = Math.ceil(allEmaRecords.length / pageSize);
-  // const startIndex = (pageNumber - 1) * pageSize;
-  // const endIndex = startIndex + pageSize;
-  // const currentItems = allEmaRecords.slice(startIndex, endIndex);
-
-  // const totalPages = Math.ceil(allEmaRecords.length / pageSize);
-  // const pageNumbers = [];
-  // for (let i = 1; i <= totalPages; i++) {
-  //   pageNumbers.push(i);
-  // }
-
-  // // Call the fetchEmaRecords function whenever the pageNumber changes
-  // useEffect(() => {
-  //   fetchEmaRecords();
-  // }, [pageNumber]);
-
-  console.log(pageNumbers, "pageNumbers");
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOFFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredResults.slice(indexOFFirstPost, indexOfLastPost);
 
   return (
     <AnimatePresence mode="wait">
@@ -135,54 +86,17 @@ export default function Home() {
           setFilteredResults={setFilteredResults}
         />
         <Tabled
-          // currentItems={currentItems}
-          pageSize={pageSize}
           allEmaRecords={allEmaRecords}
           setAllEmaRecords={setAllEmaRecords}
-          filteredResults={filteredResults}
+          filteredResults={currentPosts}
           loading={loading}
         />
-        <div
-          // style={{ border: "2px red solid" }}
-          className="pagination-container"
-        >
-          <UnorderedList
-            listStyleType="none"
-            display="flex"
-            gap="10px"
-            className="pagination"
-          >
-            {pageNumbers.map((number) => (
-              <ListItem
-                bgColor="#F4A608"
-                key={number}
-                fontSize="20px"
-                p="7px 15px"
-                onClick={() => handlePageClick(number)}
-              >
-                {number}
-              </ListItem>
-            ))}
-          </UnorderedList>
-          {/* <Button onClick={handlePreviousPage}>Previous</Button>
-          {pageNumbers.map((number) => (
-            <Button key={number} onClick={() => handlePageClick(number)}>
-              {number}
-            </Button>
-          ))}
-          <Button onClick={handleNextPage}>Next</Button> */}
-          {/* <ul className="pagination">
-            {pageNumbers.map((number) => (
-              <li
-                key={number}
-                className={number === pageNumber ? "bg-red" : "bg-blue"}
-                onClick={() => handlePageClick(number)}
-              >
-                {number}
-              </li>
-            ))}
-          </ul> */}
-        </div>
+        <Paginate
+          postsPerPage={postsPerPage}
+          totalPosts={filteredResults.length}
+          handlePageClick={handlePageClick}
+          currentPage={currentPage}
+        />
         <ToastContainer />
       </motion.div>
     </AnimatePresence>

@@ -63,7 +63,9 @@ const Tabled = (props) => {
                 <Th textAlign="center">20&gt;50</Th>
                 <Th textAlign="center">50&gt;100</Th>
                 <Th textAlign="center">100&gt;200</Th>
-                <Th textAlign="center">Close {">"} 100</Th>
+                <Th textAlign="center">
+                  {"Close"} {">"} 100
+                </Th>
               </Tr>
             </Thead>
             <Tbody>
