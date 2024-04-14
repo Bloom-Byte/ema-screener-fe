@@ -4,13 +4,14 @@ import React from "react";
 import { BsGraphDownArrow, BsGraphUpArrow } from "react-icons/bs";
 
 const SingleRecord = (props) => {
+  console.log(props.emaRecords.trend);
   return (
     <Tr>
       <Td textAlign="center">{props.index}</Td>
-      <Td textAlign="center">{props.emaRecords.currency.name}</Td>
-      <Td textAlign="center">{props.emaRecords.currency.subcategory}</Td>
-      <Td textAlign="center">{props.emaRecords.currency.current_price}</Td>
       <Td textAlign="center">{props.emaRecords.currency.symbol}</Td>
+      <Td textAlign="center">{props.emaRecords.currency.subcategory}</Td>
+      <Td textAlign="center">{props.emaRecords.trend}</Td>
+      {/* <Td textAlign="center">{props.emaRecords.currency.symbol}</Td> */}
       <Td textAlign="center">
         {moment(props.emaRecords.timestamp).format("YYYY-M-D h:mm:ss")}
       </Td>
@@ -73,6 +74,26 @@ const SingleRecord = (props) => {
       </Td>
       <Td textAlign="center">
         {props.emaRecords["100>200"] == true ? (
+          <span>
+            <BsGraphUpArrow
+              style={{
+                textAlign: "center",
+                margin: "0 auto",
+              }}
+              color="green"
+            />
+          </span>
+        ) : (
+          <span>
+            <BsGraphDownArrow
+              style={{ textAlign: "center", margin: "0 auto" }}
+              color="red"
+            />
+          </span>
+        )}
+      </Td>
+      <Td textAlign="center">
+        {props.emaRecords["close>100"] == true ? (
           <span>
             <BsGraphUpArrow
               style={{

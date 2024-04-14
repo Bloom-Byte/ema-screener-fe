@@ -55,6 +55,7 @@ const Search = (props) => {
     filterResults();
   }, [timeFrame, watchList, ema, emaValue, trend]);
 
+  console.log(trend);
   return (
     <div className="my-[30px]">
       <div className="flex items-center justify-between w-[95%] flex-wrap gap-4 mx-auto">
@@ -111,9 +112,12 @@ const Search = (props) => {
               style={{ color: "#000" }}
               className="w-[80px] outline-none"
             >
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
+              <option value="A">Must Watch</option>
+              <option value="B">Buy</option>
+              <option value="C">Strong Buy</option>
+              <option value="D">Negative Watch</option>
+              <option value="E">Down</option>
+              <option value="F">Strong Down</option>
             </select>
           </Tippy>
           <div className="flex items-center gap-3">
@@ -196,6 +200,26 @@ const Search = (props) => {
               }}
             >
               200{" "}
+            </Button>
+            <Button
+              colorScheme
+              bgColor="#F4A608"
+              opacity={emaValue == 200 ? 0.5 : 1}
+              color="#fff"
+              className="rounded-[6px]"
+              onClick={() => {
+                setEmaTwoHundred("ema200");
+                setEmaValue(200);
+                setEmaTwenty("");
+                setEmaFifty("");
+                setEmaHundred("");
+                setCurrency("");
+                setTimeFrame("");
+                setTrend("");
+                setWatchList("");
+              }}
+            >
+              close{">"}100{" "}
             </Button>
             <Tippy
               placement="bottom"
@@ -301,6 +325,7 @@ const Search = (props) => {
               }}
               colorScheme
               bgColor="#F4A608"
+              opacity={timeFrame == "00:00:15" ? 0.5 : 1}
               color="#fff"
             >
               15min{" "}
@@ -363,7 +388,7 @@ const Search = (props) => {
                 setTrend("");
                 setWatchList("");
               }}
-              opacity={timeFrame ? 0.5 : 1}
+              opacity={timeFrame == "24:00:00" ? 0.5 : 1}
               colorScheme
               bgColor="#F4A608"
               color="#fff"
@@ -372,8 +397,20 @@ const Search = (props) => {
               1 day{" "}
             </Button>
           </Tippy>
-          {/* <Tippy content="Filter by 1 week" placement="bottom">
+          <Tippy content="Filter by 1 week" placement="bottom">
             <Button
+              onClick={() => {
+                setTimeFrame("168:00:00");
+                setEmaHundred("");
+                setEmaValue("");
+                setEmaTwenty("");
+                setEmaFifty("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTrend("");
+                setWatchList("");
+              }}
+              opacity={timeFrame == "168:00:00" ? 0.5 : 1}
               colorScheme
               bgColor="#F4A608"
               color="#fff"
@@ -381,7 +418,7 @@ const Search = (props) => {
             >
               1 week{" "}
             </Button>
-          </Tippy> */}
+          </Tippy>
         </div>
       </div>
     </div>
