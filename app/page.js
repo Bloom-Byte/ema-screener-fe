@@ -21,73 +21,8 @@ export default function Home() {
     setCurrentPage(page);
   };
 
-  // const fetchEmaRecords = async () => {
-  //   setLoading(true);
-
-  //   const wsUrl = `wss://be.emascreener.bloombyte.dev/ws/ema-records/?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
-  //   try {
-  //     const socket = new WebSocket(wsUrl);
-
-  //     // Event listener for when the connection is opened
-  //     socket.onopen = () => {
-  //       console.log("WebSocket connection opened");
-
-  //       // Sending a test JSON message
-  //       // const testMessage = { message: "This is a test message" };
-  //       // socket.send(JSON.stringify(testMessage));
-  //     };
-
-  //     //Sending when there's an error
-  //     socket.onerror = (e) => {
-  //       console.error(e, "WebSocket error");
-  //     };
-
-  //     // Event listener for incoming messages
-  //     socket.onmessage = (event) => {
-  //       // Handle incoming JSON messages here
-  //       const data = JSON.parse(event.data);
-  //       if (data.code == "create") {
-  //         toast.success("New EMA record created");
-  //         setFilteredResults((prevPosts) => [...prevPosts, data.data]);
-  //         // setFilteredResults((prev) => {
-  //         //   return [...prev, data.data];
-  //         // });
-  //       } else if (data.code == "delete") {
-  //         // toast.success("EMA record deleted");
-  //         setFilteredResults((prev) => {
-  //           return prev.filter((emaRecord) => emaRecord.id !== data.data.id);
-  //         });
-  //       } else if (data.code == "update") {
-  //         // toast.success("EMA record updated");
-  //         setFilteredResults((prev) => {
-  //           return prev.map((emaRecord) => {
-  //             if (emaRecord.id === event.data.id) {
-  //               return data.data;
-  //             }
-  //             return emaRecord;
-  //           });
-  //         });
-  //       } else {
-  //         console.log("Unknown operation");
-  //       }
-  //     };
-
-  //     console.log(filteredResults, "filterred");
-
-  //     setLoading(false);
-  //     // Process and display the retrieved EMA records in your UI
-  //   } catch (error) {
-  //     console.error("Error fetching EMA records:", error);
-  //     toast.error("Error fetching EMA records");
-  //     setLoading(false);
-  //   }
-  // };
-  // useEffect(() => {
-  //   fetchEmaRecords();
-  // }, []);
-
   useEffect(() => {
-    let socket; // Declare the socket variable outside the try-catch block
+    let socket;
 
     const fetchEmaRecords = async () => {
       setLoading(true);
@@ -111,15 +46,12 @@ export default function Home() {
         socket.onmessage = (event) => {
           const data = JSON.parse(event.data);
           if (data.code === "create") {
-            // Update filteredResults by adding the new data
             setFilteredResults((prevResults) => [data.data, ...prevResults]);
           } else if (data.code === "delete") {
-            // Update filteredResults by removing the deleted data
             setFilteredResults((prevResults) =>
               prevResults.filter((emaRecord) => emaRecord.id !== data.data.id)
             );
           } else if (data.code === "update") {
-            // Update filteredResults by updating the existing data
             setFilteredResults((prevResults) =>
               prevResults.map((emaRecord) => {
                 if (emaRecord.id === data.data.id) {
@@ -129,7 +61,6 @@ export default function Home() {
               })
             );
           }
-          // ... (other conditions)
         };
 
         setLoading(false);
@@ -142,17 +73,16 @@ export default function Home() {
 
     fetchEmaRecords();
 
-    // Clean up the WebSocket connection when the component unmounts
     return () => {
       if (socket) {
         socket.close();
       }
     };
   }, []);
+
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOFFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredResults.slice(indexOFFirstPost, indexOfLastPost);
-  console.log(currentPosts, "currentPosts");
   return (
     <AnimatePresence mode="wait">
       <motion.div
