@@ -125,6 +125,7 @@ const Admin = (props) => {
           alignItems="center"
           justifyContent="space-between"
           flexWrap="wrap"
+          gap="10px"
         >
           <form onSubmit={addCoin}>
             <Flex

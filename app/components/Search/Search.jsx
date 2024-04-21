@@ -24,11 +24,9 @@ const Search = (props) => {
   const filterResults = async () => {
     props.setLoading(true);
     const token = contextValue.token || localStorage.getItem("token");
-    // console.log(trend, "timeFrame");
     try {
       await axios({
         method: "GET",
-        // url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}`,
         url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&${closeHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}`,
         headers: {
           Authorization: `AuthToken ${token}`,
@@ -36,9 +34,10 @@ const Search = (props) => {
         },
       })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           props.setFilteredResults(res.data.results);
           props.setLoading(false);
+          // console.log(props.filterResults, "filtered");
         })
         .catch((err) => {
           console.log(err);
@@ -213,9 +212,9 @@ const Search = (props) => {
               color="#fff"
               className="rounded-[6px]"
               onClick={() => {
-                setCloseHundred("close100");
-                setEmaTwoHundred("ema200");
-                setEmaValue(200);
+                setCloseHundred("close>100");
+                setEmaValue("close>100");
+                setEmaTwoHundred("");
                 setEmaTwenty("");
                 setEmaFifty("");
                 setEmaHundred("");
@@ -225,7 +224,7 @@ const Search = (props) => {
                 setWatchList("");
               }}
             >
-              close{">"}100{" "}
+              close {">"} 100{" "}
             </Button>
             <Tippy
               placement="bottom"

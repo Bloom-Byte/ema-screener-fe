@@ -86,6 +86,7 @@ const Tabled = (props) => {
                       key={index + 1}
                       index={index + 1}
                       emaRecords={emaRecords}
+                      filteredResults={props.filteredResults}
                     />
                   );
                 })
