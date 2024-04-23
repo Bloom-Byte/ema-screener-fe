@@ -14,7 +14,7 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1); // Initial page number
   const [postsPerPage, setPostsPerPage] = useState(20);
   const [allEmaRecords, setAllEmaRecords] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [filteredResults, setFilteredResults] = useState([]);
 
   const handlePageClick = (page) => {
@@ -23,6 +23,7 @@ export default function Home() {
 
   useEffect(() => {
     let socket;
+    // setLoading(true);
 
     const fetchEmaRecords = async () => {
       setLoading(true);
@@ -46,12 +47,15 @@ export default function Home() {
         socket.onmessage = (event) => {
           const data = JSON.parse(event.data);
           if (data.code === "create") {
+            // Update filteredResults by adding the new data
             setFilteredResults((prevResults) => [data.data, ...prevResults]);
           } else if (data.code === "delete") {
+            // Update filteredResults by removing the deleted data
             setFilteredResults((prevResults) =>
               prevResults.filter((emaRecord) => emaRecord.id !== data.data.id)
             );
           } else if (data.code === "update") {
+            // Update filteredResults by updating the existing data
             setFilteredResults((prevResults) =>
               prevResults.map((emaRecord) => {
                 if (emaRecord.id === data.data.id) {
@@ -63,23 +67,23 @@ export default function Home() {
           }
         };
 
-        setLoading(false);
+        // setLoading(false);
       } catch (error) {
         console.error("Error fetching EMA records:", error);
         toast.error("Error fetching EMA records");
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
     fetchEmaRecords();
 
+    // Clean up the WebSocket connection when the component unmounts
     return () => {
       if (socket) {
         socket.close();
       }
     };
   }, []);
-
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOFFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredResults.slice(indexOFFirstPost, indexOfLastPost);

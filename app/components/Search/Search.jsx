@@ -110,12 +110,24 @@ const Search = (props) => {
               style={{ color: "#000" }}
               className="w-[80px] outline-none"
             >
-              <option value="A">Must Watch</option>
-              <option value="B">Buy</option>
-              <option value="C">Strong Buy</option>
-              <option value="D">Negative Watch</option>
-              <option value="E">Down</option>
-              <option value="F">Strong Down</option>
+              <option value="A" style={{ cursor: "pointer" }}>
+                Must Watch
+              </option>
+              <option value="B" style={{ cursor: "pointer" }}>
+                Buy
+              </option>
+              <option value="C" style={{ cursor: "pointer" }}>
+                Strong Buy
+              </option>
+              <option value="D" style={{ cursor: "pointer" }}>
+                Negative Watch
+              </option>
+              <option value="E" style={{ cursor: "pointer" }}>
+                Down
+              </option>
+              <option value="F" style={{ cursor: "pointer" }}>
+                Strong Down
+              </option>
             </select>
           </Tippy>
           <div className="flex items-center flex-wrap gap-3">
@@ -257,7 +269,7 @@ const Search = (props) => {
                 setWatchList("");
               }}
             >
-              1{" "}
+              Up{" "}
             </Button>
           </Tippy>
           <Tippy content="Filter downward" placement="bottom">
@@ -279,7 +291,7 @@ const Search = (props) => {
                 setWatchList("");
               }}
             >
-              -1{" "}
+              Down{" "}
             </Button>
           </Tippy>
           <Tippy content="Filter sideways" placement="bottom">
@@ -301,7 +313,7 @@ const Search = (props) => {
                 setWatchList("");
               }}
             >
-              0{" "}
+              Side{" "}
             </Button>
           </Tippy>
           <Tippy placement="bottom" content="Filter by trends">

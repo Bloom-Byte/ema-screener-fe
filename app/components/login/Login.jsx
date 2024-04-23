@@ -66,7 +66,7 @@ const Login = (props) => {
             setCredentialsError(false);
           }, 4000);
         });
-        console.log(response.data.status, "response");
+        // console.log(response.data.status, "response");
         if (response.status == 200 || "success") {
           setLoadingBtn(false);
           contextValue.setToken(response.data.data.token);

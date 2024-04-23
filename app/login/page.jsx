@@ -1,8 +1,8 @@
 "use client";
-import Login from "../../components/login/Login";
-import EnterEmail from "../../components/EnterEmail";
+import Login from "../components/login/Login";
+import EnterEmail from "../components/EnterEmail";
 import { ToastContainer } from "react-toastify";
-import { useAppContext } from "../../helper/Helpers";
+import { useAppContext } from "../helper/Helpers";
 
 const page = () => {
   const { contextValue } = useAppContext();

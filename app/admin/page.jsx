@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Admin from "../../components/dashboard/Admin";
-import SeeAllCategories from "../../components/dashboard/SeeAllCategories";
-import AdminNavbar from "../../components/adminNav/AdminNavbar";
+import Admin from "../components/dashboard/Admin";
+import SeeAllCategories from "../components/dashboard/SeeAllCategories";
+import AdminNavbar from "../components/adminNav/AdminNavbar";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAppContext } from "../../helper/Helpers";
+import { useAppContext } from "../helper/Helpers";
 
 const page = () => {
   const { contextValue } = useAppContext();
