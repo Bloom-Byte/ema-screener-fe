@@ -3,7 +3,7 @@ name: EMA-Scrreener Frontend CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # Adjust branch name as needed
+      - master  # Adjust branch name as needed
 
 jobs:
   build:
