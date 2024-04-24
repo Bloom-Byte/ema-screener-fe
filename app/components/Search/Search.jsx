@@ -35,7 +35,7 @@ const Search = (props) => {
         .then((res) => {
           // console.log(res);
           props.setFilteredResults(res.data.results);
-          console.log(res.data.results);
+          // console.log(res.data.results);
           props.setLoading(false);
           // console.log(props.filterResults, "filtered");
         })

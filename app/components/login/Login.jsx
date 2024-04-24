@@ -99,12 +99,12 @@ const Login = (props) => {
         console.log(error);
       }
     } else {
-      toast.error("Input your credentials"); 
-      setEmptyInput(true)
+      // toast.error("Input your credentials");
+      setEmptyInput(true);
       setTimeout(() => {
-            setEmptyInput(false);
-          }, 4000);
-    } 
+        setEmptyInput(false);
+      }, 4000);
+    }
   };
 
   const forgotPassword = async () => {

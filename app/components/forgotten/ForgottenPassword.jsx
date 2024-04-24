@@ -93,7 +93,7 @@ const ForgottenPassword = () => {
             "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
           },
         }).catch((err) => console.log(err, "network error"));
-        console.log(response, "response");
+        // console.log(response, "response");
         if (response.status === 200 || "success") {
           setLoadingBtn(false);
 
@@ -146,10 +146,8 @@ const ForgottenPassword = () => {
             m="0"
             bgColor="#ffffff40"
           >
-            
             <Box
               display="flex"
-              // flexDirection="column"
               justifyContent="center"
               alignItems="center"
               height="100%"
