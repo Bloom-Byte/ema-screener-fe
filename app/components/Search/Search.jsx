@@ -28,7 +28,7 @@ const Search = (props) => {
         method: "GET",
         url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&${closeHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}`,
         headers: {
-          Authorization: `AuthToken ${token}`,
+          // Authorization: `AuthToken ${token}`,
           "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
         },
       })

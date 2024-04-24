@@ -56,7 +56,9 @@ const page = () => {
       url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
       // data: "",
       headers: {
-        Authorization: `AuthToken ${token} `,
+        // Authorization: `AuthToken ${token} `,
+        "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
+
         "Content-Type": "application/json",
       },
     })
