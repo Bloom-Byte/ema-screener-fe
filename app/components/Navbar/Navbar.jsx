@@ -12,11 +12,9 @@ import { useRouter } from "next/navigation";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 
 const Navbar = () => {
-  const { contextValue } = useAppContext();
   const [currentTime, setCurrentTime] = useState(moment());
 
-  const router = useRouter();
-
+  //useEffect to show current time
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(moment());
@@ -35,7 +33,6 @@ const Navbar = () => {
       style={{
         boxShadow:
           "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
-        // boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
       }}
       className="w-[100%] bg-white text-#000"
     >
@@ -63,7 +60,6 @@ const Navbar = () => {
               {" "}
               {formattedTime}{" "}
             </Text>
-            {/* <Text className=" text-#000"> {utcTime.format("HH:mm:ss")} </Text> */}
             <Text className=" text-#000  max-[600px]:hidden">UTC </Text>
           </div>
           <div className="flex items-center gap-3 justify-center text-[20px] ">

@@ -11,7 +11,6 @@ const Search = (props) => {
   const [timeFrame, setTimeFrame] = useState("");
   const [currency, setCurrency] = useState("");
   const [watchList, setWatchList] = useState("");
-  const [ema, setEma] = useState("");
   const [emaValue, setEmaValue] = useState("");
   const [emaTwenty, setEmaTwenty] = useState("");
   const [emaFifty, setEmaFifty] = useState("");
@@ -36,6 +35,7 @@ const Search = (props) => {
         .then((res) => {
           // console.log(res);
           props.setFilteredResults(res.data.results);
+          console.log(res.data.results);
           props.setLoading(false);
           // console.log(props.filterResults, "filtered");
         })
