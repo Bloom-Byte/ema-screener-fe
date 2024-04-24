@@ -39,10 +39,10 @@ const page = () => {
       } catch (err) {
         console.log(err);
         toast.error(`user login failed!`);
-        router.push("/pages/login");
+        router.push("/login");
       }
     } else {
-      router.push("/pages/login");
+      router.push("/login");
     }
   };
 
@@ -69,7 +69,7 @@ const page = () => {
         console.log(error.response.status, "this is status");
         if (error.response.status == 401) {
           console.log(error, "An Error retrieving records has occurred");
-          router.push("/pages/login");
+          router.push("/login");
         }
       });
   }, []);
