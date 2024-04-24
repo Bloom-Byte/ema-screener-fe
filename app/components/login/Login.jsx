@@ -98,7 +98,10 @@ const Login = (props) => {
         setLoadingBtn(false);
         console.log(error);
       }
-    }
+    } else {
+      toast.error("Input your credentials"); 
+      setEmptyInput(true)
+    } 
   };
 
   const forgotPassword = async () => {
