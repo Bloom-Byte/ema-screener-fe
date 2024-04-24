@@ -60,7 +60,7 @@ const ForgottenPassword = () => {
         toast.success("Token validity confirmed!");
       } else {
         toast.error("Token is invalid, Reset!");
-        router.push("/pages/login");
+        router.push("/login");
         contextValue.seForgotPass(true);
       }
     } catch (error) {
@@ -98,7 +98,7 @@ const ForgottenPassword = () => {
           setLoadingBtn(false);
 
           toast.success("Password reset successful");
-          router.push("/pages/login");
+          router.push("/login");
         } else if (response.status == 400) {
           setIsAuth(true);
           setTimeout(() => {
@@ -146,16 +146,7 @@ const ForgottenPassword = () => {
             m="0"
             bgColor="#ffffff40"
           >
-            <Box>
-              <Image
-                boxSize="50px"
-                objectFit="cover"
-                src="./logos.png"
-                alt="Chat gpt"
-                margin="30px auto"
-                borderRadius="50%"
-              />
-            </Box>
+            
             <Box
               display="flex"
               // flexDirection="column"

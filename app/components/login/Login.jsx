@@ -73,7 +73,7 @@ const Login = (props) => {
           contextValue.setUserId(response.data.data.user_id);
           localStorage.setItem("token", response.data.data.token);
           localStorage.setItem("userId", response.data.data.user_id);
-          router.push("/pages/admin");
+          router.push("/admin");
         } else if (response == 400) {
           setLoadingBtn(false);
           toast.error("seems an error has occurred");
@@ -98,7 +98,13 @@ const Login = (props) => {
         setLoadingBtn(false);
         console.log(error);
       }
-    }
+    } else {
+      toast.error("Input your credentials"); 
+      setEmptyInput(true)
+      setTimeout(() => {
+            setEmptyInput(false);
+          }, 4000);
+    } 
   };
 
   const forgotPassword = async () => {

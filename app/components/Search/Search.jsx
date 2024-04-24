@@ -224,7 +224,7 @@ const Search = (props) => {
               color="#fff"
               className="rounded-[6px]"
               onClick={() => {
-                setCloseHundred("close>100");
+                setCloseHundred("close");
                 setEmaValue("close>100");
                 setEmaTwoHundred("");
                 setEmaTwenty("");
@@ -236,7 +236,7 @@ const Search = (props) => {
                 setWatchList("");
               }}
             >
-              close {">"} 100{" "}
+              close
             </Button>
             <Tippy
               placement="bottom"
