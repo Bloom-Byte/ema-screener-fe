@@ -95,7 +95,6 @@ const EnterEmail = () => {
           m="0 auto"
           maxHeight="100vh"
           bgColor="#ffffff40"
-          border="2px red olid"
         >
           <Container
             display="flex"
