@@ -101,6 +101,9 @@ const Login = (props) => {
     } else {
       toast.error("Input your credentials"); 
       setEmptyInput(true)
+      setTimeout(() => {
+            setEmptyInput(false);
+          }, 4000);
     } 
   };
 
