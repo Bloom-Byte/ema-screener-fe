@@ -49,27 +49,32 @@ const page = () => {
 
     const token = contextValue.token || localStorage.getItem("token");
 
-    axios({
-      method: "GET",
-      url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
-      // data: "",
-      headers: {
-        Authorization: `AuthToken ${token}`,
-        "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        setEmaCurrencies(res.data.results);
-        setLoaded(false);
+    if (process.env.NEXT_PUBLIC_API_KEY) {
+      axios({
+        method: "GET",
+        url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
+        // data: "",
+        headers: {
+          Authorization: `AuthToken ${token}`,
+          "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
+          "Content-Type": "application/json",
+        },
       })
-      .catch((error) => {
-        console.log(error.response.status, "this is status");
-        if (error.response.status == 401) {
-          console.log(error, "An Error retrieving records has occurred");
-          router.push("/login");
-        }
-      });
+        .then((res) => {
+          setEmaCurrencies(res.data.results);
+          setLoaded(false);
+        })
+        .catch((error) => {
+          console.log(error.response.status, "this is status");
+          if (error.response.status == 401) {
+            console.log(error, "An Error retrieving records has occurred");
+            router.push("/login");
+          }
+        });
+    } else {
+      console.log("API_KEY not found");
+      router.push("/login");
+    }
   }, []);
 
   return (
