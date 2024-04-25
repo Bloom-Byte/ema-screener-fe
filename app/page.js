@@ -28,50 +28,52 @@ export default function Home() {
     const fetchEmaRecords = async () => {
       setLoading(true);
 
-      const wsUrl = `wss://be.emascreener.bloombyte.dev/ws/ema-records/?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
+      if (process.env.NEXT_PUBLIC_API_KEY) {
+        const wsUrl = `wss://be.emascreener.bloombyte.dev/ws/ema-records/?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
 
-      try {
-        socket = new WebSocket(wsUrl);
+        try {
+          socket = new WebSocket(wsUrl);
 
-        // Event listener for when the connection is opened
-        socket.onopen = () => {
-          console.log("WebSocket connection opened");
-        };
+          // Event listener for when the connection is opened
+          socket.onopen = () => {
+            console.log("WebSocket connection opened");
+          };
 
-        //Sending when there's an error
-        socket.onerror = (e) => {
-          console.error(e, "WebSocket error");
-        };
+          //Sending when there's an error
+          socket.onerror = (e) => {
+            console.error(e, "WebSocket error");
+          };
 
-        // Event listener for incoming messages
-        socket.onmessage = (event) => {
-          const data = JSON.parse(event.data);
-          if (data.code === "create") {
-            // Update filteredResults by adding the new data
-            setFilteredResults((prevResults) => [data.data, ...prevResults]);
-          } else if (data.code === "delete") {
-            // Update filteredResults by removing the deleted data
-            setFilteredResults((prevResults) =>
-              prevResults.filter((emaRecord) => emaRecord.id !== data.data.id)
-            );
-          } else if (data.code === "update") {
-            // Update filteredResults by updating the existing data
-            setFilteredResults((prevResults) =>
-              prevResults.map((emaRecord) => {
-                if (emaRecord.id === data.data.id) {
-                  return data.data;
-                }
-                return emaRecord;
-              })
-            );
-          }
-        };
+          // Event listener for incoming messages
+          socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.code === "create") {
+              // Update filteredResults by adding the new data
+              setFilteredResults((prevResults) => [data.data, ...prevResults]);
+            } else if (data.code === "delete") {
+              // Update filteredResults by removing the deleted data
+              setFilteredResults((prevResults) =>
+                prevResults.filter((emaRecord) => emaRecord.id !== data.data.id)
+              );
+            } else if (data.code === "update") {
+              // Update filteredResults by updating the existing data
+              setFilteredResults((prevResults) =>
+                prevResults.map((emaRecord) => {
+                  if (emaRecord.id === data.data.id) {
+                    return data.data;
+                  }
+                  return emaRecord;
+                })
+              );
+            }
+          };
 
-        // setLoading(false);
-      } catch (error) {
-        console.error("Error fetching EMA records:", error);
-        toast.error("Error fetching EMA records");
-        // setLoading(false);
+          // setLoading(false);
+        } catch (error) {
+          console.error("Error fetching EMA records:", error);
+          toast.error("Error fetching EMA records");
+          // setLoading(false);
+        }
       }
     };
 

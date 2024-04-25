@@ -18,14 +18,12 @@ const page = () => {
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    // toast.success("Login successful");
     const tok = window.localStorage.getItem("token");
     const userId = window.localStorage.getItem("userId");
     getCurrentUser(
       `${contextValue.token || tok}`,
       `${contextValue.userId || userId}`
     );
-    // toast.success("Login successful");
   }, []);
 
   // getCurrentUser takes in a parameter called token which we'll get from getCurrentUser which is th token response
@@ -49,7 +47,7 @@ const page = () => {
   useEffect(() => {
     setLoaded(true);
 
-    const token = contextValue.token || localStorage.getItem("token");
+    // const token = contextValue.token || localStorage.getItem("token");
 
     axios({
       method: "GET",
@@ -58,12 +56,10 @@ const page = () => {
       headers: {
         // Authorization: `AuthToken ${token} `,
         "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
-
         "Content-Type": "application/json",
       },
     })
       .then((res) => {
-        // console.log(res.data.results, "res.data");
         setEmaCurrencies(res.data.results);
         setLoaded(false);
       })

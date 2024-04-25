@@ -203,7 +203,7 @@ const Admin = (props) => {
                       fill="currentColor"
                     />
                   </svg>
-                  Addding Currency...
+                  Adding Currency...
                 </Button>
               ) : (
                 <Button type="submit" colorScheme="yellow" w="100%">

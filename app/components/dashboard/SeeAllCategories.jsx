@@ -13,7 +13,6 @@ import {
 import React from "react";
 import { BsGraphDownArrow, BsGraphUpArrow } from "react-icons/bs";
 import SingleCategory from "./SingleCategory";
-// import "./seeAll.css";
 const SeeAllCategories = (props) => {
   return (
     <div className="w-[95%] my-[30px] mx-auto overflow-x-scroll overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] ">
