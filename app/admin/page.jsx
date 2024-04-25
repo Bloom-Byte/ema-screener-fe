@@ -45,15 +45,17 @@ const page = () => {
   };
 
   useEffect(() => {
-    setLoaded(true);
-
     getAllCurrencies();
   }, []);
 
   const getAllCurrencies = async () => {
+    setLoaded(true);
+
     const token = contextValue.token || localStorage.getItem("token");
     const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
 
+    console.log(ApiKey, "apikey");
+    console.log(token, "token");
     if (token && ApiKey) {
       await axios({
         method: "GET",

@@ -24,8 +24,10 @@ const Search = (props) => {
     props.setLoading(true);
     const token = contextValue.token || localStorage.getItem("token");
     const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
+
     if (ApiKey) {
       try {
+        console.log(ApiKey, "Apikey in search");
         await axios({
           method: "GET",
           url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&${closeHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}`,
