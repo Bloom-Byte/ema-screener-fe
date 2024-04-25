@@ -29,6 +29,7 @@ export default function Home() {
       setLoading(true);
 
       const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
+      console.log(ApiKey);
 
       if (ApiKey) {
         const wsUrl = `wss://be.emascreener.bloombyte.dev/ws/ema-records/?api_key=${ApiKey}`;

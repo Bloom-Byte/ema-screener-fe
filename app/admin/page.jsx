@@ -55,6 +55,7 @@ const page = () => {
     const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
 
     console.log(ApiKey, "apikey");
+    console.log(process.env.NEXT_PUBLIC_API_KEY, "apikey process.env");
     console.log(token, "token");
     if (token && ApiKey) {
       await axios({

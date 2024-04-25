@@ -24,7 +24,7 @@ const Search = (props) => {
     props.setLoading(true);
     const token = contextValue.token || localStorage.getItem("token");
     const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
-
+    console.log(process.env.NEXT_PUBLIC_API_KEY);
     if (ApiKey) {
       try {
         console.log(ApiKey, "Apikey in search");
