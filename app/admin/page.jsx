@@ -71,9 +71,6 @@ const page = () => {
             router.push("/login");
           }
         });
-    } else {
-      console.log("API_KEY not found");
-      router.push("/login");
     }
   }, []);
 
