@@ -58,27 +58,31 @@ const page = () => {
     console.log(process.env.NEXT_PUBLIC_API_KEY, "apikey process.env");
     console.log(token, "token");
     if (ApiKey) {
-      await axios({
-        method: "GET",
-        url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
-        // data: "",
-        headers: {
-          // Authorization: `AuthToken ${token}`,
-          "X-API-KEY": ApiKey,
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => {
-          setEmaCurrencies(res.data.results);
-          setLoaded(false);
+      try {
+        await axios({
+          method: "GET",
+          url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
+          // data: "",
+          headers: {
+            // Authorization: `AuthToken ${token}`,
+            "X-API-KEY": ApiKey,
+            "Content-Type": "application/json",
+          },
         })
-        .catch((error) => {
-          console.log(error.response.status, "this is status");
-          if (error.response.status == 401) {
-            console.log(error, "An Error retrieving records has occurred");
-            router.push("/login");
-          }
-        });
+          .then((res) => {
+            setEmaCurrencies(res.data.results);
+            setLoaded(false);
+          })
+          .catch((error) => {
+            console.log(error.response.status, "this is status");
+            if (error.response.status == 401) {
+              console.log(error, "An Error retrieving records has occurred");
+              router.push("/login");
+            }
+          });
+      } catch (error) {
+        console.log(error, "An Error retrieving records has occurred");
+      }
     }
   };
 
