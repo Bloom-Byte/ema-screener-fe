@@ -47,30 +47,37 @@ const page = () => {
   useEffect(() => {
     setLoaded(true);
 
-    const token = contextValue.token || localStorage.getItem("token");
-
-    axios({
-      method: "GET",
-      url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
-      // data: "",
-      headers: {
-        Authorization: `AuthToken ${token}`,
-        "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        setEmaCurrencies(res.data.results);
-        setLoaded(false);
-      })
-      .catch((error) => {
-        console.log(error.response.status, "this is status");
-        if (error.response.status == 401) {
-          console.log(error, "An Error retrieving records has occurred");
-          router.push("/login");
-        }
-      });
+    getAllCurrencies();
   }, []);
+
+  const getAllCurrencies = async () => {
+    const token = contextValue.token || localStorage.getItem("token");
+    const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
+
+    if (token && ApiKey) {
+      await axios({
+        method: "GET",
+        url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
+        // data: "",
+        headers: {
+          Authorization: `AuthToken ${token}`,
+          "X-API-KEY": ApiKey,
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          setEmaCurrencies(res.data.results);
+          setLoaded(false);
+        })
+        .catch((error) => {
+          console.log(error.response.status, "this is status");
+          if (error.response.status == 401) {
+            console.log(error, "An Error retrieving records has occurred");
+            router.push("/login");
+          }
+        });
+    }
+  };
 
   return (
     <div className="w-full overflow-x-hidden h-full min-h-full">

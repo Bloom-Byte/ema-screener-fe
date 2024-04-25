@@ -28,8 +28,10 @@ export default function Home() {
     const fetchEmaRecords = async () => {
       setLoading(true);
 
-      if (process.env.NEXT_PUBLIC_API_KEY) {
-        const wsUrl = `wss://be.emascreener.bloombyte.dev/ws/ema-records/?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
+      const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
+
+      if (ApiKey) {
+        const wsUrl = `wss://be.emascreener.bloombyte.dev/ws/ema-records/?api_key=${ApiKey}`;
 
         try {
           socket = new WebSocket(wsUrl);
