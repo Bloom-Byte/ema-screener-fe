@@ -33,7 +33,7 @@ jobs:
           restore-keys: docker-${{ runner.os }}-
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/ema-frontend:$GITHUB_RUN_NUMBER .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/ema-frontend:$GITHUB_RUN_NUMBER --build-arg PROD_ENV="NEXT_PUBLIC_API_KEY=${{ secrets.NEXT_PUBLIC_API_KEY }}" .
 
       # Add additional steps here for running tests, linting, etc.
 
@@ -70,12 +70,10 @@ jobs:
             docker system prune --force || true
           fi 
 
-            rm ~/.env || true 
-            echo NEXT_PUBLIC_API_KEY=${{ secrets.NEXT_PUBLIC_API_KEY }} >> ~/.env || true
 
             # Pull the new image
             docker pull ${{ secrets.DOCKER_USERNAME }}/ema-frontend:${{ github.run_number }}
 
             # Run the new container
-            docker run -d -p 3000:3000 -e NEXT_PUBLIC_API_KEY=${{ secrets.NEXT_PUBLIC_API_KEY }} --name ema-frontend ${{ secrets.DOCKER_USERNAME }}/ema-frontend:${{ github.run_number }}
+            docker run -d -p 3000:3000 --name ema-frontend ${{ secrets.DOCKER_USERNAME }}/ema-frontend:${{ github.run_number }}
           EOF
