@@ -22,25 +22,21 @@ const Search = (props) => {
   //* Function to filter Results
   const filterResults = async () => {
     props.setLoading(true);
-    const token = contextValue.token || localStorage.getItem("token");
+    // const token = contextValue.token || localStorage.getItem("token");
     const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
-    console.log(process.env.NEXT_PUBLIC_API_KEY);
     if (ApiKey) {
       try {
-        console.log(ApiKey, "Apikey in search");
         await axios({
           method: "GET",
           url: `https://be.emascreener.bloombyte.dev/api/v1/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&${closeHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}`,
           headers: {
-            // Authorization: `AuthToken ${token}`,
-            "X-API-KEY": ApiKey,
+            "x-API-KEY": ApiKey,
+            "Content-Type": "application/json",
           },
         })
           .then((res) => {
             props.setFilteredResults(res.data.results);
-            // console.log(res.data.results);
             props.setLoading(false);
-            // console.log(props.filterResults, "filtered");
           })
           .catch((err) => {
             console.log(err);

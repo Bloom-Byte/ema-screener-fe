@@ -28,9 +28,6 @@ const page = () => {
 
   // getCurrentUser takes in a parameter called token which we'll get from getCurrentUser which is th token response
   const getCurrentUser = async (token, userId) => {
-    // const tok = window.localStorage.getItem("token");
-    // const userId = window.localStorage.getItem("useriD");
-    // console.log(token, userId, "inside getCurrentUser");
     if (token && userId) {
       try {
         toast.success("Login successful");
@@ -51,21 +48,17 @@ const page = () => {
   const getAllCurrencies = async () => {
     setLoaded(true);
 
-    const token = contextValue.token || localStorage.getItem("token");
+    // const token = contextValue.token || localStorage.getItem("token");
     const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-    console.log(ApiKey, "apikey");
-    console.log(process.env.NEXT_PUBLIC_API_KEY, "apikey process.env");
-    console.log(token, "token");
     if (ApiKey) {
       try {
         await axios({
           method: "GET",
           url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
-          // data: "",
           headers: {
             // Authorization: `AuthToken ${token}`,
-            "X-API-KEY": ApiKey,
+            "x-API-KEY": ApiKey,
             "Content-Type": "application/json",
           },
         })

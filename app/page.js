@@ -4,10 +4,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Search from "./components/Search/Search";
 import Tabled from "./components/tables/Table";
 import { AnimatePresence, motion } from "framer-motion";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button, ListItem, Text, UnorderedList } from "@chakra-ui/react";
 import Paginate from "./components/paginate/Paginate";
 
 export default function Home() {
@@ -29,7 +27,6 @@ export default function Home() {
       setLoading(true);
 
       const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
-      console.log(ApiKey);
 
       if (ApiKey) {
         const wsUrl = `wss://be.emascreener.bloombyte.dev/ws/ema-records/?api_key=${ApiKey}`;

@@ -11,7 +11,6 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import React from "react";
-import { BsGraphDownArrow, BsGraphUpArrow } from "react-icons/bs";
 import SingleCategory from "./SingleCategory";
 const SeeAllCategories = (props) => {
   return (

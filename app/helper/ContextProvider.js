@@ -13,7 +13,6 @@ const AppContextProvider = ({ children }) => {
   const [forgotPass, setForgotPass] = useState(false);
 
   const contextValue = {
-    // getCurrentUser,
     token,
     setToken,
     setUserId,

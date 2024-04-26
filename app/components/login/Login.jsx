@@ -314,7 +314,6 @@ const Login = (props) => {
                   >
                     Click here{" "}
                   </span>
-                  {/* </Link> */}
                 </Text>
                 {/* <Button
               display="flex"
