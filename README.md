@@ -38,7 +38,7 @@ EMA screener
 
 ## Deployment
 
-N.B: Do not forget to provide an API_KEY for provided urls
+## N.B: Do not forget to provide an api_key value with key NEXT_PUBLIC_API_KEY for provided urls
 
 Add instructions for deploying your app, if applicable.
 
