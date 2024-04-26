@@ -71,7 +71,7 @@ jobs:
           fi 
 
             rm ~/.env || true 
-            echo 'NEXT_PUBLIC_API_KEY="${{ secrets.NEXT_PUBLIC_API_KEY }}"' >> ~/.env || true
+            echo 'NEXT_PUBLIC_API_KEY=${{ secrets.NEXT_PUBLIC_API_KEY }}' >> ~/.env || true
 
             # Pull the new image
             docker pull ${{ secrets.DOCKER_USERNAME }}/ema-frontend:${{ github.run_number }}
