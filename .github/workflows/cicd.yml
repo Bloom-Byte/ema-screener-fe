@@ -70,9 +70,12 @@ jobs:
             docker system prune --force || true
           fi 
 
+            rm ~/.env || true 
+            echo "NEXT_PUBLIC_API_KEY=${{ secrets.NEXT_PUBLIC_API_KEY }}" >> ~/.env || true
+
             # Pull the new image
             docker pull ${{ secrets.DOCKER_USERNAME }}/ema-frontend:${{ github.run_number }}
 
             # Run the new container
-            docker run -d -p 3000:3000 --env NEXT_PUBLIC_API_KEY=${{ secrets.NEXT_PUBLIC_API_KEY }} --name ema-frontend ${{ secrets.DOCKER_USERNAME }}/ema-frontend:${{ github.run_number }}
+            docker run -d -p 3000:3000 --env-file ~/.env --name ema-frontend ${{ secrets.DOCKER_USERNAME }}/ema-frontend:${{ github.run_number }}
           EOF
