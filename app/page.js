@@ -89,6 +89,8 @@ export default function Home() {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOFFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredResults.slice(indexOFFirstPost, indexOfLastPost);
+
+  console.log(filteredResults, "filtered");
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -111,12 +113,17 @@ export default function Home() {
           filteredResults={currentPosts}
           loading={loading}
         />
-        <Paginate
-          postsPerPage={postsPerPage}
-          totalPosts={filteredResults.length}
-          handlePageClick={handlePageClick}
-          currentPage={currentPage}
-        />
+        {filteredResults.length > 1 ? (
+          <Paginate
+            postsPerPage={postsPerPage}
+            totalPosts={filteredResults.length}
+            handlePageClick={handlePageClick}
+            currentPage={currentPage}
+            filteredResults={filteredResults}
+          />
+        ) : (
+          ""
+        )}
         <ToastContainer />
       </motion.div>
     </AnimatePresence>

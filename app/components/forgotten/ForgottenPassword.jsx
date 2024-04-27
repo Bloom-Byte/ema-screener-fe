@@ -55,7 +55,7 @@ const ForgottenPassword = () => {
         },
         data: extractedToken,
       });
-      console.log(response);
+      // console.log(response);
       if (response.status === 200 || "success") {
         toast.success("Token validity confirmed!");
       } else {

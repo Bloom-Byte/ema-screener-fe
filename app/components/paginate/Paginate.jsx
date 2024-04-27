@@ -6,6 +6,7 @@ const Paginate = ({
   totalPosts,
   handlePageClick,
   currentPage,
+  filteredResults,
 }) => {
   //This function would allow it to work normally but if it can get too long
   // const pageNumbers = [];
@@ -28,6 +29,7 @@ const Paginate = ({
     displayNumbers = [currentPage - 1, currentPage, currentPage + 1];
   }
 
+  console.log(filteredResults, "currentpage");
   return (
     <nav className=" flex justify-end my-[30px] ">
       <UnorderedList
