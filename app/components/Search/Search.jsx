@@ -220,7 +220,7 @@ const Search = (props) => {
             <Button
               colorScheme
               bgColor="#F4A608"
-              opacity={emaValue == 200 ? 0.5 : 1}
+              opacity={closeHundred == "close" ? 0.5 : 1}
               color="#fff"
               className="rounded-[6px]"
               onClick={() => {
