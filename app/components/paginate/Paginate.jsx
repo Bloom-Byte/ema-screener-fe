@@ -29,7 +29,6 @@ const Paginate = ({
     displayNumbers = [currentPage - 1, currentPage, currentPage + 1];
   }
 
-  console.log(filteredResults, "currentpage");
   return (
     <nav className=" flex justify-end my-[30px] ">
       <UnorderedList
