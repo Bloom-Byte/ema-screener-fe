@@ -12,6 +12,8 @@ const AppContextProvider = ({ children }) => {
   const [userId, setUserId] = useState("");
   const [forgotPass, setForgotPass] = useState(false);
 
+  const base_url = "https://be.emascreener.bloombyte.dev/api/v1"
+  
   const contextValue = {
     token,
     setToken,
@@ -19,6 +21,7 @@ const AppContextProvider = ({ children }) => {
     userId,
     forgotPass,
     setForgotPass,
+    base_url
   };
 
   return (
