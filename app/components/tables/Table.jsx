@@ -53,6 +53,7 @@ const Tabled = (props) => {
                   S/N
                 </Th>
                 <Th textAlign="center">Symbol</Th>
+                <Th textAlign="center">Category</Th>
                 <Th textAlign="center">Sub Category</Th>
                 <Th textAlign="center">Trend</Th>
                 <Th textAlign="center">Time (UTC)</Th>
@@ -66,6 +67,7 @@ const Tabled = (props) => {
                 <Th textAlign="center">
                   {"Close"} {">"} 100
                 </Th>
+                <Th textAlign="center">Close</Th>
               </Tr>
             </Thead>
             <Tbody>
