@@ -20,30 +20,30 @@ const page = () => {
   useEffect(() => {
     const tok = window.localStorage.getItem("token");
     const userId = window.localStorage.getItem("userId");
-    console.log(contextValue.token || tok, "inside useEffect");
-    console.log(contextValue.userId || userId, "inside useEffect");
-    getCurrentUser(
-      `${contextValue.token || tok}`,
-      `${contextValue.userId || userId}`
-    );
+    if (!contextValue.token || !tok) {
+      router.push("/login");
+    } else {
+      getCurrentUser(
+        `${contextValue.token || tok}`,
+        `${contextValue.userId || userId}`
+      );
+    }
   }, []);
 
   // getCurrentUser takes in a parameter called token which we'll get from getCurrentUser which is th token response
   const getCurrentUser = async (token, userId) => {
-    if (!token && !userId) {
-      router.push("/login");
-      // try {
-      //   console.log(token.length, "token length");
-      //   console.log(token, userId, "token and userId");
-      //   toast.success("Login successful");
-      // } catch (err) {
-      //   console.log(err);
-      //   toast.error(`user login failed!`);
-      //   router.push("/login");
-      // }
+    // console.log(token, userId, "stuff");
+    if (token && userId) {
+      try {
+        toast.success("Login successful");
+      } catch (err) {
+        console.log(err);
+        toast.error(`user login failed!`);
+        router.push("/login");
+      }
     } else {
+      // toast.success("Login successful");
       // router.push("/login");
-      console.log("Hello i am admin");
     }
   };
 
@@ -81,6 +81,7 @@ const page = () => {
           });
       } catch (error) {
         console.log(error, "An Error retrieving records has occurred");
+        // router.push("/login");
       }
     }
   };

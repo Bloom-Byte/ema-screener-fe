@@ -68,6 +68,7 @@ const Tabled = (props) => {
                   {"Close"} {">"} 100
                 </Th>
                 <Th textAlign="center">Close</Th>
+                <Th textAlign="center">Indicator</Th>
               </Tr>
             </Thead>
             <Tbody>

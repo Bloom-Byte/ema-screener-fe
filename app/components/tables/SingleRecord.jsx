@@ -14,6 +14,7 @@ const SingleRecord = (props) => {
     <Tr>
       <Td textAlign="center">{props.index}</Td>
       <Td textAlign="center">{props.emaRecords.currency?.symbol}</Td>
+      <Td textAlign="center">{props.emaRecords.currency?.category}</Td>
       <Td textAlign="center">{props.emaRecords.currency?.subcategory}</Td>
       <Td textAlign="center">
         {props.emaRecords?.trend == 1 ? (
@@ -161,6 +162,16 @@ const SingleRecord = (props) => {
             />
           </span>
         )}
+      </Td>
+      <Td textAlign="center">{props.emaRecords?.close}</Td>
+      <Td textAlign="center">
+        {props.emaRecords.currency?.category == "A"
+          ? "YES"
+          : props.emaRecords.currency?.category == "B"
+          ? "Strong"
+          : props.emaRecords.currency?.category == "C"
+          ? "POSITIVE"
+          : "NEGATIVE"}
       </Td>
     </Tr>
   );

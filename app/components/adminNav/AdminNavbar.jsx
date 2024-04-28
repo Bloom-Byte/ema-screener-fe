@@ -31,7 +31,7 @@ const AdminNavbar = () => {
     const TOKEN = contextValue.token || localStorage.getItem("token");
     const USER_ID = contextValue.userId || localStorage.getItem("userId");
     try {
-      // console.log(TOKEN, "context");
+      console.log(TOKEN, "context");
       // console.log(TOKEN, USER_ID, "details");
 
       if (TOKEN && USER_ID) {

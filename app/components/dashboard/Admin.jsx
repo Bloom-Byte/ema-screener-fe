@@ -47,7 +47,7 @@ const Admin = (props) => {
       ) {
         await axios({
           method: "POST",
-          url: contextValue.base_url,
+          url: `${contextValue.base_url}/currencies/`,
           data: allCoins,
           headers: {
             Authorization: `AuthToken ${

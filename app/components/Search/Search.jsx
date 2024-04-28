@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
-import { Button, Input } from "@chakra-ui/react";
+import { Button, Input, Select } from "@chakra-ui/react";
 import axios from "axios";
 import { useAppContext } from "@/app/helper/Helpers";
 const Search = (props) => {
@@ -35,6 +35,7 @@ const Search = (props) => {
           },
         })
           .then((res) => {
+            console.log(res.data.results);
             props.setFilteredResults(res.data.results);
             props.setLoading(false);
           })
@@ -55,7 +56,7 @@ const Search = (props) => {
 
   return (
     <div className="my-[30px]">
-      <div className="flex items-center justify-between w-[95%] flex-wrap gap-4 mx-auto">
+      <div className="flex items-center justify-between w-[95%]  flex-wrap gap-4 mx-auto">
         <form onSubmit={filterResults} className="flex items-center gap-3">
           <Input
             type="text"
@@ -89,12 +90,46 @@ const Search = (props) => {
           </div>
           <p className="text-white">Watchlist </p>
         </div> */}
-        <div
-          style={{ color: "#fff" }}
-          className="flex items-center flex-wrap gap-6"
-        >
+        <div style={{ color: "#fff" }} className="flex items-center  gap-6">
           <Tippy placement="bottom" content="Shows level of priority">
-            <select
+            <Select
+              p="0"
+              m="0"
+              maxW="220px"
+              onClick={(e) => {
+                setWatchList(e.target.value);
+                setEmaFifty("");
+                setEmaValue("");
+                setEmaTwenty("");
+                setEmaHundred("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTimeFrame("");
+                setTrend("");
+                setCloseHundred("");
+              }}
+              placeholder="Select option"
+            >
+              <option style={{ color: "#000" }} value="A">
+                Positive
+              </option>
+              <option style={{ color: "#000" }} value="B">
+                Up
+              </option>
+              <option style={{ color: "#000" }} value="C">
+                Strong Up
+              </option>
+              <option style={{ color: "#000" }} value="D">
+                Negative Watch
+              </option>
+              <option style={{ color: "#000" }} value="E">
+                Down
+              </option>
+              <option style={{ color: "#000" }} value="F">
+                Strong Down
+              </option>
+            </Select>
+            {/* <select
               onClick={(e) => {
                 setWatchList(e.target.value);
                 setEmaFifty("");
@@ -128,10 +163,9 @@ const Search = (props) => {
               <option value="F" style={{ cursor: "pointer" }}>
                 Strong Down
               </option>
-            </select>
+            </select> */}
           </Tippy>
-          <div className="flex items-center flex-wrap gap-3">
-            
+          <div className="flex items-center gap-3">
             <Button
               colorScheme
               bgColor="#F4A608"
@@ -196,7 +230,7 @@ const Search = (props) => {
             >
               200{" "}
             </Button>
-            
+
             <Tippy
               placement="bottom"
               content="Shows trends over a period of time"
