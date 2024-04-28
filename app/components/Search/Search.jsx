@@ -306,7 +306,7 @@ const Search = (props) => {
                 setWatchList("");
               }}
             >
-              Side{" "}
+              Sideways{" "}
             </Button>
           </Tippy>
           <Tippy placement="bottom" content="Filter by trends">
