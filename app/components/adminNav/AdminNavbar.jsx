@@ -37,10 +37,10 @@ const AdminNavbar = () => {
       if (TOKEN && USER_ID) {
         await axios({
           method: "POST",
-          url: "https://be.emascreener.bloombyte.dev/api/v1/accounts/logout/",
+          url: `${contextValue.base_url}/accounts/logout/`,
           headers: {
             Authorization: `AuthToken ${TOKEN}`,
-            "X-API-KEY": "ZPQZsfIX.yOW01At15aQpF2Z1Ll6I4JmMX87OkWqH",
+            "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
           },
           data: {
             user_id: USER_ID,

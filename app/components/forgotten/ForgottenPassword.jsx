@@ -47,8 +47,7 @@ const ForgottenPassword = () => {
     try {
       const response = await axios({
         method: "POST",
-        url:
-          "https://be.emascreener.bloombyte.dev/api/v1/accounts/validate-reset-token/",
+        url: `${contextValue.base_url}/accounts/validate-reset-token/`,
         headers: {
           "Content-Type": "application/json",
           "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
@@ -85,8 +84,7 @@ const ForgottenPassword = () => {
       try {
         const response = await axios({
           method: "POST",
-          url:
-            "https://be.emascreener.bloombyte.dev/api/v1/accounts/reset-password/",
+          url: `${contextValue.base_url}/accounts/reset-password/`,
           data: userInfo,
           headers: {
             "Content-Type": "application/json",

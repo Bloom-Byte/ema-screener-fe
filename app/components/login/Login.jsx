@@ -51,7 +51,7 @@ const Login = (props) => {
       try {
         const response = await axios({
           method: "POST",
-          url: "https://be.emascreener.bloombyte.dev/api/v1/accounts/auth/",
+          url: `${contextValue.base_url}/accounts/auth/`,
           data: userInfo,
           headers: {
             "Content-Type": "application/json",

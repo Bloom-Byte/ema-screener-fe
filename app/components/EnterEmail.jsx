@@ -47,8 +47,7 @@ const EnterEmail = () => {
       if (userObject.email && userObject.token_name) {
         await axios({
           method: "POST",
-          url:
-            "https://be.emascreener.bloombyte.dev/api/v1/accounts/request-password-reset/",
+          url: `${contextValue.base_url}/accounts/request-password-reset/`,
           data: userObject,
           headers: {
             "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,

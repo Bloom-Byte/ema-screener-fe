@@ -47,7 +47,7 @@ const Admin = (props) => {
       ) {
         await axios({
           method: "POST",
-          url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
+          url: contextValue.base_url,
           data: allCoins,
           headers: {
             Authorization: `AuthToken ${
@@ -85,7 +85,7 @@ const Admin = (props) => {
     try {
       await axios({
         method: "GET",
-        url: `https://be.emascreener.bloombyte.dev/api/v1/currencies/?search=${searchValue}`,
+        url: `${contextValue.base_url}/currencies/?search=${searchValue}`,
         headers: {
           Authorization: `AuthToken ${
             contextValue.token || localStorage.getItem("token")

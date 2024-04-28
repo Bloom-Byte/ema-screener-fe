@@ -20,6 +20,8 @@ const page = () => {
   useEffect(() => {
     const tok = window.localStorage.getItem("token");
     const userId = window.localStorage.getItem("userId");
+    console.log(contextValue.token || tok, "inside useEffect");
+    console.log(contextValue.userId || userId, "inside useEffect");
     getCurrentUser(
       `${contextValue.token || tok}`,
       `${contextValue.userId || userId}`
@@ -28,16 +30,20 @@ const page = () => {
 
   // getCurrentUser takes in a parameter called token which we'll get from getCurrentUser which is th token response
   const getCurrentUser = async (token, userId) => {
-    if (token && userId) {
-      try {
-        toast.success("Login successful");
-      } catch (err) {
-        console.log(err);
-        toast.error(`user login failed!`);
-        router.push("/login");
-      }
-    } else {
+    if (!token && !userId) {
       router.push("/login");
+      // try {
+      //   console.log(token.length, "token length");
+      //   console.log(token, userId, "token and userId");
+      //   toast.success("Login successful");
+      // } catch (err) {
+      //   console.log(err);
+      //   toast.error(`user login failed!`);
+      //   router.push("/login");
+      // }
+    } else {
+      // router.push("/login");
+      console.log("Hello i am admin");
     }
   };
 
