@@ -26,6 +26,9 @@ EMA screener
    npm install
    ```
 
+4. Create a .env file at the root level of your app and enter your Api key value with key prefixed as *NEXT_PUBLIC_API_KEY*
+
+
 ## Usage
 
 1. Start the development server:
