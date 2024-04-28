@@ -166,12 +166,16 @@ const SingleRecord = (props) => {
       <Td textAlign="center">{props.emaRecords?.close}</Td>
       <Td textAlign="center">
         {props.emaRecords.currency?.category == "A"
-          ? "YES"
+          ? "Positive"
           : props.emaRecords.currency?.category == "B"
-          ? "Strong"
+          ? "Up"
           : props.emaRecords.currency?.category == "C"
-          ? "POSITIVE"
-          : "NEGATIVE"}
+          ? "Strong Up"
+          : props.emaRecords.currency?.category == "D"
+          ? "Negative Watch"
+          : props.emaRecords.currency?.category == "E"
+          ? "Down"
+          : "Strong Down"}
       </Td>
     </Tr>
   );
