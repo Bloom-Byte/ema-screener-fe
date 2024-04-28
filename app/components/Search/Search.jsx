@@ -111,13 +111,13 @@ const Search = (props) => {
               className="w-[80px] outline-none"
             >
               <option value="A" style={{ cursor: "pointer" }}>
-                Must Watch
+                Positive
               </option>
               <option value="B" style={{ cursor: "pointer" }}>
-                Buy
+                Up
               </option>
               <option value="C" style={{ cursor: "pointer" }}>
-                Strong Buy
+                Strong Up
               </option>
               <option value="D" style={{ cursor: "pointer" }}>
                 Negative Watch
@@ -131,28 +131,7 @@ const Search = (props) => {
             </select>
           </Tippy>
           <div className="flex items-center flex-wrap gap-3">
-            <Button
-              colorScheme
-              bgColor="#F4A608"
-              opacity={emaValue == 20 ? 0.5 : 1}
-              color="#fff"
-              className="rounded-[6px]"
-              onClick={() => {
-                setEmaTwenty("ema20");
-                setEmaValue(20);
-                setEmaFifty("");
-                setEmaHundred("");
-                setEmaTwoHundred("");
-                setCloseHundred("");
-
-                setCurrency("");
-                setTimeFrame("");
-                setTrend("");
-                setWatchList("");
-              }}
-            >
-              20{" "}
-            </Button>
+            
             <Button
               colorScheme
               bgColor="#F4A608"
@@ -217,27 +196,7 @@ const Search = (props) => {
             >
               200{" "}
             </Button>
-            <Button
-              colorScheme
-              bgColor="#F4A608"
-              opacity={closeHundred == "close" ? 0.5 : 1}
-              color="#fff"
-              className="rounded-[6px]"
-              onClick={() => {
-                setCloseHundred("close");
-                setEmaValue("close>100");
-                setEmaTwoHundred("");
-                setEmaTwenty("");
-                setEmaFifty("");
-                setEmaHundred("");
-                setCurrency("");
-                setTimeFrame("");
-                setTrend("");
-                setWatchList("");
-              }}
-            >
-              close
-            </Button>
+            
             <Tippy
               placement="bottom"
               content="Shows trends over a period of time"

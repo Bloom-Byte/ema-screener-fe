@@ -65,7 +65,19 @@ const Navbar = () => {
           <div className="flex items-center gap-3 justify-center text-[20px] ">
             <Tippy
               placement="bottom"
-              content="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed cumque possimus iste nulla, incidunt, iure voluptatibus rem molestias veritatis sunt accusamus quam tenetur? Fugiat, voluptatem. Ullam odit facere magnam cupiditate voluptate sequi deleniti facilis eligendi officia molestiae suscipit dolor non commodi dignissimos incidunt, recusandae, assumenda nihil magni quos. Nam, soluta."
+              content="This is trend screener , it shows us current trend along with potential shift in trend based on EMA.
+
+Screener also have MH,MM and ML which will be refreshed after every Monday close of the week. 
+
+Monday range is very crucial and it will help you determine your next trade based on this simple yet powerful range.
+
+MH - Monday Highs 
+MM- Monday Mid 
+ML- Monday Lows
+
+You can check the trend for various assets and various time frames such as m15, H1, H4, Daily and weekly.
+
+For any queries kindly contact "
             >
               <span className="text-black cursor-pointer">
                 {" "}
