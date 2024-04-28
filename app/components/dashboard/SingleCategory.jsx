@@ -15,7 +15,7 @@ const SingleCategory = (props) => {
     try {
       const response = await axios({
         method: "DELETE",
-        url: `https://be.emascreener.bloombyte.dev/api/v1/currencies/${props.coin.id}/delete/`,
+        url: `${contextValue.base_url}/currencies/${props.coin.id}/delete/`,
         headers: {
           Authorization: `AuthToken ${
             contextValue.token || localStorage.getItem("token")

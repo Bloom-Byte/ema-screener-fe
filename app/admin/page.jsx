@@ -61,7 +61,7 @@ const page = () => {
       try {
         await axios({
           method: "GET",
-          url: "https://be.emascreener.bloombyte.dev/api/v1/currencies/",
+          url: `${contextValue.base_url}/currencies/`,
           headers: {
             // Authorization: `AuthToken ${token}`,
             "x-API-KEY": ApiKey,
