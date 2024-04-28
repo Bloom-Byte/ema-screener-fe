@@ -196,27 +196,7 @@ const Search = (props) => {
             >
               200{" "}
             </Button>
-            <Button
-              colorScheme
-              bgColor="#F4A608"
-              opacity={closeHundred == "close" ? 0.5 : 1}
-              color="#fff"
-              className="rounded-[6px]"
-              onClick={() => {
-                setCloseHundred("close");
-                setEmaValue("close>100");
-                setEmaTwoHundred("");
-                setEmaTwenty("");
-                setEmaFifty("");
-                setEmaHundred("");
-                setCurrency("");
-                setTimeFrame("");
-                setTrend("");
-                setWatchList("");
-              }}
-            >
-              close
-            </Button>
+            
             <Tippy
               placement="bottom"
               content="Shows trends over a period of time"
