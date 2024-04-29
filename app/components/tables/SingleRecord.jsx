@@ -192,6 +192,10 @@ const SingleRecord = (props) => {
           ? "Negative" 
           : ""}
       </Td>
+      <Td textAlign="center">{props.emaRecords["ema20"] }</Td>
+      <Td textAlign="center">{props.emaRecords["ema50"] }</Td>
+      <Td textAlign="center">{props.emaRecords["ema100"] }</Td>
+      <Td textAlign="center">{props.emaRecords["ema200"] }</Td>
     </Tr>
   );
 };
