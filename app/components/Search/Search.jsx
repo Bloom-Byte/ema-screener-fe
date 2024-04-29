@@ -18,7 +18,6 @@ const Search = (props) => {
   const [emaTwoHundred, setEmaTwoHundred] = useState("");
   const [closeHundred, setCloseHundred] = useState("");
   const [trend, setTrend] = useState("");
-
   //* Function to filter Results
   const filterResults = async () => {
     props.setLoading(true);
@@ -129,118 +128,7 @@ const Search = (props) => {
                 Strong Down
               </option>
             </Select>
-            {/* <select
-              onClick={(e) => {
-                setWatchList(e.target.value);
-                setEmaFifty("");
-                setEmaValue("");
-                setEmaTwenty("");
-                setEmaHundred("");
-                setEmaTwoHundred("");
-                setCurrency("");
-                setTimeFrame("");
-                setTrend("");
-                setCloseHundred("");
-              }}
-              style={{ color: "#000" }}
-              className="w-[80px] outline-none"
-            >
-              <option value="A" style={{ cursor: "pointer" }}>
-                Positive
-              </option>
-              <option value="B" style={{ cursor: "pointer" }}>
-                Up
-              </option>
-              <option value="C" style={{ cursor: "pointer" }}>
-                Strong Up
-              </option>
-              <option value="D" style={{ cursor: "pointer" }}>
-                Negative Watch
-              </option>
-              <option value="E" style={{ cursor: "pointer" }}>
-                Down
-              </option>
-              <option value="F" style={{ cursor: "pointer" }}>
-                Strong Down
-              </option>
-            </select> */}
           </Tippy>
-          <div className="flex items-center gap-3">
-            <Button
-              colorScheme
-              bgColor="#F4A608"
-              opacity={emaValue == 50 ? 0.5 : 1}
-              color="#fff"
-              className="rounded-[6px]"
-              onClick={() => {
-                setEmaFifty("ema50");
-                setEmaValue(50);
-                setEmaTwenty("");
-                setEmaHundred("");
-                setEmaTwoHundred("");
-                setCloseHundred("");
-
-                setCurrency("");
-                setTimeFrame("");
-                setTrend("");
-                setWatchList("");
-              }}
-            >
-              50{" "}
-            </Button>
-            <Button
-              colorScheme
-              bgColor="#F4A608"
-              opacity={emaValue == 100 ? 0.5 : 1}
-              color="#fff"
-              className="rounded-[6px]"
-              onClick={() => {
-                setEmaHundred("ema100");
-                setEmaValue(100);
-                setEmaTwenty("");
-                setEmaFifty("");
-                setEmaTwoHundred("");
-                setCloseHundred("");
-
-                setCurrency("");
-                setTimeFrame("");
-                setTrend("");
-                setWatchList("");
-              }}
-            >
-              100{" "}
-            </Button>
-            <Button
-              colorScheme
-              bgColor="#F4A608"
-              opacity={emaValue == 200 ? 0.5 : 1}
-              color="#fff"
-              className="rounded-[6px]"
-              onClick={() => {
-                setEmaTwoHundred("ema200");
-                setEmaValue(200);
-                setEmaTwenty("");
-                setEmaFifty("");
-                setEmaHundred("");
-                setCurrency("");
-                setTimeFrame("");
-                setTrend("");
-                setWatchList("");
-              }}
-            >
-              200{" "}
-            </Button>
-
-            <Tippy
-              placement="bottom"
-              content="Shows trends over a period of time"
-            >
-              <span className="text-white cursor-pointer">
-                {" "}
-                <HiOutlineQuestionMarkCircle />
-              </span>
-            </Tippy>
-          </div>
         </div>
         <div className="flex items-center gap-3">
           <Tippy content="Filter upwards" placement="bottom">

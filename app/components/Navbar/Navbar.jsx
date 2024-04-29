@@ -65,19 +65,32 @@ const Navbar = () => {
           <div className="flex items-center gap-3 justify-center text-[20px] ">
             <Tippy
               placement="bottom"
-              content="This is trend screener , it shows us current trend along with potential shift in trend based on EMA.
+              content={
+                <span>
+                  This is trend screener , it shows us current trend along with
+                  potential shift in trend based on EMA. Screener also have
+                  MH,MM and ML which will be refreshed after every Monday close
+                  of the week. Monday range is very crucial and it will help you
+                  determine your next trade based on this simple yet powerful
+                  range. MH - Monday Highs MM- Monday Mid ML- Monday Lows You
+                  can check the trend for various assets and various time frames
+                  such as m15, H1, H4, Daily and weekly. For any queries kindly
+                  contact{" "}
+                </span>
+              }
+              //               content="This is trend screener , it shows us current trend along with potential shift in trend based on EMA.
 
-Screener also have MH,MM and ML which will be refreshed after every Monday close of the week. 
+              // Screener also have MH,MM and ML which will be refreshed after every Monday close of the week.
 
-Monday range is very crucial and it will help you determine your next trade based on this simple yet powerful range.
+              // Monday range is very crucial and it will help you determine your next trade based on this simple yet powerful range.
 
-MH - Monday Highs 
-MM- Monday Mid 
-ML- Monday Lows
+              // MH - Monday Highs
+              // MM- Monday Mid
+              // ML- Monday Lows
 
-You can check the trend for various assets and various time frames such as m15, H1, H4, Daily and weekly.
+              // You can check the trend for various assets and various time frames such as m15, H1, H4, Daily and weekly.
 
-For any queries kindly contact "
+              // For any queries kindly contact "
             >
               <span className="text-black cursor-pointer">
                 {" "}
