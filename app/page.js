@@ -90,6 +90,7 @@ export default function Home() {
   const indexOFFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredResults.slice(indexOFFirstPost, indexOfLastPost);
 
+  console.log(currentPosts, "currentspostsgit ");
   return (
     <AnimatePresence mode="wait">
       <motion.div
