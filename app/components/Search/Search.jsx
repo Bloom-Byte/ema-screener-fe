@@ -298,7 +298,7 @@ const Search = (props) => {
           <Tippy content="Filter by 1 week" placement="bottom">
             <Button
               onClick={() => {
-                setTimeFrame("168:00:00");
+                setTimeFrame("7:00:00");
                 setEmaHundred("");
                 setEmaValue("");
                 setEmaTwenty("");
@@ -308,7 +308,7 @@ const Search = (props) => {
                 setTrend("");
                 setWatchList("");
               }}
-              opacity={timeFrame == "168:00:00" ? 0.5 : 1}
+              opacity={timeFrame == "7:00:00" ? 0.5 : 1}
               colorScheme
               bgColor="#F4A608"
               color="#fff"
