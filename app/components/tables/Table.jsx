@@ -73,7 +73,6 @@ const Tabled = (props) => {
                 </Th>
                 <Th textAlign="center">Close</Th>
                 <Th textAlign="center">Indicator</Th>
-                
               </Tr>
             </Thead>
             <Tbody>
@@ -90,12 +89,12 @@ const Tabled = (props) => {
                   })
                 ) : (
                   <Tr>
-                    <Td colSpan={13}>Nothing to be seen</Td>
+                    <Td colSpan={20}>Nothing to be seen</Td>
                   </Tr>
                 )
               ) : (
                 <Tr>
-                  <Td colSpan={13}>Loading...</Td>
+                  <Td colSpan={20}>Loading...</Td>
                 </Tr>
               )}
               {/* {props.filteredResults.length > 0 ? (
