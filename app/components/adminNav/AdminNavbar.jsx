@@ -31,7 +31,7 @@ const AdminNavbar = () => {
     const TOKEN = contextValue.token || localStorage.getItem("token");
     const USER_ID = contextValue.userId || localStorage.getItem("userId");
     try {
-      console.log(TOKEN, "context");
+      // console.log(TOKEN, "context");
       // console.log(TOKEN, USER_ID, "details");
 
       if (TOKEN && USER_ID) {
@@ -47,7 +47,7 @@ const AdminNavbar = () => {
           },
         })
           .then(async (res) => {
-            console.log(res.data);
+            // console.log(res.data);
             localStorage.removeItem("token");
             localStorage.removeItem("userId");
             contextValue.setToken(" ");
@@ -79,9 +79,9 @@ const AdminNavbar = () => {
     >
       <div className="flex items-center justify-between m-auto py-4 w-[95%]  max-[500px]:justify-between ">
         <div className="flex items-center gap-3  ">
-          {/* <div className="w-[50px] max-[450px]:hidden">
-            <img className="w-full rounded-full" src="./logos.png" alt="img" />
-          </div> */}
+           <div className="w-[50px] max-[450px]:hidden">
+            <img className="w-full rounded-full" src="./logo.png" alt="img" />
+          </div> 
           <Heading
             as="h4"
             size="md"
