@@ -105,17 +105,29 @@ const EnterEmail = () => {
             m="0"
             bgColor="#ffffff40"
           >
+            <Box>
+              <Image
+                boxSize="50px"
+                objectFit="cover"
+                src="./logo.png"
+                alt="Chat gpt"
+                margin="30px auto"
+                borderRadius="50%"
+              />
+            </Box>
             <Box
               display="flex"
               justifyContent="center"
               alignItems="center"
+              gap="10px"
               height="100%"
               width="95%"
               p="10px"
               m="0 auto"
               bgColor="#fff"
               borderRadius="15px"
-              boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
+              boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px
+              -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
             >
               <Stack
                 display="flex"
@@ -124,6 +136,7 @@ const EnterEmail = () => {
                 alignItems="center"
                 m="0 auto"
                 spacing="20px"
+                gap="20px"
                 h="100%"
                 className="w-[90%] max-sm:w-[100%] "
               >

@@ -43,7 +43,8 @@ const Paginate = ({
             opacity={currentPage == number ? 0.5 : 1}
             key={number}
             fontSize="20px"
-            p="7px 15px"
+            p="4px 10px"
+            borderRadius="4px"
             onClick={() => handlePageClick(number)}
             cursor="pointer"
           >

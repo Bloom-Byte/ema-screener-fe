@@ -107,19 +107,6 @@ const Login = (props) => {
     }
   };
 
-  // const forgotPassword = async () => {
-  //   const response = await axios({
-  //     method: "POST",
-  //     url:
-  //       "https://be.emascreener.bloombyte.dev/api/v1/accounts/request-password-reset/",
-  //     data: userInfo,
-  //     headers: {
-  //       // Authorization: `AuthToken ${API_KEY}`,
-  //       "Content-Type": "application/json",
-  //     },
-  //   }).catch((err) => console.log(err, "network error"));
-  // };
-
   return (
     <AnimatePresence mode="wait">
       <motion.div initial={{ x: -300 }} animate={{ x: 0 }} exit={{ x: 300 }}>
@@ -136,18 +123,19 @@ const Login = (props) => {
             display="flex"
             flexDirection="column"
             justifyContent="space-between"
+            gap="10px"
             height="95%"
             width="100%"
             p="0"
             m="0"
             bgColor="#ffffff40"
           >
-             <Box>
+            <Box>
               <Image
                 boxSize="50px"
                 objectFit="cover"
                 src="./logo.png"
-                alt="Chat gpt"
+                alt="logo"
                 margin="30px auto"
                 borderRadius="50%"
               />
@@ -157,6 +145,7 @@ const Login = (props) => {
               // flexDirection="column"
               justifyContent="center"
               alignItems="center"
+              gap="10px"
               height="100%"
               width="95%"
               p="10px"
@@ -172,6 +161,7 @@ const Login = (props) => {
                 alignItems="center"
                 m="0 auto"
                 spacing="20px"
+                gap="20px"
                 h="100%"
                 className="w-[90%] max-sm:w-[100%] "
                 // boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;"

@@ -11,7 +11,8 @@ import { useAppContext } from "@/app/helper/Helpers";
 const SingleCategory = (props) => {
   const { contextValue } = useAppContext();
 
-  const deleteCoin = async () => {
+  //Function to delete Currencies
+  const deleteCurrency = async () => {
     try {
       const response = await axios({
         method: "DELETE",
@@ -50,7 +51,7 @@ const SingleCategory = (props) => {
       <Td>
         <Tippy placement="bottom" content="delete">
           <span>
-            <DeleteIcon onClick={deleteCoin} cursor="pointer" />{" "}
+            <DeleteIcon onClick={deleteCurrency} cursor="pointer" />{" "}
           </span>
         </Tippy>
       </Td>

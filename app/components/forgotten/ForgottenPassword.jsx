@@ -12,7 +12,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { Suspense, useEffect, useState } from "react";
-import NextLink from "next/link";
 import { FcGoogle } from "react-icons/fc";
 // import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 // import { auth, provider } from "../firebase-config/Firebase-config";
@@ -144,6 +143,16 @@ const ForgottenPassword = () => {
             m="0"
             bgColor="#ffffff40"
           >
+            <Box>
+              <Image
+                boxSize="50px"
+                objectFit="cover"
+                src="./logo.png"
+                alt="logo"
+                margin="30px auto"
+                borderRadius="50%"
+              />
+            </Box>
             <Box
               display="flex"
               justifyContent="center"

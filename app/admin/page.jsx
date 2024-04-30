@@ -41,9 +41,6 @@ const page = () => {
         toast.error(`user login failed!`);
         router.push("/login");
       }
-    } else {
-      // toast.success("Login successful");
-      // router.push("/login");
     }
   };
 

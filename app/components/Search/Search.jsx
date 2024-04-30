@@ -109,22 +109,22 @@ const Search = (props) => {
               }}
               placeholder="Select option"
             >
-              <option style={{ color: "#000" }} value="A">
+              <option style={{ color: "#000", cursor: "pointer" }} value="A">
                 Positive
               </option>
-              <option style={{ color: "#000" }} value="B">
+              <option style={{ color: "#000", cursor: "pointer" }} value="B">
                 Up
               </option>
-              <option style={{ color: "#000" }} value="C">
+              <option style={{ color: "#000", cursor: "pointer" }} value="C">
                 Strong Up
               </option>
-              <option style={{ color: "#000" }} value="D">
+              <option style={{ color: "#000", cursor: "pointer" }} value="D">
                 Negative Watch
               </option>
-              <option style={{ color: "#000" }} value="E">
+              <option style={{ color: "#000", cursor: "pointer" }} value="E">
                 Down
               </option>
-              <option style={{ color: "#000" }} value="F">
+              <option style={{ color: "#000", cursor: "pointer" }} value="F">
                 Strong Down
               </option>
             </Select>
