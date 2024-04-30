@@ -9,7 +9,7 @@ import {
 } from "react-icons/bs";
 
 const SingleRecord = (props) => {
-  // console.log(props.emaRecords.timestamp, );
+  // console.log(props.emaRecords["ema20"], "ema 20");
 
   return (
     <Tr>
@@ -71,6 +71,10 @@ const SingleRecord = (props) => {
       <Td textAlign="center">{props.emaRecords?.monhigh}</Td>
       <Td textAlign="center">{props.emaRecords?.monmid}</Td>
       <Td textAlign="center">{props.emaRecords?.monlow}</Td>
+      <Td textAlign="center">{props.emaRecords["ema20"]}</Td>
+      <Td textAlign="center">{props.emaRecords["ema50"]}</Td>
+      <Td textAlign="center">{props.emaRecords["ema100"]}</Td>
+      <Td textAlign="center">{props.emaRecords["ema200"]}</Td>
       <Td textAlign="center">
         {props.emaRecords["20>50"] == true ? (
           <span
@@ -182,10 +186,6 @@ const SingleRecord = (props) => {
           ? "Strong Down"
           : ""}
       </Td>
-      <Td textAlign="center">{props.emaRecords["ema20"]}</Td>
-      <Td textAlign="center">{props.emaRecords["ema50"]}</Td>
-      <Td textAlign="center">{props.emaRecords["ema100"]}</Td>
-      <Td textAlign="center">{props.emaRecords["ema200"]}</Td>
     </Tr>
   );
 };
