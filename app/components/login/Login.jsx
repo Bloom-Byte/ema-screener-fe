@@ -107,18 +107,18 @@ const Login = (props) => {
     }
   };
 
-  const forgotPassword = async () => {
-    const response = await axios({
-      method: "POST",
-      url:
-        "https://be.emascreener.bloombyte.dev/api/v1/accounts/request-password-reset/",
-      data: userInfo,
-      headers: {
-        // Authorization: `AuthToken ${API_KEY}`,
-        "Content-Type": "application/json",
-      },
-    }).catch((err) => console.log(err, "network error"));
-  };
+  // const forgotPassword = async () => {
+  //   const response = await axios({
+  //     method: "POST",
+  //     url:
+  //       "https://be.emascreener.bloombyte.dev/api/v1/accounts/request-password-reset/",
+  //     data: userInfo,
+  //     headers: {
+  //       // Authorization: `AuthToken ${API_KEY}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   }).catch((err) => console.log(err, "network error"));
+  // };
 
   return (
     <AnimatePresence mode="wait">

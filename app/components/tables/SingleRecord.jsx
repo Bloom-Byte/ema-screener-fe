@@ -10,6 +10,7 @@ import {
 
 const SingleRecord = (props) => {
   // console.log(props.emaRecords.timestamp, );
+
   return (
     <Tr>
       <Td textAlign="center">{props.index}</Td>
@@ -165,27 +166,61 @@ const SingleRecord = (props) => {
       </Td>
       <Td textAlign="center">{props.emaRecords?.close}</Td>
       <Td textAlign="center">
-        {props.emaRecords["20>50"] && props.emaRecords["50>100"] == true
+        {/* {props.emaRecords["20>50"] &&
+        props.emaRecords["50>100"] &&
+        props.emaRecords["100>200"] &&
+        props.emaRecords["close>100"]
+          ? "Strong Buy"
+          : "Neutral"} */}
+        {(() => {
+          switch (true) {
+            case props.emaRecords["20>50"] &&
+              props.emaRecords["50>100"] &&
+              props.emaRecords["100>200"] &&
+              props.emaRecords["close>100"]:
+              return "Strong Up";
+            case props.emaRecords["20>50"] &&
+              props.emaRecords["50>100"] &&
+              props.emaRecords["100>200"]:
+              return "Up";
+
+            case props.emaRecords["20>50"] && props.emaRecords["50>100"]:
+              return "Positive";
+
+            case !props.emaRecords["20>50"] &&
+              !props.emaRecords["50>100"] &&
+              !props.emaRecords["100>200"]:
+              return "Down";
+            case !props.emaRecords["20>50"] &&
+              !props.emaRecords["50>100"] &&
+              !props.emaRecords["100>200"] &&
+              !props.emaRecords["close>100"]:
+              return "Strong Down";
+            default:
+              return "";
+          }
+        })()}
+        {/* {props.emaRecords["20>50"] && props.emaRecords["50>100"]
           ? "Positive"
           : props.emaRecords["20>50"] &&
             props.emaRecords["50>100"] &&
-            props.emaRecords["100>200"] == true
+            props.emaRecords["100>200"]
           ? "Up"
           : props.emaRecords["20>50"] &&
             props.emaRecords["50>100"] &&
             props.emaRecords["100>200"] &&
-            props.emaRecords["close>100"] == true
+            props.emaRecords["close>100"]
           ? "Strong Up"
-          : props.emaRecords["20>50"] &&
-            props.emaRecords["50>100"] &&
-            props.emaRecords["100>200"] == false
+          : !props.emaRecords["20>50"] &&
+            !props.emaRecords["50>100"] &&
+            !props.emaRecords["100>200"]
           ? "Down"
-          : props.emaRecords["20>50"] &&
-            props.emaRecords["50>100"] &&
-            props.emaRecords["100>200"] &&
-            props.emaRecords["close>100"] == false
+          : !props.emaRecords["20>50"] &&
+            !props.emaRecords["50>100"] &&
+            !props.emaRecords["100>200"] &&
+            !props.emaRecords["close>100"]
           ? "Strong Down"
-          : ""}
+          : ""} */}
       </Td>
     </Tr>
   );
