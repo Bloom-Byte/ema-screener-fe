@@ -142,16 +142,16 @@ const Login = (props) => {
             m="0"
             bgColor="#ffffff40"
           >
-            {/* <Box>
+             <Box>
               <Image
                 boxSize="50px"
                 objectFit="cover"
-                src="./logos.png"
+                src="./logo.png"
                 alt="Chat gpt"
                 margin="30px auto"
                 borderRadius="50%"
               />
-            </Box>*/}
+            </Box>
             <Box
               display="flex"
               // flexDirection="column"
