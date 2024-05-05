@@ -49,15 +49,15 @@ const Tabled = (props) => {
             {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
             <Thead>
               <Tr backgroundColor="white">
-                <Th backgroundColor="white" textAlign="center">
-                  S/N
-                </Th>
+                
                 <Th textAlign="center">Symbol</Th>
+                <Th textAlign="center">Exchange</Th>
                 <Th textAlign="center">Category</Th>
                 <Th textAlign="center">Sub Category</Th>
-                <Th textAlign="center">Trend</Th>
-                <Th textAlign="center">Time (UTC)</Th>
-                <Th textAlign="center">Exchange</Th>
+                <Th textAlign="center">Live Price</Th>
+                <Th textAlign="center">Current Trend</Th>
+                
+                
                 <Th textAlign="center">MH</Th>
                 <Th textAlign="center">MM</Th>
                 <Th textAlign="center">ML</Th>
@@ -71,8 +71,8 @@ const Tabled = (props) => {
                 <Th textAlign="center">
                   {"Close"} {">"} 100
                 </Th>
-                <Th textAlign="center">Close</Th>
-                <Th textAlign="center">Indicator</Th>
+                
+                <Th textAlign="center">Probable Trend</Th>
               </Tr>
             </Thead>
             <Tbody>
