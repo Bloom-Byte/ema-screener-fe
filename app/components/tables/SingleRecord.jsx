@@ -13,8 +13,9 @@ const SingleRecord = (props) => {
 
   return (
     <Tr>
-      <Td textAlign="center">{props.index}</Td>
+      
       <Td textAlign="center">{props.emaRecords.currency?.symbol}</Td>
+      <Td textAlign="center">{props.emaRecords?.currency?.exchange}</Td>
       <Td textAlign="center">{props.emaRecords.currency?.category}</Td>
       <Td textAlign="center">{props.emaRecords.currency?.subcategory}</Td>
       <Td textAlign="center">
@@ -63,11 +64,11 @@ const SingleRecord = (props) => {
         )}
       </Td>
       {/* <Td textAlign="center">{props.emaRecords.currency.symbol}</Td> */}
-      <Td textAlign="center">{props.emaRecords?.timeframe}</Td>
+      
       {/* <Td textAlign="center">
         {moment(props.emaRecords.timeframe).format("h:mm:ss")}
       </Td> */}
-      <Td textAlign="center">{props.emaRecords?.currency?.exchange}</Td>
+      
       <Td textAlign="center">{props.emaRecords?.monhigh}</Td>
       <Td textAlign="center">{props.emaRecords?.monmid}</Td>
       <Td textAlign="center">{props.emaRecords?.monlow}</Td>
