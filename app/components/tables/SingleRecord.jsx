@@ -13,11 +13,12 @@ const SingleRecord = (props) => {
 
   return (
     <Tr>
-      
       <Td textAlign="center">{props.emaRecords.currency?.symbol}</Td>
       <Td textAlign="center">{props.emaRecords?.currency?.exchange}</Td>
       <Td textAlign="center">{props.emaRecords.currency?.category}</Td>
       <Td textAlign="center">{props.emaRecords.currency?.subcategory}</Td>
+      <Td textAlign="center">{props.emaRecords?.close}</Td>
+
       <Td textAlign="center">
         {props.emaRecords?.trend == 1 ? (
           <span
@@ -64,11 +65,10 @@ const SingleRecord = (props) => {
         )}
       </Td>
       {/* <Td textAlign="center">{props.emaRecords.currency.symbol}</Td> */}
-      
+
       {/* <Td textAlign="center">
         {moment(props.emaRecords.timeframe).format("h:mm:ss")}
       </Td> */}
-      <Td textAlign="center">{props.emaRecords?.close}</Td>
       <Td textAlign="center">{props.emaRecords?.monhigh}</Td>
       <Td textAlign="center">{props.emaRecords?.monmid}</Td>
       <Td textAlign="center">{props.emaRecords?.monlow}</Td>
@@ -169,7 +169,7 @@ const SingleRecord = (props) => {
           </span>
         )}
       </Td>
-      
+
       <Td textAlign="center">
         {props.emaRecords["20>50"] &&
         props.emaRecords["50>100"] &&

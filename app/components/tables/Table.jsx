@@ -49,15 +49,13 @@ const Tabled = (props) => {
             {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
             <Thead>
               <Tr backgroundColor="white">
-                
                 <Th textAlign="center">Symbol</Th>
                 <Th textAlign="center">Exchange</Th>
                 <Th textAlign="center">Category</Th>
                 <Th textAlign="center">Sub Category</Th>
                 <Th textAlign="center">Live Price</Th>
                 <Th textAlign="center">Current Trend</Th>
-                
-                
+
                 <Th textAlign="center">MH</Th>
                 <Th textAlign="center">MM</Th>
                 <Th textAlign="center">ML</Th>
@@ -71,7 +69,7 @@ const Tabled = (props) => {
                 <Th textAlign="center">
                   {"Close"} {">"} 100
                 </Th>
-                
+
                 <Th textAlign="center">Probable Trend</Th>
               </Tr>
             </Thead>
@@ -97,21 +95,6 @@ const Tabled = (props) => {
                   <Td colSpan={20}>Loading...</Td>
                 </Tr>
               )}
-              {/* {props.filteredResults.length > 0 ? (
-                props.filteredResults.map((emaRecords, index) => {
-                  return (
-                    <SingleRecord
-                      key={index + 1}
-                      index={index + 1}
-                      emaRecords={emaRecords}
-                    />
-                  );
-                })
-              ) : (
-                <Tr>
-                  <Td colSpan={13}>Nothing to be seen</Td>
-                </Tr>
-              )} */}
             </Tbody>
           </Table>
         </TableContainer>

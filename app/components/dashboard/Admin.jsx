@@ -58,7 +58,7 @@ const Admin = (props) => {
           .then((res) => {
             props.setEmaCurrencies((prev) => [res.data, ...prev]);
             setSuccessfulBtn(false);
-            toast.success("Coin added successfully");
+            toast.success("Currency added successfully");
             setCategory(" ");
             setExchangeField(" ");
             setSubCategory("");
@@ -67,9 +67,11 @@ const Admin = (props) => {
           .catch((err) => {
             console.log(err);
             setSuccessfulBtn(false);
+            toast.error("Failed to add currency");
           });
       } else {
         console.log("empty values detected");
+        toast.error("Empty values detected");
         setSuccessfulBtn(false);
       }
     } catch (error) {
@@ -144,20 +146,23 @@ const Admin = (props) => {
                   placeholder="Select Category"
                   value={category}
                 >
-                  <option style={{ cursor: "pointer" }} value="A">
-                    A{" "}
+                  <option style={{ cursor: "pointer" }} value="Crypto">
+                    Crypto{" "}
                   </option>
-                  <option style={{ cursor: "pointer" }} value="B">
-                    B{" "}
+                  <option style={{ cursor: "pointer" }} value="Forex">
+                    Forex{" "}
                   </option>
-                  <option style={{ cursor: "pointer" }} value="C">
-                    C{" "}
+                  <option
+                    style={{ cursor: "pointer" }}
+                    value="Metals & commodities"
+                  >
+                    Metals & Commodities{" "}
                   </option>
-                  <option style={{ cursor: "pointer" }} value="D">
-                    D{" "}
+                  <option style={{ cursor: "pointer" }} value="Stocks">
+                    Stocks{" "}
                   </option>
-                  <option style={{ cursor: "pointer" }} value="E">
-                    E{" "}
+                  <option style={{ cursor: "pointer" }} value="Indices">
+                    Indices{" "}
                   </option>
                 </Select>
 

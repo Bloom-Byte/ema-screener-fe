@@ -25,6 +25,8 @@ const Search = (props) => {
     const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
     if (ApiKey) {
       try {
+        // console.log(watchList, "watchlist");
+
         await axios({
           method: "GET",
           url: `${contextValue.base_url}/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&${closeHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}`,
@@ -277,7 +279,7 @@ const Search = (props) => {
           <Tippy content="Filter by 1 day" placement="bottom">
             <Button
               onClick={() => {
-                setTimeFrame("24:00:00");
+                setTimeFrame("1 00:00:00");
                 setEmaHundred("");
                 setEmaValue("");
                 setEmaTwenty("");
@@ -287,7 +289,7 @@ const Search = (props) => {
                 setTrend("");
                 setWatchList("");
               }}
-              opacity={timeFrame == "24:00:00" ? 0.5 : 1}
+              opacity={timeFrame == "1 00:00:00" ? 0.5 : 1}
               colorScheme
               bgColor="#F4A608"
               color="#fff"
@@ -299,7 +301,7 @@ const Search = (props) => {
           <Tippy content="Filter by 1 week" placement="bottom">
             <Button
               onClick={() => {
-                setTimeFrame("7:00:00");
+                setTimeFrame("7 00:00:00");
                 setEmaHundred("");
                 setEmaValue("");
                 setEmaTwenty("");
@@ -309,7 +311,7 @@ const Search = (props) => {
                 setTrend("");
                 setWatchList("");
               }}
-              opacity={timeFrame == "7:00:00" ? 0.5 : 1}
+              opacity={timeFrame == "7 00:00:00" ? 0.5 : 1}
               colorScheme
               bgColor="#F4A608"
               color="#fff"
