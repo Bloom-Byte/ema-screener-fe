@@ -68,7 +68,7 @@ const SingleRecord = (props) => {
       {/* <Td textAlign="center">
         {moment(props.emaRecords.timeframe).format("h:mm:ss")}
       </Td> */}
-      
+      <Td textAlign="center">{props.emaRecords?.close}</Td>
       <Td textAlign="center">{props.emaRecords?.monhigh}</Td>
       <Td textAlign="center">{props.emaRecords?.monmid}</Td>
       <Td textAlign="center">{props.emaRecords?.monlow}</Td>
@@ -169,7 +169,7 @@ const SingleRecord = (props) => {
           </span>
         )}
       </Td>
-      <Td textAlign="center">{props.emaRecords?.close}</Td>
+      
       <Td textAlign="center">
         {props.emaRecords["20>50"] &&
         props.emaRecords["50>100"] &&
