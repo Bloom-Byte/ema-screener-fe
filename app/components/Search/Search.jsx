@@ -107,6 +107,7 @@ const Search = (props) => {
                 setTrend("");
                 setCloseHundred("");
               }}
+              cursor="pointer"
               placeholder="Select option"
             >
               <option style={{ color: "#000", cursor: "pointer" }} value="A">
