@@ -91,7 +91,7 @@ export default function Home() {
   const currentPosts = filteredResults.slice(indexOFFirstPost, indexOfLastPost);
 
     useEffect(() => {
-      if(typeof window !== undefined) {
+      if(typeof window !== "undefined") {
         
       window.document.addEventListener("contextmenu", (e) => {
         e.preventDefault();
@@ -99,7 +99,7 @@ export default function Home() {
       } 
   }, []);
 
-    if(typeof window !== undefined) {
+    if(typeof window !== "undefined") {
 window.document.onkeydown = function(e) {
     
     if(e.key === 'F12') {
