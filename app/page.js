@@ -99,8 +99,9 @@ export default function Home() {
       } 
   }, []);
 
-  document.onkeydown = function(e) {
-    console.log(e.key)
+    if(typeof window !== undefined) {
+document.onkeydown = function(e) {
+    
     if(e.key === 'F12') {
        return false;
     }
@@ -116,7 +117,11 @@ export default function Home() {
     if(e.ctrlKey && e.key === 'u') {
        return false;
     }
-  }
+                                       }
+  
+    } 
+  
+  
   
   return (
     <AnimatePresence mode="wait">
