@@ -91,10 +91,12 @@ export default function Home() {
   const currentPosts = filteredResults.slice(indexOFFirstPost, indexOfLastPost);
 
     useEffect(() => {
-    typeof window !== undefined &&
+      if(typeof window !== undefined) {
+        
       window.document.addEventListener("contextmenu", (e) => {
         e.preventDefault();
       });
+      } 
   }, []);
 
   document.onkeydown = function(e) {
