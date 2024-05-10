@@ -100,7 +100,7 @@ export default function Home() {
   }, []);
 
     if(typeof window !== undefined) {
-document.onkeydown = function(e) {
+window.document.onkeydown = function(e) {
     
     if(e.key === 'F12') {
        return false;
