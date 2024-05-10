@@ -27,7 +27,7 @@ EMA screener
    ```
 
 4. Create a .env file at the root level of your app and enter your Api key value with key prefixed as *NEXT_PUBLIC_API_KEY*
-
+*NEXT_PUBLIC_API_URL*
 
 ## Usage
 
@@ -41,7 +41,7 @@ EMA screener
 
 ## Deployment
 
-## N.B: Do not forget to provide an api_key value with key NEXT_PUBLIC_API_KEY for provided urls
+## N.B: Do not forget to provide an api_key value with key NEXT_PUBLIC_API_KEY and a NEXT_PUBLIC_API_URL for provided urls
 
 ## Contributing
 

@@ -55,7 +55,6 @@ const Login = (props) => {
           data: userInfo,
           headers: {
             "Content-Type": "application/json",
-            //  Authorization: `AuthToken ${API_KEY}`
             "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
           },
         }).catch((err) => {

@@ -64,11 +64,7 @@ const SingleRecord = (props) => {
           </span>
         )}
       </Td>
-      {/* <Td textAlign="center">{props.emaRecords.currency.symbol}</Td> */}
 
-      {/* <Td textAlign="center">
-        {moment(props.emaRecords.timeframe).format("h:mm:ss")}
-      </Td> */}
       <Td textAlign="center">{props.emaRecords?.monhigh}</Td>
       <Td textAlign="center">{props.emaRecords?.monmid}</Td>
       <Td textAlign="center">{props.emaRecords?.monlow}</Td>
@@ -190,70 +186,6 @@ const SingleRecord = (props) => {
           </span>
         )}
       </Td>
-
-      {/* <Td textAlign="center">
-        {props.emaRecords["50>100"] == true ? (
-          <span>
-            <BsCircleFill
-              style={{
-                textAlign: "center",
-                margin: "0 auto",
-              }}
-              color="#66FF00"
-            />
-          </span>
-        ) : (
-          <span>
-            <BsCircleFill
-              style={{
-                textAlign: "center",
-                margin: "0 auto",
-              }}
-              color="#FF3131"
-            />
-          </span>
-        )}
-      </Td>
-      <Td textAlign="center">
-        {props.emaRecords["100>200"] == true ? (
-          <span>
-            <BsCircleFill
-              style={{
-                textAlign: "center",
-                margin: "0 auto",
-              }}
-              color="#66FF00"
-            />
-          </span>
-        ) : (
-          <span>
-            <BsCircleFill
-              style={{ textAlign: "center", margin: "0 auto" }}
-              color="#FF3131"
-            />
-          </span>
-        )}
-      </Td>
-      <Td textAlign="center">
-        {props.emaRecords["close>100"] == true ? (
-          <span>
-            <BsCircleFill
-              style={{
-                textAlign: "center",
-                margin: "0 auto",
-              }}
-              color="#66FF00"
-            />
-          </span>
-        ) : (
-          <span>
-            <BsCircleFill
-              style={{ textAlign: "center", margin: "0 auto" }}
-              color="#FF3131"
-            />
-          </span>
-        )}
-      </Td> */}
 
       <Td textAlign="center">
         {props.emaRecords["20>50"] &&

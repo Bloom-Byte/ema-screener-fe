@@ -7,12 +7,11 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AppContextProvider = ({ children }) => {
-  const [botCreatedSuccess, setBotCreatedSuccess] = useState(false);
   const [token, setToken] = useState("");
   const [userId, setUserId] = useState("");
   const [forgotPass, setForgotPass] = useState(false);
 
-  const base_url = "https://be.emascreener.bloombyte.dev/api/v1";
+  const base_url = process.env.NEXT_PUBLIC_API_URL;
 
   const contextValue = {
     token,
