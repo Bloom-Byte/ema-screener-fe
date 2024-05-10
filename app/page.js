@@ -90,32 +90,33 @@ export default function Home() {
   const indexOFFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredResults.slice(indexOFFirstPost, indexOfLastPost);
 
-    useEffect(() => {
-    typeof window !== undefined &&
+  useEffect(() => {
+    if (typeof window !== undefined) {
       window.document.addEventListener("contextmenu", (e) => {
         e.preventDefault();
       });
+    }
   }, []);
 
-  document.onkeydown = function(e) {
-    console.log(e.key)
-    if(e.key === 'F12') {
-       return false;
+  document.onkeydown = function (e) {
+    console.log(e.key);
+    if (e.key === "F12") {
+      return false;
     }
-    if(e.ctrlKey && e.shiftKey && e.key === 'I') {
-       return false;
+    if (e.ctrlKey && e.shiftKey && e.key === "I") {
+      return false;
     }
-    if(e.ctrlKey && e.shiftKey && e.key === 'C') {
-       return false;
+    if (e.ctrlKey && e.shiftKey && e.key === "C") {
+      return false;
     }
-    if(e.ctrlKey && e.shiftKey && e.key === 'J') {
-       return false;
+    if (e.ctrlKey && e.shiftKey && e.key === "J") {
+      return false;
     }
-    if(e.ctrlKey && e.key === 'u') {
-       return false;
+    if (e.ctrlKey && e.key === "u") {
+      return false;
     }
-  }
-  
+  };
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
