@@ -14,7 +14,7 @@ const SingleRecord = (props) => {
   return (
     <Tr>
       <Td textAlign="center">{props.emaRecords.currency?.symbol}</Td>
-      <Td textAlign="center">{props.emaRecords?.currency?.exchange}</Td>
+      
       <Td textAlign="center">{props.emaRecords.currency?.category}</Td>
       <Td textAlign="center">{props.emaRecords.currency?.subcategory}</Td>
       <Td textAlign="center">{props.emaRecords?.close}</Td>
@@ -210,8 +210,9 @@ const SingleRecord = (props) => {
           ? "Down"
           : !props.emaRecords["20>50"] && !props.emaRecords["50>100"]
           ? "Negative"
-          : ""}
+          : "Sideways"}
       </Td>
+      <Td textAlign="center">{props.emaRecords?.currency?.exchange}</Td>
     </Tr>
   );
 };
