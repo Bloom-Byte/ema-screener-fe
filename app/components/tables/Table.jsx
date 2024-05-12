@@ -50,7 +50,7 @@ const Tabled = (props) => {
             <Thead>
               <Tr backgroundColor="white">
                 <Th textAlign="center">Symbol</Th>
-                <Th textAlign="center">Exchange</Th>
+                
                 <Th textAlign="center">Category</Th>
                 <Th textAlign="center">Sub Category</Th>
                 <Th textAlign="center">Live Price</Th>
@@ -66,6 +66,7 @@ const Tabled = (props) => {
                 <Th textAlign="center">Traffic Indicator</Th>
 
                 <Th textAlign="center">Probable Trend</Th>
+                <Th textAlign="center">Exchange</Th>
               </Tr>
             </Thead>
             <Tbody>
