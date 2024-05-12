@@ -43,7 +43,7 @@ const Navbar = () => {
               size="md"
               className="text-#000 max-[500px]:text-[16px]"
             >
-              EMA Screener{" "}
+              TREND CATCHER{" "}
             </Heading>
           </div>
           <div className="flex items-center gap-3 justify-center text-[20px] ">
