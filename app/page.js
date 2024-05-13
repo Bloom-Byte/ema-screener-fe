@@ -146,7 +146,6 @@ export default function Home() {
             totalPosts={filteredResults.length}
             handlePageClick={handlePageClick}
             currentPage={currentPage}
-            filteredResults={filteredResults}
           />
         ) : (
           ""

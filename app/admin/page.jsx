@@ -8,6 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAppContext } from "../helper/Helpers";
+import Paginate from "../components/paginate/Paginate";
 
 const page = () => {
   const { contextValue } = useAppContext();
@@ -16,16 +17,25 @@ const page = () => {
   const [emaCurrencies, setEmaCurrencies] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [filteredCategory, setFilteredCategory] = useState();
+  const [filteredSubCategory, setFilteredSubCategory] = useState();
+  const [currentPage, setCurrentPage] = useState(1); // Initial page number
+  const [postsPerPage, setPostsPerPage] = useState(20);
+
+  const handlePageClick = (page) => {
+    setCurrentPage(page);
+  };
 
   useEffect(() => {
     const tok = window.localStorage.getItem("token");
     const userId = window.localStorage.getItem("userId");
+    //If the Tok value is absent then use the contextToken else if tok is present use the value from the storage
     if (!contextValue.token || !tok) {
       router.push("/login");
     } else {
       getCurrentUser(
-        `${contextValue.token || tok}`,
-        `${contextValue.userId || userId}`
+        `${tok}` || `${contextValue.token}`,
+        `${userId}` || `${contextValue.userId}`
       );
     }
   }, []);
@@ -77,11 +87,16 @@ const page = () => {
             }
           });
       } catch (error) {
+        toast.error("An Error has occured");
         console.log(error, "An Error retrieving records has occurred");
         // router.push("/login");
       }
     }
   };
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOFFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = emaCurrencies.slice(indexOFFirstPost, indexOfLastPost);
 
   return (
     <div className="w-full overflow-x-hidden h-full min-h-full">
@@ -91,13 +106,30 @@ const page = () => {
         setEmaCurrencies={setEmaCurrencies}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
+        setLoaded={setLoaded}
+        setFilteredCategory={setFilteredCategory}
+        setFilteredSubCategory={setFilteredSubCategory}
+        filteredCategory={filteredCategory}
+        filteredSubCategory={filteredSubCategory}
       />
       <SeeAllCategories
-        emaCurrencies={emaCurrencies}
+        emaCurrencies={currentPosts}
         setEmaCurrencies={setEmaCurrencies}
         loaded={loaded}
         setLoaded={setLoaded}
+        filteredCategory={filteredCategory}
+        filteredSubCategory={filteredSubCategory}
       />
+      {emaCurrencies.length > 0 ? (
+        <Paginate
+          postsPerPage={postsPerPage}
+          totalPosts={emaCurrencies.length}
+          handlePageClick={handlePageClick}
+          currentPage={currentPage}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

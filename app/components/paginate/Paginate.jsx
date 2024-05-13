@@ -6,7 +6,6 @@ const Paginate = ({
   totalPosts,
   handlePageClick,
   currentPage,
-  filteredResults,
 }) => {
   //This function would allow it to work normally but if it can get too long
   const pageNumbers = [];

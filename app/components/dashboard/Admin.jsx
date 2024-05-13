@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import { useAppContext } from "@/app/helper/Helpers";
+import { LuFilter } from "react-icons/lu";
 
 const Admin = (props) => {
   const { contextValue } = useAppContext();
@@ -108,6 +109,81 @@ const Admin = (props) => {
     }
   };
 
+  const filterByCategory = async () => {
+    props.setFilteredSubCategory([]);
+    props.setEmaCurrencies([]);
+    props.setLoaded(true);
+    const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
+    if (ApiKey) {
+      try {
+        await axios({
+          method: "GET",
+          url: `${contextValue.base_url}/currencies/categories`,
+          headers: {
+            "x-API-KEY": ApiKey,
+            "Content-Type": "application/json",
+          },
+        }).then((res) => {
+          props.setFilteredCategory(res.data.data.categories);
+          props.setLoaded(false);
+        });
+      } catch (error) {
+        console.log(error);
+        props.setLoaded(false);
+      }
+    }
+  };
+
+  const filterBySubCategory = async () => {
+    props.setFilteredCategory([]);
+    props.setEmaCurrencies([]);
+    props.setLoaded(true);
+    const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
+    if (ApiKey) {
+      try {
+        await axios({
+          method: "GET",
+          url: `${contextValue.base_url}/currencies/categories`,
+          headers: {
+            "x-API-KEY": ApiKey,
+            "Content-Type": "application/json",
+          },
+        }).then((res) => {
+          props.setFilteredSubCategory(res.data.data.subcategories);
+          props.setLoaded(false);
+        });
+      } catch (error) {
+        console.log(error);
+        props.setLoaded(false);
+      }
+    }
+  };
+
+  const getAllCurrencies = async () => {
+    props.setFilteredCategory([]);
+    props.setFilteredSubCategory([]);
+    props.setLoaded(true);
+    const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
+    if (ApiKey) {
+      try {
+        await axios({
+          method: "GET",
+          url: `${contextValue.base_url}/currencies/`,
+          headers: {
+            "x-API-KEY": ApiKey,
+            "Content-Type": "application/json",
+          },
+        }).then((res) => {
+          props.setEmaCurrencies(res.data.results);
+          props.setLoaded(false);
+        });
+      } catch (error) {
+        console.log(error);
+        props.setLoaded(false);
+      }
+    }
+  };
+
   return (
     <AnimatePresence>
       <motion.div
@@ -131,7 +207,7 @@ const Admin = (props) => {
                 flexWrap={{ base: "wrap", md: "nowrap" }}
                 alignItems="center"
                 m="20px auto"
-                gap="20px"
+                gap="15px"
               >
                 <Input
                   onChange={(e) => setSymbol(e.target.value)}
@@ -232,6 +308,28 @@ const Admin = (props) => {
                 </span>
               </Tippy>
             </form>
+
+            <Flex my="10px" alignItems="center" gap="15px">
+              <Button
+                onClick={filterByCategory}
+                colorScheme="yellow"
+                className="rounded-[6px]"
+                opacity={props.filteredCategory?.length > 0 ? 0.7 : 1}
+              >
+                Category{" "}
+              </Button>
+              <Button
+                onClick={filterBySubCategory}
+                colorScheme="yellow"
+                className="rounded-[6px]"
+                opacity={props.filteredSubCategory?.length > 0 ? 0.7 : 1}
+              >
+                Sub-Category{" "}
+              </Button>
+              <span onClick={getAllCurrencies} className="cursor-pointer">
+                {<LuFilter cursor="pointer" />}{" "}
+              </span>
+            </Flex>
           </Box>
           <ToastContainer />
         </Container>

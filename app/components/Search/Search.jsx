@@ -130,6 +130,12 @@ const Search = (props) => {
               <option style={{ color: "#000", cursor: "pointer" }} value="F">
                 Strong Down
               </option>
+              <option
+                style={{ color: "#000", cursor: "pointer" }}
+                value="SIDEWAYS"
+              >
+                Sideways
+              </option>
             </Select>
           </Tippy>
         </div>

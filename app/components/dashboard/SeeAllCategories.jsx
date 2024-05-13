@@ -38,24 +38,61 @@ const SeeAllCategories = (props) => {
       ) : (
         <TableContainer>
           <Table
-            variant={props.emaCurrencies.length > 0 ? "striped" : "simple"}
+            variant="striped"
             textAlign="center"
             colorScheme="teal"
             color="black"
           >
-            {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
-            <Thead>
-              <Tr>
-                <Th textAlign="center">S/N</Th>
-                {/* <Th textAlign="center">Name</Th> */}
-                <Th textAlign="center">Symbol.</Th>
-                <Th textAlign="center">Category</Th>
-                {/* <Th textAlign="center">Current Price</Th> */}
-                <Th textAlign="center">Sub Category</Th>
-                <Th textAlign="center">Exchange</Th>
-              </Tr>
-            </Thead>
-            {props.emaCurrencies.length > 0 ? (
+            {props.filteredCategory?.length > 0 ? (
+              <Thead>
+                <Tr>
+                  <Th textAlign="center">S/N </Th>
+                  <Th textAlign="center">Categories </Th>
+                </Tr>
+              </Thead>
+            ) : props.filteredSubCategory?.length > 0 ? (
+              <Thead>
+                <Tr>
+                  <Th textAlign="center">S/N </Th>
+                  <Th textAlign="center">SubCategories </Th>
+                </Tr>
+              </Thead>
+            ) : (
+              <Thead>
+                <Tr>
+                  <Th textAlign="center">S/N</Th>
+                  <Th textAlign="center">Symbol.</Th>
+                  <Th textAlign="center">Category</Th>
+                  <Th textAlign="center">Sub Category</Th>
+                  <Th textAlign="center">Exchange</Th>
+                </Tr>
+              </Thead>
+            )}
+            {props.filteredCategory?.length > 0 ? (
+              <Tbody>
+                {props.filteredCategory.map((category, index) => {
+                  return (
+                    <Category
+                      key={index}
+                      index={index + 1}
+                      category={category}
+                    />
+                  );
+                })}
+              </Tbody>
+            ) : props.filteredSubCategory?.length ? (
+              <Tbody>
+                {props.filteredSubCategory.map((subCategory, index) => {
+                  return (
+                    <SubCategory
+                      key={index}
+                      index={index + 1}
+                      subCategory={subCategory}
+                    />
+                  );
+                })}
+              </Tbody>
+            ) : props.emaCurrencies?.length > 0 ? (
               <Tbody>
                 {props.emaCurrencies.map((coin, index) => {
                   return (
@@ -71,12 +108,7 @@ const SeeAllCategories = (props) => {
               </Tbody>
             ) : (
               <Tbody>
-                <Tr
-                  // border="2px red solid"
-                  minW="100%"
-                  m="0 auto"
-                  textAlign="center"
-                >
+                <Tr minW="100%" m="0 auto" textAlign="center">
                   <Td colSpan={5} m="0 auto" w="100%">
                     <Box
                       textAlign="center"
@@ -98,6 +130,25 @@ const SeeAllCategories = (props) => {
         </TableContainer>
       )}
     </div>
+  );
+};
+
+const Category = ({ category, index }) => {
+  // console.log(category, "Category");
+  return (
+    <Tr>
+      <Td textAlign="center">{index}</Td>
+      <Td textAlign="center">{category}</Td>
+    </Tr>
+  );
+};
+
+const SubCategory = ({ subCategory, index }) => {
+  return (
+    <Tr>
+      <Td textAlign="center">{index}</Td>
+      <Td textAlign="center">{subCategory}</Td>
+    </Tr>
   );
 };
 
