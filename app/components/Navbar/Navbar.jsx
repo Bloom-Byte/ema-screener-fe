@@ -24,7 +24,7 @@ const Navbar = () => {
   var now = moment.utc();
 
   // Format the current UTC time in hours, minutes, and seconds
-  var formattedTime = now.format("yy/M/D HH:mm:ss");
+  var formattedTime = now.format("HH:mm:ss - yy/M/D");
 
   return (
     <div
