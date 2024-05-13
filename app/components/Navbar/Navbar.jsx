@@ -59,7 +59,7 @@ const Navbar = () => {
             <Text
               fontFamily="Sedan SC"
               fontWeight="700"
-              className=" text-#000  text-[28px] max-[800px]:text-[24px] max-[500px]:text-[20px]"
+              className=" text-#000  text-[26px] max-[800px]:text-[24px] max-[500px]:text-[20px]"
             >
               {" "}
               {formattedTime}{" "}
