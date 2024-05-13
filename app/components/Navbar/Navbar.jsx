@@ -36,13 +36,14 @@ const Navbar = () => {
     >
       <div className=" w-[95%]  m-auto">
         <div className="flex items-center justify-between py-4 w-[100%] max-[1200px]:w-[95%] max-[700px]:w-[100%] max-[500px]:justify-between ">
-          <div className="flex items-center gap-3 ">
+          <div className="flex items-center gap-3 cursor-default ">
             <div className="w-[50px] max-[450px]:hidden">
               <img className="w-full rounded-full" src="./logo.png" alt="img" />
             </div>
             <Heading
               as="h4"
               size="sm"
+              // cursor="pointer"
               className="text-#000 max-[500px]:text-[16px]"
             >
               TREND CATCHER{" "}

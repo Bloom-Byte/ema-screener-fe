@@ -19,21 +19,24 @@ const NavModal = ({ isOpen, setIsOpen }) => {
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>TREND CATCHER</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <span>
-              This is trend screener , it shows us current trend along with
+              This is Trend Catcher , it shows us current trend along with
               potential shift in trend based on EMA. Screener also have MH,MM
               and ML which will be refreshed after every Monday close of the
               week.
+              <br></br>
               <br></br>
               Monday range is very crucial and it will help you determine your
               next trade based on this simple yet powerful range. MH - Monday
               Highs MM- Monday Mid ML- Monday Lows You can check the trend for
               various assets and various time frames such as m15, H1, H4, Daily
               and weekly.
-              <br></br>For any queries kindly contact{" "}
+              <br></br>
+              <br></br>
+              For any queries kindly contact{" "}
             </span>
           </ModalBody>
 
