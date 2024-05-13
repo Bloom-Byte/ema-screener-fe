@@ -6,9 +6,11 @@ import { TbLogout2 } from "react-icons/tb";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
+import NavModal from "./Modal";
 
 const Navbar = () => {
   const [currentTime, setCurrentTime] = useState(moment());
+  const [isOpen, setIsOpen] = useState(false);
 
   //useEffect to show current time
   useEffect(() => {
@@ -40,51 +42,42 @@ const Navbar = () => {
             </div>
             <Heading
               as="h4"
-              size="md"
+              size="sm"
               className="text-#000 max-[500px]:text-[16px]"
             >
               TREND CATCHER{" "}
             </Heading>
           </div>
           <div className="flex items-center gap-3 justify-center text-[20px] ">
-            <Text className=" text-#000 max-[600px]:hidden">Current Time </Text>
-            <Text className=" text-#000  max-[800px]:text-[16px] max-[500px]:text-[14px]">
+            <Text
+              fontFamily="Sedan SC"
+              fontWeight="600"
+              className=" text-#000 max-[600px]:hidden"
+            >
+              Current Time:{" "}
+            </Text>
+            <Text
+              fontFamily="Sedan SC"
+              fontWeight="700"
+              className=" text-#000  text-[28px] max-[800px]:text-[24px] max-[500px]:text-[20px]"
+            >
               {" "}
               {formattedTime}{" "}
             </Text>
-            <Text className=" text-#000  max-[600px]:hidden">UTC </Text>
+            <Text
+              fontFamily="Sedan SC"
+              fontWeight="600"
+              className=" text-#000  max-[600px]:hidden"
+            >
+              UTC{" "}
+            </Text>
           </div>
           <div className="flex items-center gap-3 justify-center text-[20px] ">
-            <Tippy
-              placement="bottom"
-              content={
-                <span>
-                  This is trend screener , it shows us current trend along with
-                  potential shift in trend based on EMA. Screener also have
-                  MH,MM and ML which will be refreshed after every Monday close
-                  of the week. Monday range is very crucial and it will help you
-                  determine your next trade based on this simple yet powerful
-                  range. MH - Monday Highs MM- Monday Mid ML- Monday Lows You
-                  can check the trend for various assets and various time frames
-                  such as m15, H1, H4, Daily and weekly. For any queries kindly
-                  contact{" "}
-                </span>
-              }
-              //               content="This is trend screener , it shows us current trend along with potential shift in trend based on EMA.
-
-              // Screener also have MH,MM and ML which will be refreshed after every Monday close of the week.
-
-              // Monday range is very crucial and it will help you determine your next trade based on this simple yet powerful range.
-
-              // MH - Monday Highs
-              // MM- Monday Mid
-              // ML- Monday Lows
-
-              // You can check the trend for various assets and various time frames such as m15, H1, H4, Daily and weekly.
-
-              // For any queries kindly contact "
-            >
-              <span className="text-black cursor-pointer">
+            <Tippy placement="bottom" content="help">
+              <span
+                onClick={() => setIsOpen(true)}
+                className="text-black cursor-pointer"
+              >
                 {" "}
                 <HiOutlineQuestionMarkCircle />
               </span>
@@ -92,6 +85,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      {isOpen ? <NavModal isOpen={isOpen} setIsOpen={setIsOpen} /> : ""}
     </div>
   );
 };

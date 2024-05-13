@@ -4,7 +4,7 @@ How to process, install and get your Next.js app running from GitHub:
 
 # Your Next.js App Name
 
-EMA screener
+Trend Catcher
 
 ## Installation
 
