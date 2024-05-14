@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
-import { Button, Input, Select } from "@chakra-ui/react";
+import { Button, Flex, Input, Select } from "@chakra-ui/react";
 import axios from "axios";
 import { useAppContext } from "@/app/helper/Helpers";
+import { LuFilter } from "react-icons/lu";
+
 const Search = (props) => {
   const { contextValue } = useAppContext();
 
@@ -18,9 +20,13 @@ const Search = (props) => {
   const [emaTwoHundred, setEmaTwoHundred] = useState("");
   const [closeHundred, setCloseHundred] = useState("");
   const [trend, setTrend] = useState("");
+
   //* Function to filter Results
   const filterResults = async () => {
     props.setLoading(true);
+    props.setFilteredCategory([]);
+    props.setFilteredSubCategory([]);
+
     // const token = contextValue.token || localStorage.getItem("token");
     const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
     if (ApiKey) {
@@ -54,6 +60,81 @@ const Search = (props) => {
   useEffect(() => {
     filterResults();
   }, [timeFrame, watchList, emaValue, trend]);
+
+  const filterByCategory = async () => {
+    props.setFilteredSubCategory([]);
+    props.setFilteredResults([]);
+    props.setLoading(true);
+    const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
+    if (ApiKey) {
+      try {
+        await axios({
+          method: "GET",
+          url: `${contextValue.base_url}/currencies/categories`,
+          headers: {
+            "x-API-KEY": ApiKey,
+            "Content-Type": "application/json",
+          },
+        }).then((res) => {
+          props.setFilteredCategory(res.data.data.categories);
+          props.setLoading(false);
+        });
+      } catch (error) {
+        console.log(error);
+        props.setLoading(false);
+      }
+    }
+  };
+
+  const filterBySubCategory = async () => {
+    props.setFilteredCategory([]);
+    props.setFilteredResults([]);
+    props.setLoading(true);
+    const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
+    if (ApiKey) {
+      try {
+        await axios({
+          method: "GET",
+          url: `${contextValue.base_url}/currencies/categories`,
+          headers: {
+            "x-API-KEY": ApiKey,
+            "Content-Type": "application/json",
+          },
+        }).then((res) => {
+          props.setFilteredSubCategory(res.data.data.subcategories);
+          props.setLoading(false);
+        });
+      } catch (error) {
+        console.log(error);
+        props.setLoading(false);
+      }
+    }
+  };
+
+  const getAllCurrencies = async () => {
+    props.setFilteredCategory([]);
+    props.setFilteredSubCategory([]);
+    props.setLoading(true);
+    const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
+    if (ApiKey) {
+      try {
+        await axios({
+          method: "GET",
+          url: `${contextValue.base_url}/ema-records/`,
+          headers: {
+            "x-API-KEY": ApiKey,
+            "Content-Type": "application/json",
+          },
+        }).then((res) => {
+          props.setFilteredResults(res.data.results);
+          props.setLoadingg(false);
+        });
+      } catch (error) {
+        console.log(error);
+        props.setLoading(false);
+      }
+    }
+  };
 
   return (
     <div className="my-[30px]">
@@ -213,6 +294,37 @@ const Search = (props) => {
             </span>
           </Tippy>
         </div>
+
+        <Flex my="10px" alignItems="center" gap="15px">
+          <Button
+            onClick={filterByCategory}
+            bgColor="#F4A608"
+            color="#fff"
+            colorScheme
+            className="rounded-[6px]"
+            opacity={props.filteredCategory?.length > 0 ? 0.7 : 1}
+          >
+            Category{" "}
+          </Button>
+          <Button
+            onClick={filterBySubCategory}
+            bgColor="#F4A608"
+            color="#fff"
+            colorScheme
+            className="rounded-[6px]"
+            opacity={props.filteredSubCategory?.length > 0 ? 0.7 : 1}
+          >
+            Sub-Category{" "}
+          </Button>
+          <span
+            onClick={getAllCurrencies}
+            style={{ opacity: props.filteredResults?.length > 0 ? 0.7 : 1 }}
+            className="text-white cursor-pointer"
+          >
+            {<LuFilter color="white" cursor="pointer" />}{" "}
+          </span>
+        </Flex>
+
         <div
           style={{ color: "#fff" }}
           className="flex items-center gap-3 flex-wrap"

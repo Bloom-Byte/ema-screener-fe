@@ -52,10 +52,10 @@ const Navbar = () => {
           <div className="flex items-center gap-3 justify-center text-[20px] ">
             <Text
               fontFamily="Sedan SC"
-              fontWeight="600"
-              className=" text-#000 max-[600px]:hidden"
+              fontWeight="700"
+              className=" text-#000  max-[800px]:text-[18px]  max-[700px]:hidden"
             >
-              Current Time:{" "}
+              CURRENT TIME:{" "}
             </Text>
             <Text
               fontFamily="Sedan SC"
@@ -67,8 +67,8 @@ const Navbar = () => {
             </Text>
             <Text
               fontFamily="Sedan SC"
-              fontWeight="600"
-              className=" text-#000  max-[600px]:hidden"
+              fontWeight="700"
+              className=" text-#000  max-[800px]:text-[18px] max-[500px]:hidden"
             >
               UTC{" "}
             </Text>

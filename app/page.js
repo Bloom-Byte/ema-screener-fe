@@ -14,6 +14,8 @@ export default function Home() {
   const [allEmaRecords, setAllEmaRecords] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filteredResults, setFilteredResults] = useState([]);
+  const [filteredCategory, setFilteredCategory] = useState();
+  const [filteredSubCategory, setFilteredSubCategory] = useState();
 
   const handlePageClick = (page) => {
     setCurrentPage(page);
@@ -133,12 +135,18 @@ export default function Home() {
           setAllEmaRecords={setAllEmaRecords}
           setFilteredResults={setFilteredResults}
           filteredResults={currentPosts}
+          setFilteredCategory={setFilteredCategory}
+          setFilteredSubCategory={setFilteredSubCategory}
+          filteredCategory={filteredCategory}
+          filteredSubCategory={filteredSubCategory}
         />
         <Tabled
           allEmaRecords={allEmaRecords}
           setAllEmaRecords={setAllEmaRecords}
           filteredResults={currentPosts}
           loading={loading}
+          filteredCategory={filteredCategory}
+          filteredSubCategory={filteredSubCategory}
         />
         {filteredResults.length > 1 ? (
           <Paginate

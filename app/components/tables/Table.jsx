@@ -46,30 +46,95 @@ const Tabled = (props) => {
             colorScheme="gold"
             color="black"
           >
-            {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
-            <Thead>
-              <Tr backgroundColor="white">
-                <Th textAlign="center">Symbol</Th>
-                
-                <Th textAlign="center">Category</Th>
-                <Th textAlign="center">Sub Category</Th>
-                <Th textAlign="center">Live Price</Th>
-                <Th textAlign="center">Current Trend</Th>
+            {/* <TableCaption>Trend Catcher Trend Table</TableCaption> */}
+            {props.filteredCategory?.length > 0 ? (
+              <Thead>
+                <Tr>
+                  <Th textAlign="center">S/N </Th>
+                  <Th textAlign="center">Categories </Th>
+                </Tr>
+              </Thead>
+            ) : props.filteredSubCategory?.length > 0 ? (
+              <Thead>
+                <Tr>
+                  <Th textAlign="center">S/N </Th>
+                  <Th textAlign="center">SubCategories </Th>
+                </Tr>
+              </Thead>
+            ) : (
+              <Thead>
+                <Tr backgroundColor="white">
+                  <Th textAlign="center">Symbol</Th>
 
-                <Th textAlign="center">MH</Th>
-                <Th textAlign="center">MM</Th>
-                <Th textAlign="center">ML</Th>
-                <Th textAlign="center">EMA 20</Th>
-                <Th textAlign="center">EMA 50</Th>
-                <Th textAlign="center">EMA 100</Th>
-                <Th textAlign="center">EMA 200</Th>
-                <Th textAlign="center">Traffic Indicator</Th>
+                  <Th textAlign="center">Category</Th>
+                  <Th textAlign="center">Sub Category</Th>
+                  <Th textAlign="center">Live Price</Th>
+                  <Th textAlign="center">Current Trend</Th>
 
-                <Th textAlign="center">Probable Trend</Th>
-                <Th textAlign="center">Exchange</Th>
+                  <Th textAlign="center">MH</Th>
+                  <Th textAlign="center">MM</Th>
+                  <Th textAlign="center">ML</Th>
+                  <Th textAlign="center">EMA 20</Th>
+                  <Th textAlign="center">EMA 50</Th>
+                  <Th textAlign="center">EMA 100</Th>
+                  <Th textAlign="center">EMA 200</Th>
+                  <Th textAlign="center">Traffic Indicator</Th>
+
+                  <Th textAlign="center">Probable Trend</Th>
+                  <Th textAlign="center">Exchange</Th>
+                </Tr>
+              </Thead>
+            )}
+            {!props.loading ? (
+              props.filteredCategory?.length > 0 ? (
+                <Tbody>
+                  {props.filteredCategory.map((category, index) => {
+                    return (
+                      <Category
+                        key={index}
+                        index={index + 1}
+                        category={category}
+                      />
+                    );
+                  })}
+                </Tbody>
+              ) : props.filteredSubCategory?.length ? (
+                <Tbody>
+                  {props.filteredSubCategory.map((subCategory, index) => {
+                    return (
+                      <SubCategory
+                        key={index}
+                        index={index + 1}
+                        subCategory={subCategory}
+                      />
+                    );
+                  })}
+                </Tbody>
+              ) : props.filteredResults.length > 0 ? (
+                <Tbody>
+                  {props.filteredResults.map((emaRecords, index) => {
+                    return (
+                      <SingleRecord
+                        key={index + 1}
+                        index={index + 1}
+                        emaRecords={emaRecords}
+                      />
+                    );
+                  })}
+                </Tbody>
+              ) : (
+                <Tbody>
+                  <Tr>
+                    <Td colSpan={20}>Nothing to be seen</Td>
+                  </Tr>
+                </Tbody>
+              )
+            ) : (
+              <Tr>
+                <Td colSpan={20}>Loading...</Td>
               </Tr>
-            </Thead>
-            <Tbody>
+            )}
+            {/* <Tbody>
               {!props.loading ? (
                 props.filteredResults.length > 0 ? (
                   props.filteredResults.map((emaRecords, index) => {
@@ -91,11 +156,29 @@ const Tabled = (props) => {
                   <Td colSpan={20}>Loading...</Td>
                 </Tr>
               )}
-            </Tbody>
+            </Tbody> */}
           </Table>
         </TableContainer>
       )}
     </div>
+  );
+};
+
+const Category = ({ category, index }) => {
+  return (
+    <Tr>
+      <Td textAlign="center">{index}</Td>
+      <Td textAlign="center">{category}</Td>
+    </Tr>
+  );
+};
+
+const SubCategory = ({ subCategory, index }) => {
+  return (
+    <Tr>
+      <Td textAlign="center">{index}</Td>
+      <Td textAlign="center">{subCategory}</Td>
+    </Tr>
   );
 };
 

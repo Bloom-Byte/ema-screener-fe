@@ -107,18 +107,18 @@ const page = () => {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
         setLoaded={setLoaded}
-        setFilteredCategory={setFilteredCategory}
-        setFilteredSubCategory={setFilteredSubCategory}
-        filteredCategory={filteredCategory}
-        filteredSubCategory={filteredSubCategory}
+        // setFilteredCategory={setFilteredCategory}
+        // setFilteredSubCategory={setFilteredSubCategory}
+        // filteredCategory={filteredCategory}
+        // filteredSubCategory={filteredSubCategory}
       />
       <SeeAllCategories
         emaCurrencies={currentPosts}
         setEmaCurrencies={setEmaCurrencies}
         loaded={loaded}
         setLoaded={setLoaded}
-        filteredCategory={filteredCategory}
-        filteredSubCategory={filteredSubCategory}
+        // filteredCategory={filteredCategory}
+        // filteredSubCategory={filteredSubCategory}
       />
       {emaCurrencies.length > 0 ? (
         <Paginate
