@@ -386,6 +386,7 @@ const Search = (props) => {
                         setEmaTwoHundred={setEmaTwoHundred}
                         setCloseHundred={setCloseHundred}
                         setTrend={setTrend}
+                        setTimeFrame={setTimeFrame}
                       />
                     ))
                   ) : (
@@ -458,6 +459,7 @@ const Search = (props) => {
                         setEmaTwoHundred={setEmaTwoHundred}
                         setCloseHundred={setCloseHundred}
                         setTrend={setTrend}
+                        setTimeFrame={setTimeFrame}
                       />
                     ))
                   ) : (
@@ -627,7 +629,6 @@ const Category = (props) => {
         props.setSelectedCategory(props.category.category);
         props.setSelectedSubCategory("");
         props.setModalState(false);
-        // props.setFilteredCategory([]);
         props.setTrend("");
         props.setEmaHundred("");
         props.setEmaValue("");
@@ -639,6 +640,7 @@ const Category = (props) => {
         props.setWatchList("");
       }}
       cursor="pointer"
+      my="5px"
     >
       {props.category.category}
     </Box>
@@ -652,7 +654,6 @@ const SubCategory = (props) => {
         props.setSelectedSubCategory(props.subCategory.name);
         props.setSelectedCategory("");
         props.setCloseSubCategoryModal(false);
-        // props.setFilteredSubCategory([]);
         props.setTrend("");
         props.setEmaHundred("");
         props.setEmaValue("");
