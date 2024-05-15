@@ -2,7 +2,27 @@ import React, { useEffect, useState } from "react";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
-import { Button, Flex, Input, Select } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Input,
+  Modal,
+  ModalBody,
+  ModalContent,
+  Select,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
+  Checkbox,
+} from "@chakra-ui/react";
+
 import axios from "axios";
 import { useAppContext } from "@/app/helper/Helpers";
 import { LuFilter } from "react-icons/lu";
@@ -20,6 +40,11 @@ const Search = (props) => {
   const [emaTwoHundred, setEmaTwoHundred] = useState("");
   const [closeHundred, setCloseHundred] = useState("");
   const [trend, setTrend] = useState("");
+  const [modalState, setModalState] = useState(false); //State to control the modal if it shoes or not
+  const [closeSubCategoryModal, setCloseSubCategoryModal] = useState(false); //State to show the modal for the subCategory if it shows or not
+  const [selectedCategory, setSelectedCategory] = useState(""); //state to get the name of the category that was selected
+  const [selectedSubCategory, setSelectedSubCategory] = useState(""); //State to get the subCategory that was selected
+  const [getCategoryError, setGetCategoryError] = useState(false); //State to show if there is an error
 
   //* Function to filter Results
   const filterResults = async () => {
@@ -35,7 +60,7 @@ const Search = (props) => {
 
         await axios({
           method: "GET",
-          url: `${contextValue.base_url}/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&${closeHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}`,
+          url: `${contextValue.base_url}/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&${closeHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}&category=${selectedCategory}&subcategory=${selectedSubCategory}`,
           headers: {
             "x-API-KEY": ApiKey,
             "Content-Type": "application/json",
@@ -59,54 +84,80 @@ const Search = (props) => {
 
   useEffect(() => {
     filterResults();
-  }, [timeFrame, watchList, emaValue, trend]);
+  }, [
+    timeFrame,
+    watchList,
+    emaValue,
+    trend,
+    selectedCategory,
+    selectedSubCategory,
+  ]);
 
   const filterByCategory = async () => {
-    props.setFilteredSubCategory([]);
-    props.setFilteredResults([]);
-    props.setLoading(true);
-    const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
-    if (ApiKey) {
-      try {
-        await axios({
+    try {
+      // props.setFilteredSubCategory([]);
+      setModalState(true);
+
+      const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
+      if (ApiKey) {
+        const response = await axios({
           method: "GET",
           url: `${contextValue.base_url}/currencies/categories`,
           headers: {
             "x-API-KEY": ApiKey,
             "Content-Type": "application/json",
           },
-        }).then((res) => {
-          props.setFilteredCategory(res.data.data.categories);
-          props.setLoading(false);
         });
-      } catch (error) {
-        console.log(error);
-        props.setLoading(false);
+
+        if (response.status == 200) {
+          const allCategories = response.data.data.categories.map(
+            (category, index) => ({
+              id: index + 1,
+              category,
+            })
+          );
+          props.setFilteredCategory(allCategories);
+        } else {
+          console.log("Error retrieving Categories has occurred");
+          setGetCategoryError(true);
+        }
       }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const filterBySubCategory = async () => {
-    props.setFilteredCategory([]);
-    props.setFilteredResults([]);
-    props.setLoading(true);
+    // props.setFilteredCategory([]);
+    // props.setFilteredResults([]);
+    // props.setLoading(true);
     const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
+    setCloseSubCategoryModal(true);
     if (ApiKey) {
       try {
-        await axios({
+        const response = await axios({
           method: "GET",
           url: `${contextValue.base_url}/currencies/categories`,
           headers: {
             "x-API-KEY": ApiKey,
             "Content-Type": "application/json",
           },
-        }).then((res) => {
-          props.setFilteredSubCategory(res.data.data.subcategories);
-          props.setLoading(false);
         });
+
+        if (response.status == 200) {
+          const allSubCategories = response.data.data.subcategories.map(
+            (subCategory, index) => ({
+              id: index + 1,
+              name: subCategory,
+            })
+          );
+          props.setFilteredSubCategory(allSubCategories);
+        } else {
+          console.log("error retrieving sub Categories");
+        }
       } catch (error) {
         console.log(error);
-        props.setLoading(false);
+        // props.setLoading(false);
       }
     }
   };
@@ -114,7 +165,7 @@ const Search = (props) => {
   const getAllCurrencies = async () => {
     props.setFilteredCategory([]);
     props.setFilteredSubCategory([]);
-    props.setLoading(true);
+    // props.setLoading(true);
     const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
     if (ApiKey) {
       try {
@@ -127,11 +178,11 @@ const Search = (props) => {
           },
         }).then((res) => {
           props.setFilteredResults(res.data.results);
-          props.setLoadingg(false);
+          // props.setLoading(false);
         });
       } catch (error) {
         console.log(error);
-        props.setLoading(false);
+        // props.setLoading(false);
       }
     }
   };
@@ -296,26 +347,151 @@ const Search = (props) => {
         </div>
 
         <Flex my="10px" alignItems="center" gap="15px">
-          <Button
-            onClick={filterByCategory}
-            bgColor="#F4A608"
-            color="#fff"
-            colorScheme
-            className="rounded-[6px]"
-            opacity={props.filteredCategory?.length > 0 ? 0.7 : 1}
-          >
-            Category{" "}
-          </Button>
-          <Button
-            onClick={filterBySubCategory}
-            bgColor="#F4A608"
-            color="#fff"
-            colorScheme
-            className="rounded-[6px]"
-            opacity={props.filteredSubCategory?.length > 0 ? 0.7 : 1}
-          >
-            Sub-Category{" "}
-          </Button>
+          <Popover isLazy>
+            <PopoverTrigger>
+              <Button
+                onClick={filterByCategory}
+                bgColor="#F4A608"
+                color="#fff"
+                colorScheme
+                className="rounded-[6px]"
+                opacity={props.filteredCategory?.length > 0 ? 0.7 : 1}
+              >
+                Category
+              </Button>
+            </PopoverTrigger>
+            {modalState && (
+              <PopoverContent>
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverBody>
+                  {getCategoryError ? (
+                    <Box color="red">Error getting Categories</Box>
+                  ) : props.filteredCategory?.length > 0 ? (
+                    props.filteredCategory?.map((category) => (
+                      <Category
+                        key={category.id}
+                        category={category}
+                        filterByCategory={props.filteredCategory}
+                        selectedCategory={selectedCategory}
+                        setSelectedCategory={setSelectedCategory}
+                        setSelectedSubCategory={setSelectedSubCategory}
+                        setModalState={setModalState}
+                        setCurrency={setCurrency}
+                        setWatchList={setWatchList}
+                        setEmaValue={setEmaValue}
+                        setEmaTwenty={setEmaTwenty}
+                        setEmaFifty={setEmaFifty}
+                        setEmaHundred={setEmaHundred}
+                        setEmaTwoHundred={setEmaTwoHundred}
+                        setCloseHundred={setCloseHundred}
+                        setTrend={setTrend}
+                      />
+                    ))
+                  ) : (
+                    <Box
+                      w="100%"
+                      minW="100%"
+                      maxW="100%"
+                      m="0 auto"
+                      textAlign="center"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        role="status"
+                        className="inline w-4 h-4 me-3 text-[#525355] animate-spin"
+                        viewBox="0 0 100 101"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                          fill="#E5E7EB"
+                        />
+                        <path
+                          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </Box>
+                  )}
+                </PopoverBody>
+              </PopoverContent>
+            )}
+          </Popover>
+
+          <Popover isLazy>
+            <PopoverTrigger>
+              <Button
+                onClick={filterBySubCategory}
+                bgColor="#F4A608"
+                color="#fff"
+                colorScheme
+                className="rounded-[6px]"
+                opacity={props.filteredSubCategory?.length > 0 ? 0.7 : 1}
+              >
+                Sub Category
+              </Button>
+            </PopoverTrigger>
+            {closeSubCategoryModal && (
+              <PopoverContent>
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverBody>
+                  {props.filteredSubCategory?.length > 0 ? (
+                    props.filteredSubCategory?.map((subCategory) => (
+                      <SubCategory
+                        key={subCategory.id}
+                        subCategory={subCategory}
+                        filteredSubCategory={props.filteredSubCategory}
+                        setFilteredSubCategory={props.setFilteredSubCategory}
+                        setSelectedSubCategory={setSelectedSubCategory}
+                        setSelectedCategory={setSelectedCategory}
+                        setCloseSubCategoryModal={setCloseSubCategoryModal}
+                        setTimeFrame
+                        setCurrency={setCurrency}
+                        setWatchList={setWatchList}
+                        setEmaValue={setEmaValue}
+                        setEmaTwenty={setEmaTwenty}
+                        setEmaFifty={setEmaFifty}
+                        setEmaHundred={setEmaHundred}
+                        setEmaTwoHundred={setEmaTwoHundred}
+                        setCloseHundred={setCloseHundred}
+                        setTrend={setTrend}
+                      />
+                    ))
+                  ) : (
+                    <Box
+                      w="100%"
+                      minW="100%"
+                      maxW="100%"
+                      m="0 auto"
+                      textAlign="center"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        role="status"
+                        className="inline w-4 h-4 me-3 text-[#525355] animate-spin"
+                        viewBox="0 0 100 101"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                          fill="#E5E7EB"
+                        />
+                        <path
+                          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </Box>
+                  )}
+                </PopoverBody>
+              </PopoverContent>
+            )}
+          </Popover>
+
           <span
             onClick={getAllCurrencies}
             style={{ opacity: props.filteredResults?.length > 0 ? 0.7 : 1 }}
@@ -441,6 +617,56 @@ const Search = (props) => {
         </div>
       </div>
     </div>
+  );
+};
+
+const Category = (props) => {
+  return (
+    <Box
+      onClick={() => {
+        props.setSelectedCategory(props.category.category);
+        props.setSelectedSubCategory("");
+        props.setModalState(false);
+        // props.setFilteredCategory([]);
+        props.setTrend("");
+        props.setEmaHundred("");
+        props.setEmaValue("");
+        props.setEmaTwenty("");
+        props.setEmaFifty("");
+        props.setEmaTwoHundred("");
+        props.setCurrency("");
+        props.setTimeFrame("");
+        props.setWatchList("");
+      }}
+      cursor="pointer"
+    >
+      {props.category.category}
+    </Box>
+  );
+};
+
+const SubCategory = (props) => {
+  return (
+    <Box
+      onClick={() => {
+        props.setSelectedSubCategory(props.subCategory.name);
+        props.setSelectedCategory("");
+        props.setCloseSubCategoryModal(false);
+        // props.setFilteredSubCategory([]);
+        props.setTrend("");
+        props.setEmaHundred("");
+        props.setEmaValue("");
+        props.setEmaTwenty("");
+        props.setEmaFifty("");
+        props.setEmaTwoHundred("");
+        props.setCurrency("");
+        props.setTimeFrame("");
+        props.setWatchList("");
+      }}
+      cursor="pointer"
+    >
+      {props.subCategory.name}
+    </Box>
   );
 };
 

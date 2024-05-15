@@ -47,21 +47,7 @@ const Tabled = (props) => {
             color="black"
           >
             {/* <TableCaption>Trend Catcher Trend Table</TableCaption> */}
-            {props.filteredCategory?.length > 0 ? (
-              <Thead>
-                <Tr>
-                  <Th textAlign="center">S/N </Th>
-                  <Th textAlign="center">Categories </Th>
-                </Tr>
-              </Thead>
-            ) : props.filteredSubCategory?.length > 0 ? (
-              <Thead>
-                <Tr>
-                  <Th textAlign="center">S/N </Th>
-                  <Th textAlign="center">SubCategories </Th>
-                </Tr>
-              </Thead>
-            ) : (
+            {
               <Thead>
                 <Tr backgroundColor="white">
                   <Th textAlign="center">Symbol</Th>
@@ -84,8 +70,8 @@ const Tabled = (props) => {
                   <Th textAlign="center">Exchange</Th>
                 </Tr>
               </Thead>
-            )}
-            {!props.loading ? (
+            }
+            {/* {!props.loading ? (
               props.filteredCategory?.length > 0 ? (
                 <Tbody>
                   {props.filteredCategory.map((category, index) => {
@@ -133,8 +119,8 @@ const Tabled = (props) => {
               <Tr>
                 <Td colSpan={20}>Loading...</Td>
               </Tr>
-            )}
-            {/* <Tbody>
+            )} */}
+            <Tbody>
               {!props.loading ? (
                 props.filteredResults.length > 0 ? (
                   props.filteredResults.map((emaRecords, index) => {
@@ -156,7 +142,7 @@ const Tabled = (props) => {
                   <Td colSpan={20}>Loading...</Td>
                 </Tr>
               )}
-            </Tbody> */}
+            </Tbody>
           </Table>
         </TableContainer>
       )}
@@ -173,13 +159,13 @@ const Category = ({ category, index }) => {
   );
 };
 
-const SubCategory = ({ subCategory, index }) => {
-  return (
-    <Tr>
-      <Td textAlign="center">{index}</Td>
-      <Td textAlign="center">{subCategory}</Td>
-    </Tr>
-  );
-};
+// const SubCategory = ({ subCategory, index }) => {
+//   return (
+//     <Tr>
+//       <Td textAlign="center">{index}</Td>
+//       <Td textAlign="center">{subCategory}</Td>
+//     </Tr>
+//   );
+// };
 
 export default Tabled;

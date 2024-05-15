@@ -1,4 +1,4 @@
-import { Td, Tr } from "@chakra-ui/react";
+import { Flex, Td, Tr } from "@chakra-ui/react";
 import moment from "moment";
 import React from "react";
 import {
@@ -14,7 +14,7 @@ const SingleRecord = (props) => {
   return (
     <Tr>
       <Td textAlign="center">{props.emaRecords.currency?.symbol}</Td>
-      
+
       <Td textAlign="center">{props.emaRecords.currency?.category}</Td>
       <Td textAlign="center">{props.emaRecords.currency?.subcategory}</Td>
       <Td textAlign="center">{props.emaRecords?.close}</Td>
@@ -72,119 +72,45 @@ const SingleRecord = (props) => {
       <Td textAlign="center">{props.emaRecords["ema50"]}</Td>
       <Td textAlign="center">{props.emaRecords["ema100"]}</Td>
       <Td textAlign="center">{props.emaRecords["ema200"]}</Td>
-      <Td display="flex" gap="5px" textAlign="center">
-        {props.emaRecords["20>50"] == true ? (
-          <span
-            style={{
-              textAlign: "center",
-              margin: "0 auto",
-            }}
-          >
-            <BsCircleFill
-              style={{ textAlign: "center", margin: "0 auto" }}
-              color="#66FF00"
-            />
-          </span>
-        ) : (
-          <span
-            style={{
-              textAlign: "center",
-              margin: "0 auto",
-            }}
-          >
-            <BsCircleFill
-              style={{
-                textAlign: "center",
-                margin: "0 auto",
-              }}
-              color="#FF3131"
-            />
-          </span>
-        )}
-        {props.emaRecords["50>100"] == true ? (
-          <span
-            style={{
-              textAlign: "center",
-              margin: "0 auto",
-            }}
-          >
-            <BsCircleFill
-              style={{ textAlign: "center", margin: "0 auto" }}
-              color="#66FF00"
-            />
-          </span>
-        ) : (
-          <span
-            style={{
-              textAlign: "center",
-              margin: "0 auto",
-            }}
-          >
-            <BsCircleFill
-              style={{
-                textAlign: "center",
-                margin: "0 auto",
-              }}
-              color="#FF3131"
-            />
-          </span>
-        )}
-        {props.emaRecords["100>200"] == true ? (
-          <span
-            style={{
-              textAlign: "center",
-              margin: "0 auto",
-            }}
-          >
-            <BsCircleFill
-              style={{ textAlign: "center", margin: "0 auto" }}
-              color="#66FF00"
-            />
-          </span>
-        ) : (
-          <span
-            style={{
-              textAlign: "center",
-              margin: "0 auto",
-            }}
-          >
-            <BsCircleFill
-              style={{
-                textAlign: "center",
-                margin: "0 auto",
-              }}
-              color="#FF3131"
-            />
-          </span>
-        )}
-        {props.emaRecords["close>100"] == true ? (
-          <span
-            style={{
-              textAlign: "center",
-              margin: "0 auto",
-            }}
-          >
-            <BsCircleFill
-              style={{ textAlign: "center", margin: "0 auto" }}
-              color="#66FF00"
-            />
-          </span>
-        ) : (
-          <span
-            style={{
-              textAlign: "center",
-              margin: "0 auto",
-            }}
-          >
-            <BsCircleFill
-              style={{
-                textAlign: "center",
-                margin: "0 auto",
-              }}
-              color="#FF3131"
-            />
-          </span>
-        )}
+      <Td textAlign="center">
+        <Flex alignItems="center" justifyContent="center" gap="20px">
+          {props.emaRecords["20>50"] == true ? (
+            <span>
+              <BsCircleFill color="#66FF00" />
+            </span>
+          ) : (
+            <span>
+              <BsCircleFill color="#FF3131" />
+            </span>
+          )}
+          {props.emaRecords["50>100"] == true ? (
+            <span>
+              <BsCircleFill color="#66FF00" />
+            </span>
+          ) : (
+            <span>
+              <BsCircleFill color="#FF3131" />
+            </span>
+          )}
+          {props.emaRecords["100>200"] == true ? (
+            <span>
+              <BsCircleFill color="#66FF00" />
+            </span>
+          ) : (
+            <span>
+              <BsCircleFill color="#FF3131" />
+            </span>
+          )}
+          {props.emaRecords["close>100"] == true ? (
+            <span>
+              <BsCircleFill color="#66FF00" />
+            </span>
+          ) : (
+            <span>
+              <BsCircleFill color="#FF3131" />
+            </span>
+          )}
+        </Flex>
       </Td>
 
       <Td textAlign="center">
