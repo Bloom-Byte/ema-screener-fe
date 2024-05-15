@@ -665,6 +665,7 @@ const SubCategory = (props) => {
         props.setWatchList("");
       }}
       cursor="pointer"
+      my="5px"
     >
       {props.subCategory.name}
     </Box>
