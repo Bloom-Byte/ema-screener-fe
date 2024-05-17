@@ -449,7 +449,6 @@ const Search = (props) => {
                         setSelectedSubCategory={setSelectedSubCategory}
                         setSelectedCategory={setSelectedCategory}
                         setCloseSubCategoryModal={setCloseSubCategoryModal}
-                        setTimeFrame
                         setCurrency={setCurrency}
                         setWatchList={setWatchList}
                         setEmaValue={setEmaValue}
