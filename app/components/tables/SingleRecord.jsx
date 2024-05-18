@@ -22,20 +22,17 @@ const SingleRecord = (props) => {
 
       <Td textAlign="center">
         {props.emaRecords?.trend == 1 ? (
-          ((
-            <span
-              style={{
-                textAlign: "center",
-                margin: "0 auto",
-              }}
-            >
-              <BsGraphUpArrow
-                style={{ textAlign: "center", margin: "0 auto" }}
-                color="green"
-              />
-            </span>
-          ),
-          m)
+          <span
+            style={{
+              textAlign: "center",
+              margin: "0 auto",
+            }}
+          >
+            <BsGraphUpArrow
+              style={{ textAlign: "center", margin: "0 auto" }}
+              color="green"
+            />
+          </span>
         ) : props.emaRecords?.trend == -1 ? (
           <span
             style={{
@@ -52,8 +49,14 @@ const SingleRecord = (props) => {
             />
           </span>
         ) : (
-          <div style={{ textAlign: "center", margin: "0 auto" }}>
-            <Image src="./sideways_img.jpg" alt="img" />
+          <div style={{ margin: "0 auto" }}>
+            <Image
+              width={20}
+              height={20}
+              style={{ margin: "0 auto" }}
+              src="/sideways_img.jpg"
+              alt="img"
+            />
           </div>
           // <span
           //   style={{
