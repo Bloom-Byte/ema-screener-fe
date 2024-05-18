@@ -242,6 +242,18 @@ const Search = (props) => {
                 setTrend("");
                 setCloseHundred("");
               }}
+              onTouchEnd={(e) => {
+                setWatchList(e.target.value);
+                setEmaFifty("");
+                setEmaValue("");
+                setEmaTwenty("");
+                setEmaHundred("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTimeFrame("");
+                setTrend("");
+                setCloseHundred("");
+              }}
               cursor="pointer"
               placeholder="Select option"
             >
