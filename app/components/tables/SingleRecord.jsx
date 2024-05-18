@@ -1,5 +1,6 @@
 import { Flex, Td, Tr } from "@chakra-ui/react";
 import moment from "moment";
+import Image from "next/image";
 import React from "react";
 import {
   BsCircleFill,
@@ -21,17 +22,20 @@ const SingleRecord = (props) => {
 
       <Td textAlign="center">
         {props.emaRecords?.trend == 1 ? (
-          <span
-            style={{
-              textAlign: "center",
-              margin: "0 auto",
-            }}
-          >
-            <BsGraphUpArrow
-              style={{ textAlign: "center", margin: "0 auto" }}
-              color="green"
-            />
-          </span>
+          ((
+            <span
+              style={{
+                textAlign: "center",
+                margin: "0 auto",
+              }}
+            >
+              <BsGraphUpArrow
+                style={{ textAlign: "center", margin: "0 auto" }}
+                color="green"
+              />
+            </span>
+          ),
+          m)
         ) : props.emaRecords?.trend == -1 ? (
           <span
             style={{
@@ -48,20 +52,23 @@ const SingleRecord = (props) => {
             />
           </span>
         ) : (
-          <span
-            style={{
-              textAlign: "center",
-              margin: "0 auto",
-            }}
-          >
-            <BsDash
-              style={{
-                textAlign: "center",
-                margin: "0 auto",
-              }}
-              color="white"
-            />
-          </span>
+          <div style={{ textAlign: "center", margin: "0 auto" }}>
+            <Image src="./sideways_img.jpg" alt="img" />
+          </div>
+          // <span
+          //   style={{
+          //     textAlign: "center",
+          //     margin: "0 auto",
+          //   }}
+          // >
+          //   <BsDash
+          //     style={{
+          //       textAlign: "center",
+          //       margin: "0 auto",
+          //     }}
+          //     color="white"
+          //   />
+          // </span>
         )}
       </Td>
 

@@ -31,7 +31,7 @@ export default function Home() {
       const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
 
       if (ApiKey) {
-        const wsUrl = `wss://be.emascreener.bloombyte.dev/ws/ema-records/?api_key=${ApiKey}`;
+        const wsUrl = `${process.env.NEXT_PUBLIC_SOCKET_URL}/ema-records/?api_key=${ApiKey}`;
 
         try {
           socket = new WebSocket(wsUrl);

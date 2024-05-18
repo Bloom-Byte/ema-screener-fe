@@ -58,23 +58,24 @@ const Search = (props) => {
       try {
         // console.log(watchList, "watchlist");
 
-        await axios({
+        const response = await axios({
           method: "GET",
           url: `${contextValue.base_url}/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&${closeHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}&category=${selectedCategory}&subcategory=${selectedSubCategory}`,
           headers: {
             "x-API-KEY": ApiKey,
             "Content-Type": "application/json",
           },
-        })
-          .then((res) => {
-            // console.log(res.data.results);
-            props.setFilteredResults(res.data.results);
-            props.setLoading(false);
-          })
-          .catch((err) => {
-            console.log(err);
-            props.setLoading(false);
-          });
+        });
+
+        if (response.status == 200) {
+          console.log(response);
+          props.setFilteredResults(response.data.results);
+          props.setLoading(false);
+        } else {
+          console.log("An error has occurred");
+          props.setLoading(false);
+        }
+        // console.log(resonse, "I am response");
       } catch (error) {
         console.log(error);
         props.setLoading(false);
