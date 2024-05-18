@@ -96,7 +96,6 @@ const Search = (props) => {
 
   const filterByCategory = async () => {
     try {
-      // props.setFilteredSubCategory([]);
       setModalState(true);
 
       const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -129,9 +128,6 @@ const Search = (props) => {
   };
 
   const filterBySubCategory = async () => {
-    // props.setFilteredCategory([]);
-    // props.setFilteredResults([]);
-    // props.setLoading(true);
     const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
     setCloseSubCategoryModal(true);
     if (ApiKey) {
@@ -166,7 +162,7 @@ const Search = (props) => {
   const getAllCurrencies = async () => {
     props.setFilteredCategory([]);
     props.setFilteredSubCategory([]);
-    // props.setLoading(true);
+    props.setLoading(true);
     const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
     if (ApiKey) {
       try {
@@ -179,11 +175,11 @@ const Search = (props) => {
           },
         }).then((res) => {
           props.setFilteredResults(res.data.results);
-          // props.setLoading(false);
+          props.setLoading(false);
         });
       } catch (error) {
         console.log(error);
-        // props.setLoading(false);
+        props.setLoading(false);
       }
     }
   };
