@@ -510,7 +510,7 @@ const Search = (props) => {
           <Tippy content="Filter by 15 minutes" placement="bottom">
             <Button
               onClick={() => {
-                setTimeFrame("00:00:15");
+                setTimeFrame("00:15:00");
                 setEmaHundred("");
                 setEmaValue("");
                 setEmaTwenty("");
@@ -522,7 +522,7 @@ const Search = (props) => {
               }}
               colorScheme
               bgColor="#F4A608"
-              opacity={timeFrame == "00:00:15" ? 0.5 : 1}
+              opacity={timeFrame == "00:15:00" ? 0.5 : 1}
               color="#fff"
             >
               15min{" "}
