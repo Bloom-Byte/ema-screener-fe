@@ -32,7 +32,7 @@ const Search = (props) => {
 
   const [timeFrame, setTimeFrame] = useState("");
   const [currency, setCurrency] = useState("");
-  const [watchList, setWatchList] = useState("");
+  // const [watchList, props.setWatchList] = useState("");
   const [emaValue, setEmaValue] = useState("");
   const [emaTwenty, setEmaTwenty] = useState("");
   const [emaFifty, setEmaFifty] = useState("");
@@ -60,7 +60,7 @@ const Search = (props) => {
 
         const response = await axios({
           method: "GET",
-          url: `${contextValue.base_url}/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&${closeHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}&category=${selectedCategory}&subcategory=${selectedSubCategory}`,
+          url: `${contextValue.base_url}/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&${closeHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${props.watchList}&timeframe=${timeFrame}&category=${selectedCategory}&subcategory=${selectedSubCategory}`,
           headers: {
             "x-API-KEY": ApiKey,
             "Content-Type": "application/json",
@@ -87,7 +87,7 @@ const Search = (props) => {
     filterResults();
   }, [
     timeFrame,
-    watchList,
+    props.watchList,
     emaValue,
     trend,
     selectedCategory,
@@ -159,6 +159,8 @@ const Search = (props) => {
     }
   };
 
+  console.log(props.watchList, "watchlist");
+
   const getAllCurrencies = async () => {
     props.setFilteredCategory([]);
     props.setFilteredSubCategory([]);
@@ -227,7 +229,19 @@ const Search = (props) => {
               m="0"
               maxW="220px"
               onClick={(e) => {
-                setWatchList(e.target.value);
+                props.setWatchList(e.target.value);
+                setEmaFifty("");
+                setEmaValue("");
+                setEmaTwenty("");
+                setEmaHundred("");
+                setEmaTwoHundred("");
+                setCurrency("");
+                setTimeFrame("");
+                setTrend("");
+                setCloseHundred("");
+              }}
+              onTouchStartCapture={(e) => {
+                props.setWatchList(e.target.value);
                 setEmaFifty("");
                 setEmaValue("");
                 setEmaTwenty("");
@@ -239,7 +253,7 @@ const Search = (props) => {
                 setCloseHundred("");
               }}
               onTouchEnd={(e) => {
-                setWatchList(e.target.value);
+                props.setWatchList(e.target.value);
                 setEmaFifty("");
                 setEmaValue("");
                 setEmaTwenty("");
@@ -297,7 +311,7 @@ const Search = (props) => {
                 setEmaTwoHundred("");
                 setCurrency("");
                 setTimeFrame("");
-                setWatchList("");
+                props.setWatchList("");
               }}
             >
               Up{" "}
@@ -319,7 +333,7 @@ const Search = (props) => {
                 setEmaTwoHundred("");
                 setCurrency("");
                 setTimeFrame("");
-                setWatchList("");
+                props.setWatchList("");
               }}
             >
               Down{" "}
@@ -341,7 +355,7 @@ const Search = (props) => {
                 setEmaTwoHundred("");
                 setCurrency("");
                 setTimeFrame("");
-                setWatchList("");
+                props.setWatchList("");
               }}
             >
               Sideways{" "}
@@ -387,7 +401,7 @@ const Search = (props) => {
                         setSelectedSubCategory={setSelectedSubCategory}
                         setModalState={setModalState}
                         setCurrency={setCurrency}
-                        setWatchList={setWatchList}
+                        setWatchList={props.setWatchList}
                         setEmaValue={setEmaValue}
                         setEmaTwenty={setEmaTwenty}
                         setEmaFifty={setEmaFifty}
@@ -459,7 +473,7 @@ const Search = (props) => {
                         setSelectedCategory={setSelectedCategory}
                         setCloseSubCategoryModal={setCloseSubCategoryModal}
                         setCurrency={setCurrency}
-                        setWatchList={setWatchList}
+                        setWatchList={props.setWatchList}
                         setEmaValue={setEmaValue}
                         setEmaTwenty={setEmaTwenty}
                         setEmaFifty={setEmaFifty}
@@ -526,7 +540,7 @@ const Search = (props) => {
                 setEmaTwoHundred("");
                 setCurrency("");
                 setTrend("");
-                setWatchList("");
+                props.setWatchList("");
               }}
               colorScheme
               bgColor="#F4A608"
@@ -547,7 +561,7 @@ const Search = (props) => {
                 setEmaTwoHundred("");
                 setCurrency("");
                 setTrend("");
-                setWatchList("");
+                props.setWatchList("");
               }}
               colorScheme
               bgColor="#F4A608"
@@ -569,7 +583,7 @@ const Search = (props) => {
                 setEmaTwoHundred("");
                 setCurrency("");
                 setTrend("");
-                setWatchList("");
+                props.setWatchList("");
               }}
               colorScheme
               bgColor="#F4A608"
@@ -591,7 +605,7 @@ const Search = (props) => {
                 setEmaTwoHundred("");
                 setCurrency("");
                 setTrend("");
-                setWatchList("");
+                props.setWatchList("");
               }}
               opacity={timeFrame == "1 00:00:00" ? 0.5 : 1}
               colorScheme
@@ -613,7 +627,7 @@ const Search = (props) => {
                 setEmaTwoHundred("");
                 setCurrency("");
                 setTrend("");
-                setWatchList("");
+                props.setWatchList("");
               }}
               opacity={timeFrame == "7 00:00:00" ? 0.5 : 1}
               colorScheme

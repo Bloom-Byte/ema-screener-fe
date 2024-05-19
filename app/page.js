@@ -16,6 +16,7 @@ export default function Home() {
   const [filteredResults, setFilteredResults] = useState([]);
   const [filteredCategory, setFilteredCategory] = useState();
   const [filteredSubCategory, setFilteredSubCategory] = useState();
+  const [watchList, setWatchList] = useState("");
 
   const handlePageClick = (page) => {
     setCurrentPage(page);
@@ -139,6 +140,8 @@ export default function Home() {
           setFilteredSubCategory={setFilteredSubCategory}
           filteredCategory={filteredCategory}
           filteredSubCategory={filteredSubCategory}
+          setWatchList={setWatchList}
+          watchList={watchList}
         />
         <Tabled
           allEmaRecords={allEmaRecords}
