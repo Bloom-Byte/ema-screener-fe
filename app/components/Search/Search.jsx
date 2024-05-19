@@ -67,6 +67,7 @@ const Search = (props) => {
           },
         });
 
+        console.log(response.data.results, "res");
         if (response.status == 200) {
           // console.log(response);
           props.setFilteredResults(response.data.results);

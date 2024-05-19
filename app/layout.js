@@ -2,7 +2,6 @@ import { Rubik } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import Template from "./template";
-import { AppContext } from "./helper/Helpers";
 import AppContextProvider from "./helper/ContextProvider";
 
 const rubik = Rubik({

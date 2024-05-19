@@ -131,9 +131,13 @@ const SingleRecord = (props) => {
           ? "Strong Up"
           : props.emaRecords["20>50"] &&
             props.emaRecords["50>100"] &&
-            props.emaRecords["100>200"] == true
+            props.emaRecords["100>200"] &&
+            !props.emaRecords["close>100"] == true
           ? "Up"
-          : props.emaRecords["20>50"] && props.emaRecords["50>100"] == true
+          : props.emaRecords["20>50"] &&
+            props.emaRecords["50>100"] &&
+            !props.emaRecords["100>200"] &&
+            !props.emaRecords["close>100"]
           ? "Positive"
           : !props.emaRecords["20>50"] &&
             !props.emaRecords["50>100"] &&
@@ -142,9 +146,13 @@ const SingleRecord = (props) => {
           ? "Strong Down"
           : !props.emaRecords["20>50"] &&
             !props.emaRecords["50>100"] &&
-            !props.emaRecords["100>200"] == false
+            !props.emaRecords["100>200"] &&
+            props.emaRecords["close>100"]
           ? "Down"
-          : !props.emaRecords["20>50"] && !props.emaRecords["50>100"]
+          : !props.emaRecords["20>50"] &&
+            !props.emaRecords["50>100"] &&
+            props.emaRecords["100>200"] &&
+            props.emaRecords["close>100"]
           ? "Negative"
           : "Sideways"}
       </Td>
