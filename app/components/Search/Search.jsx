@@ -193,7 +193,6 @@ const Search = (props) => {
             type="text"
             borderRadius="6px"
             color="#fff"
-            // className="py-1 px-2 text-[#000] outline-0 rounded-[8px]"
             placeholder="Search"
             onChange={(e) => setCurrency(e.target.value)}
           />
@@ -203,24 +202,17 @@ const Search = (props) => {
             color="#fff"
             className="rounded-[6px]"
             onClick={filterResults}
-            // style={{ color: "#fff" }}
           >
             Search
           </Button>
-          <Tippy placement="bottom" content="Search for your coins">
+          <Tippy placement="bottom" content="Search through records">
             <span className="text-white cursor-pointer">
               {" "}
               <HiOutlineQuestionMarkCircle />
             </span>
           </Tippy>
         </form>
-        {/* <div className="flex flex-col items-center gap-1">
-          <div className="flex items-center">
-            <button className="bg-[#F4A608] py-1 px-3">on</button>
-            <button className="bg-[#fff] py-1 px-3">off</button>
-          </div>
-          <p className="text-white">Watchlist </p>
-        </div> */}
+
         <div style={{ color: "#fff" }} className="flex items-center  gap-6">
           <Tippy placement="bottom" content="Shows level of priority">
             <Select
@@ -491,13 +483,15 @@ const Search = (props) => {
             )}
           </Popover>
 
-          <span
-            onClick={getAllCurrencies}
-            style={{ opacity: props.filteredResults?.length > 0 ? 0.7 : 1 }}
-            className="text-white cursor-pointer"
-          >
-            {<LuFilter color="white" cursor="pointer" />}{" "}
-          </span>
+          <Tippy content="Filter all" placement="bottom">
+            <span
+              onClick={getAllCurrencies}
+              style={{ opacity: props.filteredResults?.length > 0 ? 0.7 : 1 }}
+              className="text-white cursor-pointer"
+            >
+              {<LuFilter color="white" cursor="pointer" />}{" "}
+            </span>
+          </Tippy>
         </Flex>
 
         <div
