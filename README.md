@@ -6,6 +6,12 @@ How to process, install and get your Next.js app running from GitHub:
 
 Trend Catcher
 
+## Demo
+
+https://trend-catcher.netlify.app
+
+![LOGO](https://res.cloudinary.com/dsghy4siv/image/upload/v1716098563/Screenshot_250_fchhhk.png)
+
 ## Installation
 
 1. Clone the repository:
