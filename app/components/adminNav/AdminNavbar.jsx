@@ -32,7 +32,7 @@ const AdminNavbar = () => {
     try {
       // console.log(TOKEN, "context");
       console.log(TOKEN, USER_ID, "details");
-
+      console.log(process.env.NEXT_PUBLIC_API_KEY, "key");
       if (TOKEN && USER_ID) {
         await axios({
           method: "POST",
