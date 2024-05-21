@@ -29,10 +29,16 @@ const page = () => {
   useEffect(() => {
     const tok = window.localStorage.getItem("token");
     const userId = window.localStorage.getItem("userId");
-    //If the Tok value is absent then use the contextToken else if tok is present use the value from the storage
+    // console.log(tok, "tok");
+    //If the Tok value is absent then use the contextToken and if that is also absent go to the login page - else if tok is present use the value from the storage or the value from context
     if (!contextValue.token || !tok) {
       router.push("/login");
     } else {
+      console.log(
+        tok || contextValue.token,
+        userId || contextValue.userId,
+        "token & userId"
+      );
       getCurrentUser(
         `${tok}` || `${contextValue.token}`,
         `${userId}` || `${contextValue.userId}`
@@ -40,7 +46,7 @@ const page = () => {
     }
   }, []);
 
-  // getCurrentUser takes in a parameter called token which we'll get from getCurrentUser which is th token response
+  // getCurrentUser takes in a parameter called token And userId which we'll get from getCurrentUser which is the token response
   const getCurrentUser = async (token, userId) => {
     // console.log(token, userId, "stuff");
     if (token && userId) {
@@ -107,18 +113,12 @@ const page = () => {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
         setLoaded={setLoaded}
-        // setFilteredCategory={setFilteredCategory}
-        // setFilteredSubCategory={setFilteredSubCategory}
-        // filteredCategory={filteredCategory}
-        // filteredSubCategory={filteredSubCategory}
       />
       <SeeAllCategories
         emaCurrencies={currentPosts}
         setEmaCurrencies={setEmaCurrencies}
         loaded={loaded}
         setLoaded={setLoaded}
-        // filteredCategory={filteredCategory}
-        // filteredSubCategory={filteredSubCategory}
       />
       {emaCurrencies.length > 0 ? (
         <Paginate

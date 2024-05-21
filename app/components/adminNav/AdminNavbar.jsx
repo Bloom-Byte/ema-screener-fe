@@ -31,7 +31,7 @@ const AdminNavbar = () => {
     const USER_ID = contextValue.userId || localStorage.getItem("userId");
     try {
       // console.log(TOKEN, "context");
-      // console.log(TOKEN, USER_ID, "details");
+      console.log(TOKEN, USER_ID, "details");
 
       if (TOKEN && USER_ID) {
         await axios({

@@ -40,6 +40,8 @@ const Admin = (props) => {
       exchange: exchangeField,
     };
     try {
+      console.log(contextValue.token, "token");
+      console.log(contextValue.userId, "userId");
       if (
         allCoins.symbol &&
         allCoins.category &&
@@ -51,9 +53,7 @@ const Admin = (props) => {
           url: `${contextValue.base_url}/currencies/`,
           data: allCoins,
           headers: {
-            Authorization: `AuthToken ${
-              contextValue.token || localStorage.getItem("token")
-            }`,
+            Authorization: `AuthToken ${contextValue.token}`,
           },
         })
           .then((res) => {
