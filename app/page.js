@@ -38,7 +38,7 @@ export default function Home() {
 
           // Event listener for when the connection is opened
           socket.onopen = () => {
-            console.log("WebSocket connection opened");
+            console.log("WebSocket connection opened and active");
           };
 
           //Sending when there's an error
@@ -49,6 +49,7 @@ export default function Home() {
           // Event listener for incoming messages
           socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
+            console.log(data, "This is data");
             if (data.code === "create") {
               // Update filteredResults by adding the new data
               setFilteredResults((prevResults) => [data.data, ...prevResults]);
