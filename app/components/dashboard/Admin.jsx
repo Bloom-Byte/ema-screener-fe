@@ -40,8 +40,6 @@ const Admin = (props) => {
       exchange: exchangeField,
     };
     try {
-      console.log(contextValue.token, "token");
-      console.log(contextValue.userId, "userId");
       if (
         allCoins.symbol &&
         allCoins.category &&
@@ -54,6 +52,7 @@ const Admin = (props) => {
           data: allCoins,
           headers: {
             Authorization: `AuthToken ${contextValue.token}`,
+            "X-api-key": process.env.NEXT_PUBLIC_API_KEY,
           },
         })
           .then((res) => {

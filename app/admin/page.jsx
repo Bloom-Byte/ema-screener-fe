@@ -34,11 +34,6 @@ const page = () => {
     if (!contextValue.token || !tok) {
       router.push("/login");
     } else {
-      console.log(
-        tok || contextValue.token,
-        userId || contextValue.userId,
-        "token & userId"
-      );
       getCurrentUser(
         `${tok}` || `${contextValue.token}`,
         `${userId}` || `${contextValue.userId}`

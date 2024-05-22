@@ -41,7 +41,11 @@ const NavModal = ({ isOpen, setIsOpen }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={() => setIsOpen(false)}>
+            <Button
+              colorScheme="yellow"
+              mr={3}
+              onClick={() => setIsOpen(false)}
+            >
               Close
             </Button>
             {/* <Button variant="ghost">Secondary Action</Button> */}

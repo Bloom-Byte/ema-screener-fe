@@ -31,11 +31,9 @@ const AdminNavbar = () => {
     const USER_ID = contextValue.userId || localStorage.getItem("userId");
     try {
       // console.log(TOKEN, "context");
-      console.log(TOKEN, USER_ID, "details");
-      console.log(process.env.NEXT_PUBLIC_API_KEY, "key");
       if (TOKEN && USER_ID) {
         await axios({
-          method: "POST",
+          method: "GET",
           url: `${contextValue.base_url}/accounts/logout/`,
           headers: {
             Authorization: `AuthToken ${TOKEN}`,
