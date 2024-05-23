@@ -92,6 +92,7 @@ const Admin = (props) => {
           Authorization: `AuthToken ${
             contextValue.token || localStorage.getItem("token")
           }`,
+          "X-api-key": process.env.NEXT_PUBLIC_API_KEY,
         },
       })
         .then((res) => {

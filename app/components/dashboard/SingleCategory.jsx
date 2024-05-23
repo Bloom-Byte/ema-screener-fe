@@ -21,6 +21,7 @@ const SingleCategory = (props) => {
           Authorization: `AuthToken ${
             contextValue.token || localStorage.getItem("token")
           }`,
+          "X-api-key": process.env.NEXT_PUBLIC_API_KEY,
         },
       }).catch((err) => console.log(err));
       if (response.status === 200) {
