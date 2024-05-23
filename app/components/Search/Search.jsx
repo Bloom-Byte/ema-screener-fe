@@ -30,7 +30,7 @@ import { LuFilter } from "react-icons/lu";
 const Search = (props) => {
   const { contextValue } = useAppContext();
 
-  const [timeFrame, setTimeFrame] = useState("");
+  const [timeFrame, setTimeFrame] = useState("00:15:00");
   const [currency, setCurrency] = useState("");
   const [watchList, setWatchList] = useState("");
   const [emaValue, setEmaValue] = useState("");
