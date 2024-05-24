@@ -97,7 +97,6 @@ const Admin = (props) => {
       })
         .then((res) => {
           props.setEmaCurrencies(res.data.results);
-          // setSearchValue("");
           setSearchValue("");
         })
         .catch((err) => {
@@ -108,84 +107,6 @@ const Admin = (props) => {
       console.log(error);
     }
   };
-
-  //!Function to filter by category in case
-  // const filterByCategory = async () => {
-  //   props.setFilteredSubCategory([]);
-  //   props.setEmaCurrencies([]);
-  //   props.setLoaded(true);
-  //   const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
-  //   if (ApiKey) {
-  //     try {
-  //       await axios({
-  //         method: "GET",
-  //         url: `${contextValue.base_url}/currencies/categories`,
-  //         headers: {
-  //           "x-API-KEY": ApiKey,
-  //           "Content-Type": "application/json",
-  //         },
-  //       }).then((res) => {
-  //         props.setFilteredCategory(res.data.data.categories);
-  //         props.setLoaded(false);
-  //       });
-  //     } catch (error) {
-  //       console.log(error);
-  //       props.setLoaded(false);
-  //     }
-  //   }
-  // };
-
-  //!Function to filter by sub category in case
-  // const filterBySubCategory = async () => {
-  //   props.setFilteredCategory([]);
-  //   props.setEmaCurrencies([]);
-  //   props.setLoaded(true);
-  //   const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
-  //   if (ApiKey) {
-  //     try {
-  //       await axios({
-  //         method: "GET",
-  //         url: `${contextValue.base_url}/currencies/categories`,
-  //         headers: {
-  //           "x-API-KEY": ApiKey,
-  //           "Content-Type": "application/json",
-  //         },
-  //       }).then((res) => {
-  //         props.setFilteredSubCategory(res.data.data.subcategories);
-  //         props.setLoaded(false);
-  //       });
-  //     } catch (error) {
-  //       console.log(error);
-  //       props.setLoaded(false);
-  //     }
-  //   }
-  // };
-
-  //* Function to get all the currencies back in case
-  // const getAllCurrencies = async () => {
-  //   props.setFilteredCategory([]);
-  //   props.setFilteredSubCategory([]);
-  //   props.setLoaded(true);
-  //   const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
-  //   if (ApiKey) {
-  //     try {
-  //       await axios({
-  //         method: "GET",
-  //         url: `${contextValue.base_url}/currencies/`,
-  //         headers: {
-  //           "x-API-KEY": ApiKey,
-  //           "Content-Type": "application/json",
-  //         },
-  //       }).then((res) => {
-  //         props.setEmaCurrencies(res.data.results);
-  //         props.setLoaded(false);
-  //       });
-  //     } catch (error) {
-  //       console.log(error);
-  //       props.setLoaded(false);
-  //     }
-  //   }
-  // };
 
   return (
     <AnimatePresence>
@@ -311,28 +232,6 @@ const Admin = (props) => {
                 </span>
               </Tippy>
             </form>
-
-            {/* <Flex my="10px" alignItems="center" gap="15px">
-              <Button
-                onClick={filterByCategory}
-                colorScheme="yellow"
-                className="rounded-[6px]"
-                opacity={props.filteredCategory?.length > 0 ? 0.7 : 1}
-              >
-                Category{" "}
-              </Button>
-              <Button
-                onClick={filterBySubCategory}
-                colorScheme="yellow"
-                className="rounded-[6px]"
-                opacity={props.filteredSubCategory?.length > 0 ? 0.7 : 1}
-              >
-                Sub-Category{" "}
-              </Button>
-              <span onClick={getAllCurrencies} className="cursor-pointer">
-                {<LuFilter cursor="pointer" />}{" "}
-              </span>
-            </Flex> */}
           </Box>
           <ToastContainer />
         </Container>

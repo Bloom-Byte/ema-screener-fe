@@ -185,8 +185,6 @@ const Search = (props) => {
     }
   };
 
-  console.log(trend, "trend");
-
   return (
     <div className="my-[30px]">
       <div className="flex items-center justify-between w-[95%]  flex-wrap gap-4 mx-auto">
