@@ -54,7 +54,7 @@ const SingleRecord = (props) => {
               width={20}
               height={20}
               style={{ margin: "0 auto" }}
-              src="/sideways_img.jpg"
+              src="/sideways_img.png"
               alt="img"
             />
           </div>
