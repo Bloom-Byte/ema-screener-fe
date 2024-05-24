@@ -75,7 +75,7 @@ const AdminNavbar = () => {
       className="w-[100%] bg-black text-#fff"
     >
       <div className="flex items-center justify-between m-auto py-4 w-[95%]  max-[500px]:justify-between ">
-        <div className="flex items-center gap-3  ">
+        <div className="flex items-center gap-3 cursor-default ">
           <div className="w-[50px] max-[450px]:hidden">
             <img className="w-full rounded-full" src="./logo.png" alt="img" />
           </div>
@@ -83,7 +83,7 @@ const AdminNavbar = () => {
             as="h4"
             size="md"
             textColor="white"
-            className="text-#fff max-[500px]:text-[16px]"
+            className="text-#fff cursor-default max-[500px]:text-[16px]"
           >
             Trend Catcher Admin{" "}
           </Heading>

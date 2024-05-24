@@ -30,7 +30,7 @@ import { LuFilter } from "react-icons/lu";
 const Search = (props) => {
   const { contextValue } = useAppContext();
 
-  const [timeFrame, setTimeFrame] = useState("");
+  const [timeFrame, setTimeFrame] = useState("00:15:00");
   const [currency, setCurrency] = useState("");
   const [watchList, setWatchList] = useState("");
   const [emaValue, setEmaValue] = useState("");
@@ -221,15 +221,6 @@ const Search = (props) => {
               maxW="220px"
               onChange={(e) => {
                 setWatchList(e.target.value);
-                setEmaFifty("");
-                setEmaValue("");
-                setEmaTwenty("");
-                setEmaHundred("");
-                setEmaTwoHundred("");
-                setCurrency("");
-                setTimeFrame("");
-                setTrend("");
-                setCloseHundred("");
               }}
               cursor="pointer"
               placeholder="Select option"
@@ -271,14 +262,6 @@ const Search = (props) => {
               className="rounded-[6px]"
               onClick={() => {
                 setTrend(1);
-                setEmaHundred("");
-                setEmaValue("");
-                setEmaTwenty("");
-                setEmaFifty("");
-                setEmaTwoHundred("");
-                setCurrency("");
-                setTimeFrame("");
-                setWatchList("");
               }}
             >
               Up{" "}
@@ -293,14 +276,6 @@ const Search = (props) => {
               className="rounded-[6px]"
               onClick={() => {
                 setTrend(-1);
-                setEmaHundred("");
-                setEmaValue("");
-                setEmaTwenty("");
-                setEmaFifty("");
-                setEmaTwoHundred("");
-                setCurrency("");
-                setTimeFrame("");
-                setWatchList("");
               }}
             >
               Down{" "}
@@ -315,14 +290,6 @@ const Search = (props) => {
               className="rounded-[6px]"
               onClick={() => {
                 setTrend(0);
-                setEmaValue("");
-                setEmaTwenty("");
-                setEmaFifty("");
-                setEmaHundred("");
-                setEmaTwoHundred("");
-                setCurrency("");
-                setTimeFrame("");
-                setWatchList("");
               }}
             >
               Sideways{" "}
@@ -502,14 +469,6 @@ const Search = (props) => {
             <Button
               onClick={() => {
                 setTimeFrame("00:15:00");
-                setEmaHundred("");
-                setEmaValue("");
-                setEmaTwenty("");
-                setEmaFifty("");
-                setEmaTwoHundred("");
-                setCurrency("");
-                setTrend("");
-                setWatchList("");
               }}
               colorScheme
               bgColor="#F4A608"
@@ -523,14 +482,6 @@ const Search = (props) => {
             <Button
               onClick={() => {
                 setTimeFrame("1:00:00");
-                setEmaHundred("");
-                setEmaValue("");
-                setEmaTwenty("");
-                setEmaFifty("");
-                setEmaTwoHundred("");
-                setCurrency("");
-                setTrend("");
-                setWatchList("");
               }}
               colorScheme
               bgColor="#F4A608"
@@ -545,14 +496,6 @@ const Search = (props) => {
             <Button
               onClick={() => {
                 setTimeFrame("4:00:00");
-                setEmaHundred("");
-                setEmaValue("");
-                setEmaTwenty("");
-                setEmaFifty("");
-                setEmaTwoHundred("");
-                setCurrency("");
-                setTrend("");
-                setWatchList("");
               }}
               colorScheme
               bgColor="#F4A608"
@@ -567,14 +510,6 @@ const Search = (props) => {
             <Button
               onClick={() => {
                 setTimeFrame("1 00:00:00");
-                setEmaHundred("");
-                setEmaValue("");
-                setEmaTwenty("");
-                setEmaFifty("");
-                setEmaTwoHundred("");
-                setCurrency("");
-                setTrend("");
-                setWatchList("");
               }}
               opacity={timeFrame == "1 00:00:00" ? 0.5 : 1}
               colorScheme
@@ -589,14 +524,6 @@ const Search = (props) => {
             <Button
               onClick={() => {
                 setTimeFrame("7 00:00:00");
-                setEmaHundred("");
-                setEmaValue("");
-                setEmaTwenty("");
-                setEmaFifty("");
-                setEmaTwoHundred("");
-                setCurrency("");
-                setTrend("");
-                setWatchList("");
               }}
               opacity={timeFrame == "7 00:00:00" ? 0.5 : 1}
               colorScheme
@@ -620,15 +547,6 @@ const Category = (props) => {
         props.setSelectedCategory(props.category.category);
         props.setSelectedSubCategory("");
         props.setModalState(false);
-        props.setTrend("");
-        props.setEmaHundred("");
-        props.setEmaValue("");
-        props.setEmaTwenty("");
-        props.setEmaFifty("");
-        props.setEmaTwoHundred("");
-        props.setCurrency("");
-        props.setTimeFrame("");
-        setWatchList("");
       }}
       cursor="pointer"
       my="5px"
@@ -645,15 +563,6 @@ const SubCategory = (props) => {
         props.setSelectedSubCategory(props.subCategory.name);
         props.setSelectedCategory("");
         props.setCloseSubCategoryModal(false);
-        props.setTrend("");
-        props.setEmaHundred("");
-        props.setEmaValue("");
-        props.setEmaTwenty("");
-        props.setEmaFifty("");
-        props.setEmaTwoHundred("");
-        props.setCurrency("");
-        props.setTimeFrame("");
-        setWatchList("");
       }}
       cursor="pointer"
       my="5px"
