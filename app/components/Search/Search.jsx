@@ -185,6 +185,8 @@ const Search = (props) => {
     }
   };
 
+  console.log(trend, "trend");
+
   return (
     <div className="my-[30px]">
       <div className="flex items-center justify-between w-[95%]  flex-wrap gap-4 mx-auto">
@@ -253,48 +255,102 @@ const Search = (props) => {
           </Tippy>
         </div>
         <div className="flex items-center gap-3">
-          <Tippy content="Filter upwards" placement="bottom">
-            <Button
-              colorScheme
-              bgColor="#F4A608"
-              opacity={trend == 1 ? 0.5 : 1}
-              color="#fff"
-              className="rounded-[6px]"
-              onClick={() => {
-                setTrend(1);
-              }}
-            >
-              Up{" "}
-            </Button>
-          </Tippy>
-          <Tippy content="Filter downward" placement="bottom">
-            <Button
-              colorScheme
-              bgColor="#F4A608"
-              opacity={trend == -1 ? 0.5 : 1}
-              color="#fff"
-              className="rounded-[6px]"
-              onClick={() => {
-                setTrend(-1);
-              }}
-            >
-              Down{" "}
-            </Button>
-          </Tippy>
-          <Tippy content="Filter sideways" placement="bottom">
-            <Button
-              colorScheme
-              bgColor="#F4A608"
-              opacity={trend == "0" ? 0.5 : 1}
-              color="#fff"
-              className="rounded-[6px]"
-              onClick={() => {
-                setTrend(0);
-              }}
-            >
-              Sideways{" "}
-            </Button>
-          </Tippy>
+          {trend === 1 ? (
+            <Tippy content="Filter upwards" placement="bottom">
+              <Button
+                colorScheme
+                bgColor="#F4A608"
+                opacity={0.5}
+                color="#fff"
+                className="rounded-[6px]"
+                onClick={() => {
+                  setTrend(" ");
+                }}
+              >
+                Up{" "}
+              </Button>
+            </Tippy>
+          ) : (
+            <Tippy content="Filter upwards" placement="bottom">
+              <Button
+                colorScheme
+                bgColor="#F4A608"
+                // opacity={trend == 1 ? 0.5 : 1}
+                color="#fff"
+                className="rounded-[6px]"
+                onClick={() => {
+                  setTrend(1);
+                }}
+              >
+                Up{" "}
+              </Button>
+            </Tippy>
+          )}
+
+          {trend === -1 ? (
+            <Tippy content="Filter downward" placement="bottom">
+              <Button
+                colorScheme
+                bgColor="#F4A608"
+                opacity={0.5}
+                color="#fff"
+                className="rounded-[6px]"
+                onClick={() => {
+                  setTrend(" ");
+                }}
+              >
+                Down{" "}
+              </Button>
+            </Tippy>
+          ) : (
+            <Tippy content="Filter downward" placement="bottom">
+              <Button
+                colorScheme
+                bgColor="#F4A608"
+                // opacity={trend == -1 ? 0.5 : 1}
+                color="#fff"
+                className="rounded-[6px]"
+                onClick={() => {
+                  setTrend(-1);
+                }}
+              >
+                Down{" "}
+              </Button>
+            </Tippy>
+          )}
+
+          {trend === 0 ? (
+            <Tippy content="Filter sideways" placement="bottom">
+              <Button
+                colorScheme
+                bgColor="#F4A608"
+                opacity={0.5}
+                color="#fff"
+                className="rounded-[6px]"
+                onClick={() => {
+                  setTrend(" ");
+                }}
+              >
+                Sideways{" "}
+              </Button>
+            </Tippy>
+          ) : (
+            <Tippy content="Filter sideways" placement="bottom">
+              <Button
+                colorScheme
+                bgColor="#F4A608"
+                color="#fff"
+                opacity={1}
+                className="rounded-[6px]"
+                onClick={() => {
+                  setTrend(0);
+                }}
+              >
+                Sideways{" "}
+              </Button>
+            </Tippy>
+          )}
+
           <Tippy placement="bottom" content="Filter by trends">
             <span className="text-white cursor-pointer">
               {" "}
