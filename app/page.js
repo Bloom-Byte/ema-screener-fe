@@ -49,7 +49,7 @@ export default function Home() {
           // Event listener for incoming messages
           socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
-            console.log(data, "This is data");
+            // console.log(data, "This is data");
             if (data.code === "create") {
               // Update filteredResults by adding the new data
               setFilteredResults((prevResults) => [data.data, ...prevResults]);
@@ -59,11 +59,47 @@ export default function Home() {
                 prevResults.filter((emaRecord) => emaRecord.id !== data.data.id)
               );
             } else if (data.code === "update") {
+              // console.log(data.data["close>100"], "close>100");
               // Update filteredResults by updating the existing data
               setFilteredResults((prevResults) =>
                 prevResults.map((emaRecord) => {
                   if (emaRecord.id === data.data.id) {
-                    return data.data;
+                    return {
+                      ...emaRecord,
+                      close: data?.data?.close
+                        ? data?.data?.close
+                        : emaRecord?.close,
+                      monhigh: data.data?.monhigh
+                        ? data.data?.monhigh
+                        : emaRecord?.monhigh,
+                      monmid: data.data?.monmid
+                        ? data.data?.monmid
+                        : emaRecord?.monmid,
+                      monlow: data.data?.monlow
+                        ? data.data?.monlow
+                        : emaRecord.monlow,
+                      ema20: data.data.ema20
+                        ? data.data?.ema20
+                        : emaRecord?.ema20,
+                      ema50: data.data?.ema50
+                        ? data.data?.ema50
+                        : emaRecord?.ema50,
+                      ema100: data.data?.ema100
+                        ? data.data?.ema100
+                        : emaRecord?.ema100,
+                      ema200: data.data?.ema200
+                        ? data.data?.ema200
+                        : emaRecord?.ema200,
+                      trend: data.data?.trend
+                        ? data.data?.trend
+                        : emaRecord?.trend,
+                      "close>100": data.data["close>100"]
+                        ? data.data["close>100"]
+                        : emaRecord["close>100"],
+                      timeframe: data.data?.timeframe
+                        ? data.data?.timeframe
+                        : emaRecord?.timeframe,
+                    };
                   }
                   return emaRecord;
                 })

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p id="data-display">
+            Data will display here
+        </p>
+    </div>
+</body>
+
+<script>
+    const emaWSURL = 'wss://be.emascreener.bloombyte.dev:8000/ws/ema-records/';
+
+    function handleCreate(data){
+        console.log('New record created');
+        // Do something
+        console.log(data);
+    }
+
+    function handleUpdate(data){
+        console.log('Record updated');
+        // Do something
+        console.log(data);
+    }
+
+    function handleDelete(data){
+        console.log('Record deleted');
+        // Do something
+        console.log(data);
+    }
+
+
+    function connectToEMAWebsocket(apikey, url=emaWSURL){
+        const urlWithCredentials = `${url}?api_key=${apikey}`;
+        const ws = new WebSocket(urlWithCredentials);
+
+        ws.onopen = () => {
+            console.log('Connected to the server');
+        };
+
+        ws.onmessage = (e) => {
+            const event = JSON.parse(e.data);
+    
+            if (event.code == "create"){
+                handleCreate(event.data);
+
+            }else if(event.code == "update"){
+                handleUpdate(event.data);
+
+            }else if(event.code == "delete"){
+                handleDelete(event.data);
+
+            }else{
+                console.log('Unknown operation');
+            }
+
+            document.getElementById('data-display').innerText = `${event.code} operation performed!`;
+        };
+
+        ws.onerror = (e) => {
+            console.log('An error occurred while connecting to the server');
+        };
+
+        ws.onclose = (e) => {
+            console.log(`Connection closed for ${e.code}`);
+        };
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if ('WebSocket' in window){
+            console.log("Connecting to the websocket server")
+            connectToEMAWebsocket('Mw2iwRfG.S2FLBjGIC8Pj4SWZ4SZqoYgZVj0rTngx');
+
+        } else {
+            alert('Websockets are not supported in this browser');
+        }   
+    });
+</script>
+</html>
