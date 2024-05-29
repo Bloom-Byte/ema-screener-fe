@@ -49,7 +49,6 @@ export default function Home() {
           // Event listener for incoming messages
           socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
-            // console.log(data, "This is data");
             if (data.code === "create") {
               // Update filteredResults by adding the new data
               setFilteredResults((prevResults) => [data.data, ...prevResults]);
