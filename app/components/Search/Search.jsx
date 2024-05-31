@@ -67,7 +67,10 @@ const Search = (props) => {
           },
         });
 
-        // console.log(response.data.results, "res");
+        // console.log(
+        //   `${contextValue.base_url}/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&${closeHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}&category=${selectedCategory}&subcategory=${selectedSubCategory}`,
+        //   "res"
+        // );
         if (response.status == 200) {
           // console.log(response);
           props.setFilteredResults(response.data.results);
@@ -83,6 +86,11 @@ const Search = (props) => {
       }
     }
   };
+
+  // console.log(
+  //   `${contextValue.base_url}/ema-records/?${emaTwenty}=${emaValue}&${emaFifty}=${emaValue}&${emaHundred}=${emaValue}&${emaTwoHundred}=${emaValue}&${closeHundred}=${emaValue}&currency=${currency}&trend=${trend}&watch=${watchList}&timeframe=${timeFrame}&category=${selectedCategory}&subcategory=${selectedSubCategory}`,
+  //   "url"
+  // );
 
   useEffect(() => {
     filterResults();
@@ -111,6 +119,7 @@ const Search = (props) => {
         });
 
         if (response.status == 200) {
+          // console.log(response.data);
           const allCategories = response.data.data.categories.map(
             (category, index) => ({
               id: index + 1,
@@ -164,6 +173,7 @@ const Search = (props) => {
     props.setFilteredCategory([]);
     props.setFilteredSubCategory([]);
     props.setLoading(true);
+    setTimeFrame("00:15:00");
     const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
     if (ApiKey) {
       try {
@@ -177,6 +187,16 @@ const Search = (props) => {
         }).then((res) => {
           props.setFilteredResults(res.data.results);
           props.setLoading(false);
+          setCurrency("");
+          setWatchList("");
+          setEmaTwenty("");
+          setEmaFifty("");
+          setEmaHundred("");
+          setCloseHundred("");
+          setEmaValue("");
+          setTrend("");
+          setSelectedCategory("");
+          setSelectedSubCategory("");
         });
       } catch (error) {
         console.log(error);
@@ -262,7 +282,7 @@ const Search = (props) => {
                 color="#fff"
                 className="rounded-[6px]"
                 onClick={() => {
-                  setTrend(" ");
+                  setTrend("");
                 }}
               >
                 Up{" "}
@@ -294,7 +314,7 @@ const Search = (props) => {
                 color="#fff"
                 className="rounded-[6px]"
                 onClick={() => {
-                  setTrend(" ");
+                  setTrend("");
                 }}
               >
                 Down{" "}
@@ -326,7 +346,7 @@ const Search = (props) => {
                 color="#fff"
                 className="rounded-[6px]"
                 onClick={() => {
-                  setTrend(" ");
+                  setTrend("");
                 }}
               >
                 Sideways{" "}

@@ -11,6 +11,7 @@ const page = () => {
     <div>
       {contextValue.forgotPass ? <EnterEmail /> : <Login />}
       <ToastContainer />
+      <Bread />
     </div>
   );
 };
